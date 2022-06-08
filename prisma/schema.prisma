@@ -34,6 +34,8 @@ model Product {
   category         Category          @relation(fields: [categoryId], references: [id])
   categoryId       String            @db.ObjectId
   purchasedProduct PurchasedProduct?
+  note             String?
+  image            String?
 }
 
 model PurchasedProduct {
