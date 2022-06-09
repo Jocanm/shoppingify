@@ -1,7 +1,8 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-import { patterns } from '../../../shared'
-import { prisma } from '../../../lib';
 import bcrypt from 'bcryptjs';
+import type { NextApiRequest, NextApiResponse } from 'next';
+import * as Yup from 'yup';
+import { prisma } from '../../../lib';
+import { patterns } from '../../../shared';
 
 type Data =
     | { message: string }
@@ -22,20 +23,26 @@ async function registerUser(req: NextApiRequest, res: NextApiResponse<{ message:
 
     const { email, password, name } = req.body as { email: string, password: string, name: string }
 
-    if (!email || !password || !name) {
-        return res.status(400).json({ message: 'All fields are required' })
-    }
+    const userSchema = Yup.object({
+        email: Yup
+            .string()
+            .required("email is required")
+            .matches(patterns.email, "Invalid email"),
+        password: Yup
+            .string()
+            .required("password is required")
+            .min(6, "Password must be at least 6 characters long"),
+        name: Yup
+            .string()
+            .required("name is required")
+            .min(3, "Name must be at least 3 characters long")
+    })
 
-    if (password.length < 6) {
-        return res.status(400).json({ message: 'Password must be at least 6 characters' })
-    }
-
-    if (name.length < 3) {
-        return res.status(400).json({ message: 'Name must be at least 3 characters' })
-    }
-
-    if (!(patterns.email.test(email))) {
-        return res.status(400).json({ message: 'Email is invalid' })
+    try {
+        await userSchema.validate({ email, password, name })
+    } catch (error) {
+        console.log(error)
+        return res.status(400).json({ message: (error as any)?.message })
     }
 
     const user = await prisma.user.findUnique({

@@ -10,6 +10,7 @@ export const PublicLayoutWrapper = styled.div`
     justify-content: center;
     align-items: center;
     gap: .45rem;
+    background-color: #FAF9F9;
 
     ${props => props.theme.breakpoints.sm} {
         .user-info-not-sm{
@@ -26,7 +27,7 @@ export const PublicLayoutWrapper = styled.div`
         cursor: pointer;
     }
 
-    & label.Mui-focused {
+    /* & label.Mui-focused {
         color: rgba(0, 0, 0, 0.6);
     }
     & .MuiOutlinedInput-root {
@@ -37,14 +38,15 @@ export const PublicLayoutWrapper = styled.div`
 
     .css-1eqv57h-MuiInputBase-root-MuiOutlinedInput-root:hover{
         border-color: red;
-    }
+    } */
 
 `
 
 
 export const FormWrapper = styled.main`
 
-    border: 1px solid ${props => props.theme.colors.input};
+    /* border: 1px solid ${props => props.theme.colors.input}; */
+    box-shadow: 3px 3px 8px #00000029;
     border-radius: 1.5rem;
     padding: 3rem;
     width:450px;

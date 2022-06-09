@@ -50,10 +50,10 @@ export const GlobalStyle = createGlobalStyle`
     html{
         font-size: 16px;
         /* ${props => props.theme.breakpoints.xl3} {
-            font-size: 12px;
+            font-size: 14px;
         }
         ${props => props.theme.breakpoints.xl} {
-            font-size: 10px;
+            font-size: 12px;
         } */
     }
 

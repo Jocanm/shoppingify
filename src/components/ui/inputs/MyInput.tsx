@@ -1,8 +1,7 @@
-import React from 'react'
-import { InputAdornment, SvgIconTypeMap, TextField } from '@mui/material';
+import { InputAdornment, TextField } from '@mui/material';
+import React from 'react';
 import { useFormContext, useFormState } from 'react-hook-form';
 import styled from 'styled-components';
-import { OverridableComponent } from '@mui/material/OverridableComponent';
 
 interface Props {
     name: string;
@@ -22,20 +21,21 @@ export const MyTextField = ({ name, label, variant = "outlined", icon, iconPosit
     return (
         <TextField
             {...register(name)}
-            autoComplete="off"
             label={label}
             variant={variant}
             error={!!errors[name]}
             helperText={errors[name]?.message}
+            autoComplete="off"
             InputProps={{
                 startAdornment: (
                     <InputAdornment position={iconPosition || "start"}>
                         {icon}
                     </InputAdornment>
                 ),
-                sx:{
+                sx: {
                     borderRadius: '8px',
-                }
+                },
+                autoComplete: 'off',
             }}
             {...rest}
         />

@@ -1,6 +1,7 @@
 import NextAuth from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
 import GithubProvider from "next-auth/providers/github"
+import { checkUser } from '../../../shared/database'
 
 export default NextAuth({
     providers: [
@@ -15,8 +16,8 @@ export default NextAuth({
                 password: { label: "Contraseña", type: "password", placeholder: "************" },
             },
             authorize: async (credentials) => {
-                const { email, password } = credentials || {}
-                return { email, password }
+                const { email = "", password = "" } = credentials || {}
+                return await checkUser(email, password)
             }
         }),
     ],
@@ -28,12 +29,40 @@ export default NextAuth({
     },
 
     pages: {
-        signIn: "auth/login", 
+        signIn: "auth/login",
         newUser: "auth/register",
         error: "auth/login",
     },
-    
+
     callbacks: {
 
-    }
+        jwt: async ({ token, account, user }) => {
+
+            if (account) {
+
+                token.accessToken = account.access_token
+
+                switch (account.type) {
+                    case "credentials":
+                        token.user = user
+                        break;
+                }
+            }
+
+            return token
+
+        },
+
+        session: async ({ session, token, user }) => {
+
+            session.accessToken = token.accessToken;
+            session.user = token.user as any;
+
+            return session
+
+        },
+
+    },
+
+    secret: process.env.NEXTAUTH_SECRET,
 }) 

@@ -1,20 +1,26 @@
-import React from 'react'
-import { GetServerSideProps } from 'next'
-import { FormProvider, useForm } from 'react-hook-form';
-import { PublicLayout } from '../../layouts';
-import { Box, Button, MyTextField } from '../../components';
-import * as Yup from 'yup';
-import { patterns } from '../../shared';
 import { yupResolver } from '@hookform/resolvers/yup';
-import HttpsIcon from '@mui/icons-material/Https';
-import EmailIcon from '@mui/icons-material/Email';
-import { Email, Https} from '@mui/icons-material';
+import { Email, Https, Person } from '@mui/icons-material';
+import { GetServerSideProps } from 'next';
+import { getSession } from 'next-auth/react';
+import React from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+import * as Yup from 'yup';
+import { Box, Button, MyTextField } from '../../components';
+import { startCreateUser, useAppDispatch, useAppSelector } from '../../config/redux';
+import { PublicLayout } from '../../layouts';
+import { patterns } from '../../shared';
+import { useRouter } from 'next/router';
 
 const FormShape = Yup.object({
+    name: Yup
+        .string()
+        .required('Name is required')
+        .min(3, 'Name must be at least 3 characters'),
     email: Yup
         .string()
         .required("Email is required")
-        .matches(patterns.email, "Please provide a valid email"),
+        .matches(patterns.email, "Please provide a valid email")
+        .lowercase(),
     password: Yup
         .string()
         .required("Password is required")
@@ -28,10 +34,17 @@ const FormShape = Yup.object({
 export interface FormProps extends Yup.InferType<typeof FormShape> { }
 
 const RegisterPage = () => {
+
+    const router = useRouter()
+    const dispatch = useAppDispatch()
+    const { isValidating } = useAppSelector().auth
     const methods = useForm<FormProps>({ resolver: yupResolver(FormShape) })
 
-    const onSubmit = (data: FormProps) => {
-        console.log(data)
+    const onSubmit = async ({ confirmPassword, ...data }: FormProps) => {
+        const isOk = await dispatch(startCreateUser(data)).unwrap()
+        if(!isOk) return;
+
+        router.push('/')
     }
 
     return (
@@ -42,6 +55,11 @@ const RegisterPage = () => {
                     as="form"
                     onSubmit={methods.handleSubmit(onSubmit)}
                 >
+                    <MyTextField
+                        name="name"
+                        label="Full Name"
+                        icon={<Person />}
+                    />
                     <MyTextField
                         name="email"
                         label="Email"
@@ -59,13 +77,31 @@ const RegisterPage = () => {
                         type="password"
                         icon={<Https />}
                     />
-                    <Button loaderSize='1.3rem' fontWeight='500'>
-                        Login
+                    <Button loaderSize='1.3rem' fontWeight='500' isLoading={isValidating}>
+                        Create account
                     </Button>
                 </Box>
             </PublicLayout>
         </FormProvider>
     )
+}
+
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+
+    const session = await getSession({ req })
+
+    if(session){
+        return {
+            redirect:{
+                destination: '/',
+                permanent: false,
+            }
+        }
+    }
+
+    return {
+        props: {}
+    }
 }
 
 export default RegisterPage
