@@ -19,3 +19,33 @@ export const checkUser = async (email: string, password: string) => {
     return rest;
 
 }
+
+
+export const validateOrCreateUser = async (oAuthEmail: string, oAuthName: string) => {
+
+    try {
+        const user = await prisma.user.findUnique({
+            where: { email: oAuthEmail }
+        })
+
+        if (user) {
+            const { password, ...rest } = user
+            return rest;
+        }
+
+        const newUser = await prisma.user.create({
+            data: {
+                email: oAuthEmail,
+                name: oAuthName,
+                password: '@',
+                isOauth: true
+            }
+        })
+
+        const { password: toIgnore, ...rest } = newUser;
+        return rest;
+    } catch (error) {
+        console.error(error)
+        return null
+    }
+}

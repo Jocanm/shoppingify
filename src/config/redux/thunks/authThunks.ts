@@ -87,7 +87,11 @@ export const startOatuhSignIn = createAsyncThunk(
     async (credential: CredentialsTypes) => {
 
         try {
-            
+
+            signIn(credential, {
+                callbackUrl: "/"
+            })
+
         } catch (error) {
             console.error(error)
             toast("Something went wrong", "error")

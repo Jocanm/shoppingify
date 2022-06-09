@@ -1,12 +1,13 @@
+import { GitHub } from '@mui/icons-material';
 import Head from 'next/head';
 import Image from 'next/image';
-import React, { useMemo } from 'react'
-import { FC } from 'react';
-import { Box } from '../../components';
-import * as S from './PublicLayout.styles';
-import { GitHub, Facebook, Google } from '@mui/icons-material';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import React, { FC, useMemo } from 'react';
+import { Box } from '../../components';
+import { useAppDispatch } from '../../config/redux';
+import { CredentialsTypes, startOatuhSignIn } from '../../config/redux/thunks';
+import * as S from './PublicLayout.styles';
 
 interface Props {
     children: React.ReactNode
@@ -18,6 +19,11 @@ interface Props {
 export const PublicLayout: FC<Props> = ({ children, description, title, viewTitle }) => {
 
     const { asPath } = useRouter()
+    const dispatch = useAppDispatch()
+
+    const oAuthLogin = (credential:CredentialsTypes) => {
+        dispatch(startOatuhSignIn(credential))
+    }
 
     const isLoginPage = useMemo(() => {
         return asPath.includes('login')
@@ -47,7 +53,7 @@ export const PublicLayout: FC<Props> = ({ children, description, title, viewTitl
                         {/* <S.SocialMediaIcon>
                             <Google />
                         </S.SocialMediaIcon> */}
-                        <S.SocialMediaIcon>
+                        <S.SocialMediaIcon onClick={() => oAuthLogin('github')}>
                             <GitHub />
                         </S.SocialMediaIcon>
                         {/* <S.SocialMediaIcon>

@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
 import GithubProvider from "next-auth/providers/github"
-import { checkUser } from '../../../shared/database'
+import { checkUser, validateOrCreateUser } from '../../../shared/database'
 
 export default NextAuth({
     providers: [
@@ -29,9 +29,9 @@ export default NextAuth({
     },
 
     pages: {
-        signIn: "auth/login",
-        newUser: "auth/register",
-        error: "auth/login",
+        signIn: "/auth/login",
+        newUser: "/auth/register",
+        error: "/auth/login",
     },
 
     callbacks: {
@@ -45,6 +45,11 @@ export default NextAuth({
                 switch (account.type) {
                     case "credentials":
                         token.user = user
+                        break;
+                    case 'oauth':
+                        const { email, name } = user as { email: string, name: string }
+                        const userOauth = await validateOrCreateUser(email, name)
+                        token.user = userOauth
                         break;
                 }
             }
