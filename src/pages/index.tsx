@@ -1,4 +1,5 @@
 import React from 'react'
+import { GetServerSideProps } from 'next'
 
 const HomePage = () => {
     return (
@@ -6,5 +7,16 @@ const HomePage = () => {
     )
 }
 
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+
+    return {
+        redirect:{
+            destination:'/auth/login',
+            permanent:false
+        }
+    }
+
+}
 
 export default HomePage
