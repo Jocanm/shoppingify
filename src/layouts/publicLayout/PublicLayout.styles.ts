@@ -26,6 +26,19 @@ export const PublicLayoutWrapper = styled.div`
         cursor: pointer;
     }
 
+    & label.Mui-focused {
+        color: rgba(0, 0, 0, 0.6);
+    }
+    & .MuiOutlinedInput-root {
+        &.Mui-focused fieldset {
+            border: 1px solid #c4c4c4;
+        }
+    }
+
+    .css-1eqv57h-MuiInputBase-root-MuiOutlinedInput-root:hover{
+        border-color: red;
+    }
+
 `
 
 

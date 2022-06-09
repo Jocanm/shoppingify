@@ -46,18 +46,21 @@ const RegisterPage = () => {
                         name="email"
                         label="Email"
                         icon={<Email />}
+                        placeholder="xxxx@gm.com"
                     />
                     <MyTextField
                         name="password"
                         label="Password"
                         type="password"
                         icon={<Https />}
+                        placeholder="*****************"
                     />
                     <MyTextField
                         name="confirmPassword"
                         label="Confirm password"
                         type="password"
                         icon={<Https />}
+                        placeholder="*****************"
                     />
                     <Button loaderSize='1.3rem' fontWeight='500'>
                         Login

@@ -41,12 +41,14 @@ const LoginPage = () => {
                         name="email"
                         label="Email"
                         icon={<EmailIcon />}
+                        placeholder="xxxx@gmail.com"
                     />
                     <MyTextField
                         name="password"
                         label="Password"
                         type="password"
                         icon={<HttpsIcon />}
+                        placeholder="*****************"
                     />
                     <Button loaderSize='1.3rem' fontWeight='500'>
                         Login
