@@ -51,6 +51,7 @@ export const FormWrapper = styled.main`
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
+    overflow-y: auto;
 
     h2{
         font-size:1.2rem;
@@ -58,11 +59,10 @@ export const FormWrapper = styled.main`
 
     ${props => props.theme.breakpoints.sm} {
         width: 100%;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
+        height: 100%;
         border: none;
         padding: 1.5rem;
+        margin: auto 0;
     }
 
 `

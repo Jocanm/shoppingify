@@ -75,7 +75,7 @@ export const PublicLayout: FC<Props> = ({ children, description, title, viewTitl
                             )
                     }
                 </S.SocialMediaContainer>
-                <Box display="none" flexColumn alignCenter gap="1.5rem" className='user-info-sm'>
+                <Box display="none" flexColumn alignCenter gap="1rem" className='user-info-sm'>
                     <span>created by <span className='creator-name'>Jose Angarita</span></span>
                     <span>devChallenges.io</span>
                 </Box>
