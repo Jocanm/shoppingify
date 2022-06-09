@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "../../../shared/helpers";
 import { isAxiosError, rt, shopApi } from "../../services";
-import { ICreateUser, ISignInUser } from "./thunks.interfaces";
+import { CredentialsTypes, ICreateUser, ISignInUser } from "./thunks.interfaces";
 import { setIsValidating } from "../reducers";
 import { signIn } from "next-auth/react";
 
@@ -84,5 +84,14 @@ export const startSignInUser = createAsyncThunk(
 
 export const startOatuhSignIn = createAsyncThunk(
     "auth/oatuhSignIn",
-    async () => {}
+    async (credential: CredentialsTypes) => {
+
+        try {
+            
+        } catch (error) {
+            console.error(error)
+            toast("Something went wrong", "error")
+        }
+
+    }
 )

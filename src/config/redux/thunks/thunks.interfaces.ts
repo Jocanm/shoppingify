@@ -12,3 +12,5 @@ export interface ISignInUser {
     password: string;
 
 }
+
+export type CredentialsTypes = "github" | "google" | "facebook"
