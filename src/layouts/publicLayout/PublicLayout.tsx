@@ -4,8 +4,7 @@ import React, { useMemo } from 'react'
 import { FC } from 'react';
 import { Box } from '../../components';
 import * as S from './PublicLayout.styles';
-import GoogleIcon from '@mui/icons-material/Google';
-import { GitHub, Facebook } from '@mui/icons-material';
+import { GitHub, Facebook, Google } from '@mui/icons-material';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
@@ -45,15 +44,15 @@ export const PublicLayout: FC<Props> = ({ children, description, title, viewTitl
                 <S.SocialMediaContainer>
                     <h4>or continue with these social profile</h4>
                     <Box flex justifyCenter gap="1rem">
-                        <S.SocialMediaIcon>
-                            <GoogleIcon />
-                        </S.SocialMediaIcon>
+                        {/* <S.SocialMediaIcon>
+                            <Google />
+                        </S.SocialMediaIcon> */}
                         <S.SocialMediaIcon>
                             <GitHub />
                         </S.SocialMediaIcon>
-                        <S.SocialMediaIcon>
+                        {/* <S.SocialMediaIcon>
                             <Facebook />
-                        </S.SocialMediaIcon>
+                        </S.SocialMediaIcon> */}
                     </Box>
                     {
                         !isLoginPage

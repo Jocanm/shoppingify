@@ -81,3 +81,8 @@ export const startSignInUser = createAsyncThunk(
         }
     }
 )
+
+export const startOatuhSignIn = createAsyncThunk(
+    "auth/oatuhSignIn",
+    async () => {}
+)
