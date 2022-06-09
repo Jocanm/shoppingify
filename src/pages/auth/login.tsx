@@ -26,7 +26,7 @@ const LoginPage = () => {
     const methods = useForm<FormProps>({ resolver: yupResolver(FormShape) })
 
     const onSubmit = (data: FormProps) => {
-        console.log(data)
+        alert("Tremendo Bollito que tengo de novia :)")
     }
 
     return (
@@ -41,14 +41,12 @@ const LoginPage = () => {
                         name="email"
                         label="Email"
                         icon={<EmailIcon />}
-                        placeholder="xxxx@gmail.com"
                     />
                     <MyTextField
                         name="password"
                         label="Password"
                         type="password"
                         icon={<HttpsIcon />}
-                        placeholder="*****************"
                     />
                     <Button loaderSize='1.3rem' fontWeight='500'>
                         Login
