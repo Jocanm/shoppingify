@@ -6,10 +6,10 @@ import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { Box, Button, MyTextField } from '../../components';
-import { startCreateUser, useAppDispatch, useAppSelector } from '../../config/redux';
 import { PublicLayout } from '../../layouts';
 import { patterns } from '../../shared';
 import { useRouter } from 'next/router';
+import { startCreateUser, useAppDispatch, useAppSelector } from '../../config/redux';
 
 const FormShape = Yup.object({
     name: Yup

@@ -16,16 +16,6 @@ const HomePage = () => {
     )
 }
 
-
-// export const getServerSideProps: GetServerSideProps = async (ctx) => {
-
-//     return {
-//         redirect:{
-//             destination:'/auth/login',
-//             permanent:false
-//         }
-//     }
-
-// }
+HomePage.auth = true;
 
 export default HomePage

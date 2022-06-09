@@ -10,7 +10,7 @@ export const PublicLayoutWrapper = styled.div`
     justify-content: center;
     align-items: center;
     gap: .45rem;
-    background-color: #FAF9F9;
+    background-color: ${props => props.theme.colors.lowWhite};
 
     ${props => props.theme.breakpoints.sm} {
         .user-info-not-sm{

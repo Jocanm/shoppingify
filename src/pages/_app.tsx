@@ -1,12 +1,12 @@
+import { SessionProvider } from "next-auth/react"
 import type { AppProps } from 'next/app'
 import NextNProgress from 'nextjs-progressbar'
-import { ThemeProvider } from 'styled-components'
-import { GlobalStyle, themes } from '../shared'
-import { SessionProvider } from "next-auth/react"
+import { DefaultToastOptions, Toaster } from 'react-hot-toast'
 import { Provider } from 'react-redux'
+import { ThemeProvider } from 'styled-components'
+import { AuthComponent, ProtectedRoute } from '../components/auth'
 import { store } from '../config/redux'
-import { AuthComponent } from '../components'
-import { Toaster, DefaultToastOptions } from 'react-hot-toast';
+import { GlobalStyle, themes } from '../shared'
 
 const toastOptions: DefaultToastOptions = {
    style: {
@@ -26,7 +26,16 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
             <ThemeProvider theme={themes}>
                <AuthComponent>
 
-                  <Component {...pageProps} />
+                  {
+                     //@ts-ignore
+                     Component.auth
+                        ? (
+                           <ProtectedRoute>
+                              <Component {...pageProps} />
+                           </ProtectedRoute>
+                        )
+                        : <Component {...pageProps} />
+                  }
                   <NextNProgress />
                   <GlobalStyle />
                   <Toaster toastOptions={toastOptions} />

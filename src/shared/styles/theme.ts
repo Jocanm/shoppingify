@@ -18,7 +18,8 @@ export const colors = {
     black: "#000000",
     lightBlue: "#56CCF2",
     lightOrange: "#FFF0DE",
-    blue:"#2F80ED"
+    blue:"#2F80ED",
+    lowWhite: "#FAF9F9",
 }
 
 export const themes = {

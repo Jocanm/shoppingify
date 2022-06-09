@@ -31,8 +31,8 @@ export const VanillaLoaderStyles = styled.div<LoaderProps>`
         width: ${props => props.width || '2.5rem'};
         height: ${props => props.height || '2.5rem'};
         border-radius: 50%;
-        border: 2px solid ${props => props.color || "#298C8A"};
-        border-color: ${props => props.color || "#298C8A"} transparent ${props => props.color || "#298C8A"} transparent;
+        border: 2px solid ${props => props.color || props.theme.colors.orange};
+        border-color: ${props => props.color || props.theme.colors.orange} transparent ${props => props.color || props.theme.colors.orange} transparent;
         animation: ${LoderAnimation} 1.2s linear infinite;
     }
 
@@ -45,7 +45,7 @@ export const FullScreenContainer = styled.div`
     align-items: center;
     height:100vh;
     width:100%;
-    background-color:#fff9;
+    background-color:${props => props.theme.colors.lowWhite};
     position:fixed;
     inset:0;
 
