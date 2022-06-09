@@ -9,7 +9,7 @@ export const PublicLayoutWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1.4rem;
+    gap: .45rem;
 
     ${props => props.theme.breakpoints.sm} {
         .user-info-not-sm{
@@ -58,13 +58,19 @@ export const SocialMediaContainer = styled.div`
 
     display: flex;
     flex-direction: column;
-    gap:1.2rem;
+    gap:1rem;
 
     h4{
         font-size: 1rem;
         font-weight: 400;
         color: ${props => props.theme.colors.darkGray};
         text-align: center;
+    }
+
+    .auth-option{
+        color: ${props => props.theme.colors.orange};
+        cursor: pointer;
+        font-weight: 600;
     }
 
 `
