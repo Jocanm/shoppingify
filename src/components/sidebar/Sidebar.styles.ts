@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { AppearAnimation } from '../../shared/styles/animations.styles';
 
 
 export const SidebarContainer = styled.aside`
@@ -42,6 +43,7 @@ export const RouteItemBox = styled.li<{ isActive?: boolean }>`
         height: 200%;
         background-color:${props => props.theme.colors.orange};
         border-radius: 0px 4px 4px 0px;
+        ${AppearAnimation}
     }
 
 `

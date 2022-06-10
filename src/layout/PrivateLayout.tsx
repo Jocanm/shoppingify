@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import React from 'react'
 import { Box, Sidebar } from '../components'
+import { closeMenu, useAppDispatch, useAppSelector } from '../config/redux'
 import * as S from './PrivateLayout.styles'
 
 interface Props {
@@ -10,6 +11,13 @@ interface Props {
 }
 
 export const PrivateLayout = ({ children, description, title }: Props) => {
+
+    const dispatch = useAppDispatch()
+
+    const onCloseMenu = () => {
+        dispatch(closeMenu())
+    }
+
     return (
         <S.PrivateLayoutContainer>
 
@@ -21,7 +29,9 @@ export const PrivateLayout = ({ children, description, title }: Props) => {
 
             <Sidebar />
 
-            <S.ChildrenWrapper>
+            <S.ChildrenWrapper
+                onClick={onCloseMenu}
+            >
                 {children}
             </S.ChildrenWrapper>
 

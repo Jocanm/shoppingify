@@ -19,10 +19,15 @@ export const colors = {
     lightBlue: "#56CCF2",
     lightOrange: "#FFF0DE",
     blue:"#2F80ED",
-    lowWhite: "#FAF9F9",
+    lowWhite: "#F9F9F9",
+}
+
+export const globals = {
+    shadow:"0px 2px 12px rgba(0, 0, 0, 0.05)"
 }
 
 export const themes = {
     breakpoints,
     colors,
+    globals
 }

@@ -12,4 +12,6 @@ const StatisticsPage = () => {
     )
 }
 
+StatisticsPage.auth = true;
+
 export default StatisticsPage

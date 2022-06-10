@@ -12,4 +12,6 @@ const HistoryPage = () => {
     )
 }
 
+HistoryPage.auth = true;
+
 export default HistoryPage

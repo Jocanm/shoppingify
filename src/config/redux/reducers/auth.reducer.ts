@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IUser } from '../../../shared/models';
+import { logout } from '../actions';
 
 
 interface InitialProps {
@@ -34,6 +35,11 @@ const authReducer = createSlice({
         setIsValidating: (state, { payload }: PayloadAction<boolean>) => {
             state.isValidating = payload;
         }
+    },
+
+    extraReducers: (builder) => {
+        builder
+            .addCase(logout, () => initialState)
     }
 
 })
