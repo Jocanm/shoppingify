@@ -46,9 +46,10 @@ export const PublicLayoutWrapper = styled.div`
 export const FormWrapper = styled.main`
 
     /* border: 1px solid ${props => props.theme.colors.input}; */
+    background-color: ${props => props.theme.colors.white};
     box-shadow: 3px 3px 8px #00000029;
     border-radius: 1.5rem;
-    padding: 3rem;
+    padding: 2.5rem 3rem;
     width:450px;
     display: flex;
     flex-direction: column;

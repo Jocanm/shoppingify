@@ -42,7 +42,7 @@ const RegisterPage = () => {
 
     const onSubmit = async ({ confirmPassword, ...data }: FormProps) => {
         const isOk = await dispatch(startCreateUser(data)).unwrap()
-        if(!isOk) return;
+        if (!isOk) return;
 
         router.push('/')
     }
@@ -65,18 +65,20 @@ const RegisterPage = () => {
                         label="Email"
                         icon={<Email />}
                     />
-                    <MyTextField
-                        name="password"
-                        label="Password"
-                        type="password"
-                        icon={<Https />}
-                    />
-                    <MyTextField
-                        name="confirmPassword"
-                        label="Confirm password"
-                        type="password"
-                        icon={<Https />}
-                    />
+                    {/* <Box flex gap="1rem"> */}
+                        <MyTextField
+                            name="password"
+                            label="Password"
+                            type="password"
+                            icon={<Https />}
+                        />
+                        <MyTextField
+                            name="confirmPassword"
+                            label="Confirm password"
+                            type="password"
+                            icon={<Https />}
+                        />
+                    {/* </Box> */}
                     <Button loaderSize='1.3rem' fontWeight='500' isLoading={isValidating}>
                         Create account
                     </Button>
@@ -90,9 +92,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
     const session = await getSession({ req })
 
-    if(session){
+    if (session) {
         return {
-            redirect:{
+            redirect: {
                 destination: '/',
                 permanent: false,
             }
