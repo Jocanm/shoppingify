@@ -1,9 +1,9 @@
 import { FormatListBulleted, InsertChartOutlined, Replay } from "@mui/icons-material";
 
-interface RouteItem {
+export interface RouteItem {
     path: string;
     name: string;
-    icon?: JSX.Element;
+    icon: JSX.Element;
 }
 
 export const routesList: RouteItem[] = [
