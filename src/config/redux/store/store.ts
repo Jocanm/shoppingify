@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import authReducer from '../reducers/auth.reducer';
+import cartReducer from "../reducers/cart.reducer";
 
 
 export const store = configureStore({
     reducer: {
-        auth: authReducer
+        auth: authReducer,
+        cart: cartReducer
     }
 })
 

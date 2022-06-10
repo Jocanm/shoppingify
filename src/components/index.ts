@@ -1,4 +1,6 @@
 export * from './ui/inputs'
 export * from './ui/buttons'
+export * from './ui/Cart'
 export * from './globalComponents'
 export * from './auth'
+export * from './sidebar'
