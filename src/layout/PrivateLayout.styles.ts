@@ -12,8 +12,11 @@ export const PrivateLayoutContainer = styled.div`
 export const ChildrenWrapper = styled.main`
 
     width: 100%;
-    padding: 2rem 3rem;
     overflow-y: auto;
     background-color: ${props => props.theme.colors.lowWhite};
+
+    >*{
+        height: 100%;
+    }
 
 `

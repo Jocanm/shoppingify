@@ -10,9 +10,14 @@ export const Cart = () => {
     return (
         <S.CartWrapper>
             <ShoppingCartOutlined />
-            <S.NumberOfItems>
-                {cartTotal}
-            </S.NumberOfItems>
+            {
+                !!cartTotal &&
+                (
+                    <S.NumberOfItems>
+                        {cartTotal}
+                    </S.NumberOfItems>
+                )
+            }
         </S.CartWrapper>
     )
 }
