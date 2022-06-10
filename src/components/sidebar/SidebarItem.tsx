@@ -10,12 +10,16 @@ export const SidebarItem = ({ icon, name, path }: RouteItem) => {
 
     const { asPath } = useRouter()
 
-    // const isActive = useMemo(() => asPath.includes(path), [asPath, path])
-    const isActive = useMemo(() => asPath === path, [asPath, path])
-    const isHome = useMemo(() => asPath === '/', [asPath])
+    const isActive = useMemo(() => (
+        asPath.includes(path) && path !== '/'
+    ), [asPath, path])
+
+    const isHome = useMemo(() => (
+        asPath === '/' && path === '/'
+    ), [asPath, path])
 
     return (
-        <S.RouteItemBox isActive={isActive}>
+        <S.RouteItemBox isActive={isHome || isActive}>
 
             <Link href={path} passHref>
                 <Tooltip

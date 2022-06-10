@@ -14,6 +14,6 @@ export const ChildrenWrapper = styled.main`
     width: 100%;
     padding: 2rem 3rem;
     overflow-y: auto;
-    background-color: #fafafe;
+    background-color: #f9f9f9;
 
 `
