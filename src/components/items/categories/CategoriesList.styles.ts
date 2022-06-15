@@ -1,20 +1,8 @@
 import styled from 'styled-components';
-import { MainViewStyles, NoVisivleScrollBar } from '../../../shared';
+import { NoVisivleScrollBar } from '../../../shared';
 
 
 export const CategoryListContainer = styled.div`
-
-    ${MainViewStyles}
-    ${NoVisivleScrollBar}
-    overflow-y: auto;
-
-    display:flex;
-    flex-direction:column;
-    gap:3rem;
-
-`
-
-export const CategoryListBox = styled.ul`
 
     display:flex;
     flex-direction:column;

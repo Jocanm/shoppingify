@@ -8,6 +8,8 @@ export const ShoppingListContainer = styled.section`
 
     background-color: ${props => props.theme.colors.lightOrange};
 
+    padding: 0.8rem;
+
     ${props => props.theme.breakpoints.lg} {
         display: none;
     }

@@ -1,4 +1,4 @@
-import { Box, CategoriesList, ShoppingList } from '../components';
+import { Box, CategoriesList, Header, ShoppingList } from '../components';
 import { PrivateLayout } from '../layout';
 import * as S from '../shared';
 
@@ -10,9 +10,9 @@ const HomePage = () => {
         >
             <S.HomePageContainer>
 
-                <CategoriesList/>
+                <Header />
 
-                <ShoppingList/>
+                <CategoriesList />
 
             </S.HomePageContainer>
         </PrivateLayout>

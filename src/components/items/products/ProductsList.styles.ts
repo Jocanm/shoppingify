@@ -39,7 +39,6 @@ export const ProductItemBox = styled.li`
 
     span{
         border-radius: 12px 0 0 12px;
-        height:100%;
         flex:1;
         :hover{
             background-color:#ededed;

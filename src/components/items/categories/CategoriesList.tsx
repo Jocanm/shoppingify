@@ -13,18 +13,14 @@ export const CategoriesList = () => {
     return (
         <S.CategoryListContainer>
 
-            <Header />
-
-            <S.CategoryListBox>
-                {
-                    categories.map(category => (
-                        <CategoryItem
-                            key={category.id}
-                            {...category}
-                        />
-                    ))
-                }
-            </S.CategoryListBox>
+            {
+                [...categories, ...categories].map(category => (
+                    <CategoryItem
+                        key={category.id}
+                        {...category}
+                    />
+                ))
+            }
 
         </S.CategoryListContainer>
     )
