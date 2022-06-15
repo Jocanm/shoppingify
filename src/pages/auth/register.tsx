@@ -19,6 +19,7 @@ const FormShape = Yup.object({
     email: Yup
         .string()
         .required("Email is required")
+        .lowercase()
         .matches(patterns.email, "Please provide a valid email")
         .lowercase(),
     password: Yup
