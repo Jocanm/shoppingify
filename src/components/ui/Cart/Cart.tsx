@@ -14,7 +14,9 @@ export const Cart = () => {
                 !!cartTotal &&
                 (
                     <S.NumberOfItems>
-                        {cartTotal}
+                        {
+                            cartTotal > 9 ? '+9' : cartTotal
+                        }
                     </S.NumberOfItems>
                 )
             }

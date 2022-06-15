@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import React from 'react'
-import { Box, ShoppingList, Sidebar } from '../components'
+import { Box, ShoppingCard, Sidebar } from '../components'
 import { closeMenu, useAppDispatch, useAppSelector } from '../config/redux'
 import * as S from './PrivateLayout.styles'
 
@@ -35,7 +35,7 @@ export const PrivateLayout = ({ children, description, title }: Props) => {
                 {children}
             </S.ChildrenWrapper>
 
-            <ShoppingList/>
+            <ShoppingCard/>
 
         </S.PrivateLayoutContainer>
     )

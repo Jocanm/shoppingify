@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { AppearAnimation } from '../../shared';
 
 interface BoxProps {
     display?: string;
@@ -119,5 +120,9 @@ const TakeAllProps = css<BoxProps>`
 export const Box = styled.div<BoxProps>`
 
     ${TakeAllProps}
+
+    >*{
+        ${props => props.appear && AppearAnimation}
+    }
 
 `

@@ -54,7 +54,7 @@ model Purchase {
   userId          String             @db.ObjectId
   products        PurchasedProduct[]
   name            String
-  state           Int
+  state           PurchaseStateEnum @default(pending)
   activePurchases ActivePurchase?
 }
 
@@ -64,4 +64,10 @@ model ActivePurchase {
   userId     String   @unique @db.ObjectId
   purchase   Purchase @relation(fields: [purchaseId], references: [id])
   purchaseId String   @unique @db.ObjectId
+}
+
+enum PurchaseStateEnum {
+  pending
+  cancelled
+  completed
 }

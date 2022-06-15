@@ -7,4 +7,8 @@ export const HomePageContainer = styled.div`
     flex-direction:column;
     gap:3rem;
 
+    ${props => props.theme.breakpoints.md} {
+        gap:0;
+    }
+
 `

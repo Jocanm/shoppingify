@@ -20,6 +20,7 @@ export const colors = {
     lightOrange: "#FFF0DE",
     blue:"#2F80ED",
     lowWhite: "#F9F9F9",
+    redWine: "#80485B",
 }
 
 export const globals = {

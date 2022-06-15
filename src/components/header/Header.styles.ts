@@ -25,7 +25,7 @@ export const HeaderContainer = styled.nav`
 
 export const HeaderTitle = styled.h1`
 
-    font-size:1.7rem;
+    font-size:1.9rem;
     font-weight: 500;
     
     span{
@@ -48,18 +48,18 @@ export const InputContainer = styled.div`
 
     position: relative;
     width: 100%;
-    font-size: 1rem;
-
+    
     input{
         ${globalWhiteCard}
         width: 100%;
         padding: 1rem 0 1rem 3.5rem;
+        font-size: 1.2rem;
     }
 
     svg{
         position: absolute;
         left: 1rem;
-        top: .7rem;
+        top: .9rem;
     }
 
 `

@@ -28,9 +28,8 @@ export const ProductItemBox = styled.li`
     cursor: pointer;
     padding:0;
 
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+    display:grid;
+    grid-template-columns: 5fr .5fr;
 
     >*{
         padding:.8rem;
@@ -46,6 +45,7 @@ export const ProductItemBox = styled.li`
     }
 
     button{
+        height:100%;
         border-radius: 0 12px 12px 0;
         color:${props => props.theme.colors.lightGray};
         :hover{
