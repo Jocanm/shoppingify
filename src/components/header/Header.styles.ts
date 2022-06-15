@@ -8,7 +8,7 @@ export const HeaderContainer = styled.nav`
 
     display:grid;
     grid-template-columns: 1.5fr 1fr;
-    gap:6rem;
+    gap:7rem;
 
     ${props => props.theme.breakpoints.lg} {
         gap:10rem;
@@ -25,7 +25,7 @@ export const HeaderContainer = styled.nav`
 
 export const HeaderTitle = styled.h1`
 
-    font-size:1.6rem;
+    font-size:1.7rem;
     font-weight: 500;
     
     span{
@@ -53,7 +53,7 @@ export const InputContainer = styled.div`
     input{
         ${globalWhiteCard}
         width: 100%;
-        padding-left: 3.5rem;
+        padding: 1rem 0 1rem 3.5rem;
     }
 
     svg{

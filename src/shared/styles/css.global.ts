@@ -20,3 +20,16 @@ export const MainViewStyles = css`
     }
 
 `
+
+export const NoVisivleScrollBar = css`
+
+    &::-webkit-scrollbar{
+        width: 0px;
+    }
+
+    &::-webkit-scrollbar-thumb{
+        background: transparent;
+        border-radius: 0px;
+    }
+
+`

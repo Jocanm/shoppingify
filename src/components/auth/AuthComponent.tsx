@@ -24,7 +24,11 @@ export const AuthComponent: FC<Props> = ({ children }) => {
 
     }, [session, status, dispatch])
 
-    if ((status === "loading") || (status === "authenticated" && isGettingInitialData)) {
+    // if ((status === "loading") || (status === "authenticated" && isGettingInitialData)) {
+    //     return <FullScreenVanillaLoder />
+    // }
+    
+    if ((status === "loading")) {
         return <FullScreenVanillaLoder />
     }
 
