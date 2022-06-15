@@ -49,6 +49,7 @@ const cartReducer = createSlice({
             const { id } = payload;
             const { [id]: toRemove, ...rest } = state.cart;
             state.cart = rest;
+            state.cartTotal = Object.keys(rest).length;
 
         },
 
