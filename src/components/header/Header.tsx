@@ -1,8 +1,16 @@
 import { Search } from '@mui/icons-material'
 import React from 'react'
+import { useFilterContext } from '../../shared/context'
 import * as S from './Header.styles'
 
 export const Header = () => {
+
+    const { setProductName } = useFilterContext()
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setProductName(event.target.value.trim())
+    }
+
     return (
         <S.HeaderContainer>
 
@@ -15,8 +23,9 @@ export const Header = () => {
                 <input
                     type="text"
                     placeholder="search item"
+                    onChange={handleChange}
                 />
-                <Search/>
+                <Search />
             </S.InputContainer>
 
         </S.HeaderContainer>

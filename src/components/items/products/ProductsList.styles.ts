@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { globalWhiteCard } from '../../../shared';
+import { AppearAnimation, globalWhiteCard } from '../../../shared';
 
 
 export const ProductListBox = styled.ul`
@@ -21,9 +21,9 @@ export const ProductListBox = styled.ul`
 export const ProductItemBox = styled.li`
 
     ${globalWhiteCard}
+    ${AppearAnimation}
 
     font-size:1.2rem;
-    max-width:20rem;
     font-weight:500;
     cursor: pointer;
     padding:0;
