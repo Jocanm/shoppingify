@@ -30,7 +30,7 @@ async function getCategories(req: NextApiRequest, res: NextApiResponse<Data>) {
 
     const categories = await prisma.category.findMany({
         where: { userId: id },
-        include: { products: true, user: true },
+        include: { products: true },
     })
 
     res.status(200).json(categories)
