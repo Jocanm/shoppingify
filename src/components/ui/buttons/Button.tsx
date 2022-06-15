@@ -26,8 +26,7 @@ export const Button: FC<Props> = (props) => {
                 isLoading
                     ? (
                         <VanillaLoader
-                            width={loaderSize}
-                            height={loaderSize}
+                            size={loaderSize}
                             color={loaderColor}
                         />
                     )

@@ -26,16 +26,13 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
             <ThemeProvider theme={themes}>
                <AuthComponent>
 
-                  {
-                     //@ts-ignore
-                     Component.auth
-                        ? (
-                           <ProtectedRoute>
-                              <Component {...pageProps} />
-                           </ProtectedRoute>
-                        )
-                        : <Component {...pageProps} />
-                  }
+                  {(Component as any).auth
+                     ? (
+                        <ProtectedRoute>
+                           <Component {...pageProps} />
+                        </ProtectedRoute>
+                     )
+                     : <Component {...pageProps} />}
                   <NextNProgress />
                   <GlobalStyle />
                   <Toaster toastOptions={toastOptions} />

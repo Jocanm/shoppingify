@@ -13,6 +13,7 @@ export const MenuWrapper = styled.section<IProps>`
     border-radius: 0.5rem;
 
     position:absolute;
+    z-index:1;
     top:0;
     left:3rem;
     padding: 1rem;

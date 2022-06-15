@@ -2,12 +2,11 @@ import { FC } from "react"
 import { FullScreenContainer, VanillaLoaderStyles } from "./Loaders.styles"
 
 interface Props {
-    width?: string
-    height?: string
+    size?: string
     color?: string
 }
 
-export const VanillaLoader: FC<Props> = ({ color, height, width }) => {
+export const VanillaLoader: FC<Props> = ({ color, size }) => {
     return (
         <div
             style={{
@@ -19,20 +18,20 @@ export const VanillaLoader: FC<Props> = ({ color, height, width }) => {
             }}
         >
             <VanillaLoaderStyles
-                width={width}
-                height={height}
+                width={size}
+                height={size}
                 color={color}
             />
         </div>
     )
 }
 
-export const FullScreenVanillaLoder: FC<Props> = ({ color, height, width }) => {
+export const FullScreenVanillaLoder: FC<Props> = ({ color, size }) => {
     return (
         <FullScreenContainer>
             <VanillaLoaderStyles
-                width={width}
-                height={height}
+                width={size}
+                height={size}
                 color={color}
             />
         </FullScreenContainer>

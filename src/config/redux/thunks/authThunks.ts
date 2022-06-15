@@ -2,8 +2,9 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "../../../shared/helpers";
 import { isAxiosError, rt, shopApi } from "../../services";
 import { CredentialsTypes, ICreateUser, ISignInUser } from "./thunks.interfaces";
-import { setIsValidating } from "../reducers";
+import { setIsGettingInitialData, setIsValidating } from "../reducers";
 import { signIn } from "next-auth/react";
+import { startGetCategories } from "./";
 
 
 export const startCreateUser = createAsyncThunk(
@@ -97,5 +98,14 @@ export const startOatuhSignIn = createAsyncThunk(
             toast("Something went wrong", "error")
         }
 
+    }
+)
+
+export const startGetInitialData = createAsyncThunk(
+    'auth/startGetInitialData',
+    async (any, { dispatch }) => {
+
+        await dispatch(startGetCategories())
+        
     }
 )
