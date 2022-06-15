@@ -12,21 +12,19 @@ export const CategoriesList = () => {
 
     return (
         <S.CategoryListContainer>
+
             <Header />
 
             <S.CategoryListBox>
                 {
                     categories.map(category => (
                         <CategoryItem
-                            //TODO: add key
-                            // key={category.id}
-                            key={nanoid()}
+                            key={category.id}
                             {...category}
                         />
                     ))
                 }
             </S.CategoryListBox>
-
 
         </S.CategoryListContainer>
     )

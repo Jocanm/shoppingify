@@ -26,6 +26,34 @@ export const ProductItemBox = styled.li`
     max-width:20rem;
     font-weight:500;
     cursor: pointer;
+    padding:0;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    >*{
+        padding:.8rem;
+        transition:all .1s ease-in-out;
+    }
+
+    span{
+        border-radius: 12px 0 0 12px;
+        height:100%;
+        flex:1;
+        :hover{
+            background-color:#ededed;
+        }
+    }
+
+    button{
+        border-radius: 0 12px 12px 0;
+        color:${props => props.theme.colors.lightGray};
+        :hover{
+            background-color:${props => props.theme.colors.orange};
+            color:${props => props.theme.colors.white};
+        }
+    }
 
     ${props => props.theme.breakpoints.md}{
         font-size:1rem;

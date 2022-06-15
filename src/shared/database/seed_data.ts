@@ -18,7 +18,7 @@ export const products = [
     { name: "Zanahoria", categoryId: "62a9fb0402f33d6b9dcf2797" },
     { name: "Papa", categoryId: "62a9fb0402f33d6b9dcf2797" },
     { name: "Whiskey", categoryId: "62a9fb0402f33d6b9dcf2798" },
-    { name: "Buchanas Buchanas Buchanas Buchanas", categoryId: "62a9fb0402f33d6b9dcf2798" },
+    { name: "Buchanas Buchanas", categoryId: "62a9fb0402f33d6b9dcf2798" },
     { name: "Coronita", categoryId: "62a9fb0402f33d6b9dcf2798" },
     { name: "red label", categoryId: "62a9fb0402f33d6b9dcf2798" },
     { name: "sello rojo", categoryId: "62a9fb0402f33d6b9dcf2798" },
