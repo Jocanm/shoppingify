@@ -18,9 +18,9 @@ export const Menu = () => {
     }
 
     const onLogout = async () => {
-        await signOut({ redirect: false })
-        dispatch(logout())
-        router.push('/auth/login')
+        await signOut({ redirect: true, callbackUrl: '/auth/login' })
+        // dispatch(logout())
+        // router.push('/auth/login')
     }
 
     return (
