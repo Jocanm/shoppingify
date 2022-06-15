@@ -17,12 +17,10 @@ export const Menu = () => {
         dispatch(closeMenu())
     }
 
-    const onLogout = () => {
+    const onLogout = async () => {
+        await signOut({ redirect: false })
         dispatch(logout())
-        signOut({
-            redirect: false,
-            callbackUrl: '/auth/login'
-        })
+        router.push('/auth/login')
     }
 
     return (
