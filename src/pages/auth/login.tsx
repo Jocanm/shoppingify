@@ -68,23 +68,23 @@ const LoginPage = () => {
     )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+// export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
-    const session = await getSession({ req })
+//     const session = await getSession({ req })
 
-    if (session) {
-        return {
-            redirect: {
-                destination: '/',
-                permanent: false,
-            }
-        }
-    }
+//     if (session) {
+//         return {
+//             redirect: {
+//                 destination: '/',
+//                 permanent: false,
+//             }
+//         }
+//     }
 
-    return {
-        props: {}
-    }
-}
+//     return {
+//         props: {}
+//     }
+// }
 
 
 export default LoginPage
