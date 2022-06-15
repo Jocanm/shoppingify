@@ -40,19 +40,6 @@ export const CustomScrollBar = css<{ color?: string }>`
 
 `
 
-export const NoVisivleScrollBar = css`
-
-    &::-webkit-scrollbar{
-        width: 0px;
-    }
-
-    &::-webkit-scrollbar-thumb{
-        background: transparent;
-        border-radius: 0px;
-    }
-
-`
-
 export const CompleteCentered = css`
 
     display:flex;

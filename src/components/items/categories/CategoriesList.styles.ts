@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { NoVisivleScrollBar } from '../../../shared';
 
 
 export const CategoryListContainer = styled.div`
