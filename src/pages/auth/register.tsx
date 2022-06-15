@@ -66,20 +66,18 @@ const RegisterPage = () => {
                         label="Email"
                         icon={<Email />}
                     />
-                    {/* <Box flex gap="1rem"> */}
-                        <MyTextField
-                            name="password"
-                            label="Password"
-                            type="password"
-                            icon={<Https />}
-                        />
-                        <MyTextField
-                            name="confirmPassword"
-                            label="Confirm password"
-                            type="password"
-                            icon={<Https />}
-                        />
-                    {/* </Box> */}
+                    <MyTextField
+                        name="password"
+                        label="Password"
+                        type="password"
+                        icon={<Https />}
+                    />
+                    <MyTextField
+                        name="confirmPassword"
+                        label="Confirm password"
+                        type="password"
+                        icon={<Https />}
+                    />
                     <Button loaderSize='1.3rem' fontWeight='500' isLoading={isValidating}>
                         Create account
                     </Button>
@@ -89,22 +87,22 @@ const RegisterPage = () => {
     )
 }
 
-// export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
-//     const session = await getSession({ req })
+    const session = await getSession({ req })
 
-//     if (session) {
-//         return {
-//             redirect: {
-//                 destination: '/',
-//                 permanent: false,
-//             }
-//         }
-//     }
+    if (session) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false,
+            }
+        }
+    }
 
-//     return {
-//         props: {}
-//     }
-// }
+    return {
+        props: {}
+    }
+}
 
 export default RegisterPage
