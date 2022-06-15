@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { Box, CategoriesList, Header, ShoppingList } from '../components';
+import { CategoriesList, Header } from '../components';
 import { PrivateLayout } from '../layout';
 import * as S from '../shared';
 import { FilterProvider } from '../shared/context';
