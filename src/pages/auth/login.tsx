@@ -1,16 +1,13 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import EmailIcon from '@mui/icons-material/Email'
 import HttpsIcon from '@mui/icons-material/Https'
-import React from 'react'
+import { useRouter } from 'next/router'
 import { FormProvider, useForm } from 'react-hook-form'
 import * as Yup from 'yup'
 import { Box, Button, MyTextField } from '../../components'
+import { startSignInUser, useAppDispatch, useAppSelector } from '../../config/redux'
 import { PublicLayout } from '../../layouts'
 import { patterns } from '../../shared'
-import { GetServerSideProps } from 'next';
-import { getSession } from 'next-auth/react';
-import { startSignInUser, useAppDispatch, useAppSelector } from '../../config/redux'
-import { useRouter } from 'next/router';
 
 const FormShape = Yup.object({
     email: Yup

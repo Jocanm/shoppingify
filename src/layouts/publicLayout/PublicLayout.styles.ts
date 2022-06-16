@@ -5,11 +5,13 @@ export const PublicLayoutWrapper = styled.div`
 
     width: 100%;
     height: 100vh;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: .45rem;
+
     background-color: ${props => props.theme.colors.lowWhite};
 
     ${props => props.theme.breakpoints.sm} {
@@ -45,7 +47,6 @@ export const PublicLayoutWrapper = styled.div`
 
 export const FormWrapper = styled.main`
 
-    /* border: 1px solid ${props => props.theme.colors.input}; */
     background-color: ${props => props.theme.colors.white};
     box-shadow: 3px 3px 8px #00000029;
     border-radius: 1.5rem;
@@ -55,6 +56,8 @@ export const FormWrapper = styled.main`
     flex-direction: column;
     gap: 2.5rem;
     overflow-y: auto;
+
+    justify-content: center;
 
     h2{
         font-size:1.2rem;
