@@ -12,10 +12,9 @@ export const MenuWrapper = styled.section<IProps>`
     gap: .2rem;
     border-radius: 0.5rem;
 
-    position:absolute;
-    z-index:1;
-    top:0;
-    left:3rem;
+    position:fixed;
+    top:4rem;
+    left:4rem;
     padding: 1rem;
 
     color: ${props => props.theme.colors.darkGray};

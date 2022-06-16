@@ -15,6 +15,7 @@ export const SidebarContainer = styled.aside`
     top: 0;
     left: 0;
     bottom: 0;
+    z-index:10;
 
     background-color: ${props => props.theme.colors.white};
     
