@@ -69,6 +69,7 @@ export const FormWrapper = styled.main`
         border: none;
         padding: 1.5rem;
         margin: auto 0;
+        border-radius: 0;
     }
 
 `

@@ -10,7 +10,6 @@ export const SidebarContainer = styled.aside`
     justify-content: space-between;
     padding: 2.5rem 0;
     width: 6rem;
-    height: 100%;
     
     img{
         cursor: pointer;
