@@ -16,7 +16,7 @@ export const initialState: InitialProps = {
     isAuthenticated: false,
     isValidating: false, // usado para loading en boton de login y registro
     user: undefined,
-    isGettingInitialData: false,
+    isGettingInitialData: false, // usado para loading en el inicio de la app
 }
 
 

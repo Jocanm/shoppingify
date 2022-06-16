@@ -3,11 +3,12 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { FC, useMemo } from 'react';
+import React, { FC, useEffect, useMemo } from 'react';
 import { Box } from '../../components';
 import { useAppDispatch } from '../../config/redux';
 import { CredentialsTypes, startOatuhSignIn } from '../../config/redux/thunks';
 import * as S from './PublicLayout.styles';
+import { useSession } from 'next-auth/react';
 
 interface Props {
     children: React.ReactNode
@@ -18,16 +19,27 @@ interface Props {
 
 export const PublicLayout: FC<Props> = ({ children, description, title, viewTitle }) => {
 
-    const { asPath } = useRouter()
+    const { asPath, push } = useRouter()
     const dispatch = useAppDispatch()
+    const { status } = useSession()
 
-    const oAuthLogin = (credential:CredentialsTypes) => {
+    const oAuthLogin = (credential: CredentialsTypes) => {
         dispatch(startOatuhSignIn(credential))
     }
 
     const isLoginPage = useMemo(() => {
         return asPath.includes('login')
     }, [asPath])
+
+    useEffect(() => {
+        if (status === 'authenticated') {
+            push('/')
+        }
+    }, [status, push])
+
+    if (status === 'authenticated') {
+        return null
+    }
 
     return (
         <S.PublicLayoutWrapper>
