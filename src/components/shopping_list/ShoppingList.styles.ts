@@ -10,7 +10,7 @@ export const ShoppingListContainer = styled.section<Props>`
     ${NoVisivleScrollBar}
 
     width: 100%;
-    height: 100%;
+    height: 100vh;
     overflow-y: auto;
 
     display: flex;
