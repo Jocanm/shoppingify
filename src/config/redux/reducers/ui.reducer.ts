@@ -3,10 +3,12 @@ import { logout } from '../actions';
 
 interface InitialState {
     showMenu: boolean;
+    showShoppingList: boolean;
 }
 
 const initialState: InitialState = {
-    showMenu: false
+    showMenu: false,
+    showShoppingList: false,
 }
 
 const uiReducer = createSlice({
@@ -23,6 +25,10 @@ const uiReducer = createSlice({
 
         toggleMenu: (state) => {
             state.showMenu = !state.showMenu;
+        },
+
+        toggleShowShoppingList: (state) => {
+            state.showShoppingList = !state.showShoppingList;
         }
 
     },
@@ -38,6 +44,7 @@ export default uiReducer.reducer;
 export const {
 
     closeMenu,
-    toggleMenu
+    toggleMenu,
+    toggleShowShoppingList
 
 } = uiReducer.actions;

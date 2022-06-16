@@ -1,14 +1,21 @@
 import { ShoppingCartOutlined } from '@mui/icons-material'
-import { useAppSelector } from '../../../config/redux'
+import { toggleShowShoppingList, useAppDispatch, useAppSelector } from '../../../config/redux'
 import * as S from './Cart.styles'
 import React from 'react';
 
 export const Cart = () => {
 
     const { cartTotal } = useAppSelector().cart
+    const dispatch = useAppDispatch()
+
+    const onToggleList = () => {
+        dispatch(toggleShowShoppingList())
+    }
 
     return (
-        <S.CartWrapper>
+        <S.CartWrapper
+            onClick={onToggleList}
+        >
             <ShoppingCartOutlined />
             {
                 !!cartTotal &&

@@ -55,6 +55,9 @@ export const GlobalStyle = createGlobalStyle`
         ${props => props.theme.breakpoints.xl} {
             font-size: 12px;
         }
+        ${props => props.theme.breakpoints.xxs} {
+            font-size: 10px;
+        }
     }
 
 `

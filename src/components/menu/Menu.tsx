@@ -1,9 +1,9 @@
 import { Home, Logout } from '@mui/icons-material'
 import { signOut } from 'next-auth/react'
+import { useRouter } from 'next/router'
 import { closeMenu, useAppDispatch, useAppSelector } from '../../config/redux'
 import { logout } from '../../config/redux/actions'
 import * as S from './Menu.styles'
-import { useRouter } from 'next/router';
 
 
 export const Menu = () => {

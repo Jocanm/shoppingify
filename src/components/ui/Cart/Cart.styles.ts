@@ -20,10 +20,10 @@ export const CartWrapper = styled.div`
 
 export const NumberOfItems = styled.span`
 
-    border-radius: 4px;
+    border-radius: 0.25rem;
     position: absolute;
-    width: 20px;
-    height: 20px;
+    width: 1.25rem;
+    height: 1.25rem;
     
     display:flex;
     align-items: center;

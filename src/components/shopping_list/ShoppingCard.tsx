@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react'
 import * as S from './ShoppingList.styles'
 import { ShoppingImage, ShoppingProductsList } from './';
@@ -8,9 +9,12 @@ import { Box } from '../globalComponents';
 export const ShoppingCard = () => {
 
     const { cartTotal } = useAppSelector().cart
+    const { showShoppingList } = useAppSelector().ui
 
     return (
-        <S.ShoppingListContainer>
+        <S.ShoppingListContainer
+            showShoppingList={showShoppingList}
+        >
 
             <div className='img-container'>
                 <ShoppingImage />

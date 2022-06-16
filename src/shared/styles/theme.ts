@@ -1,4 +1,6 @@
 export const breakpoints = {
+    xxs: '@media (max-width: 350px)',
+    xs: '@media (max-width: 420px)',
     sm: '@media ( max-width: 640px )',
     md: '@media ( max-width: 768px )',
     lg: '@media ( max-width: 1024px )',

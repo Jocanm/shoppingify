@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 import { AppearAnimation, NoVisivleScrollBar } from '../../shared';
 
+interface Props{
+    showShoppingList: boolean;
+}
 
-export const ShoppingListContainer = styled.section`
+export const ShoppingListContainer = styled.section<Props>`
 
     ${NoVisivleScrollBar}
 
@@ -17,11 +20,12 @@ export const ShoppingListContainer = styled.section`
 
     background-color: ${props => props.theme.colors.lightOrange};
 
-    /* padding: 3rem 2rem; */
-    
+    transition: transform 0.3s ease-in-out;
+
     .img-container{
         padding: 3rem 2rem 0 2rem;
     }
+
 
     img:last-child{
         width: 20rem;
@@ -30,7 +34,34 @@ export const ShoppingListContainer = styled.section`
     }
 
     ${props => props.theme.breakpoints.lg} {
-        display: none;
+        position:absolute;
+        max-width: 29rem;
+        right: 0;
+
+        ${props => props.showShoppingList 
+        ? `
+            transform: translateX(0rem);
+        ` 
+        : `
+            display:none;
+        `
+    }
+
+    }
+
+    ${props => props.theme.breakpoints.xs} {
+        width: auto;
+        left: 6rem;
+
+        .img-container{
+            padding-top:1.5rem;
+        }
+
+        img:last-child{
+            width: 17rem;
+            height: 17rem;
+            position:relative;
+        }
     }
 
 `
@@ -40,7 +71,8 @@ export const ShoppingImageCard = styled.section`
     display:flex;
     align-items: center;
 
-    border-radius: 24px;
+    border-radius: 1.5rem;
+    padding-right: 1rem;
     background-color: ${props => props.theme.colors.redWine};
 
     .shopping-image{
@@ -70,6 +102,11 @@ export const ShoppingImageCard = styled.section`
         }
     }
 
+    img{
+        width:8.5rem;
+        height:8.5rem;
+    }
+
 `
 
 export const ShoppingNameBox = styled.section`
@@ -79,24 +116,28 @@ export const ShoppingNameBox = styled.section`
     position: sticky;
     bottom: 0;
 
+    ${props => props.theme.breakpoints.xs} {
+        padding: 2rem;
+    }
+
     input{
         width: 100%;
-        border-radius:12px;
+        border-radius:0.75rem;
         padding: 0.8rem;
         padding-right:7rem;
-        height:60px;
+        height:3.75rem;
 
-        border: 2px solid ${props => props.theme.colors.lightGray};
+        border: 0.125rem solid ${props => props.theme.colors.lightGray};
         color: ${props => props.theme.colors.text};
 
         :focus{
-            border: 2px solid ${props => props.theme.colors.orange};
+            border: 0.125rem solid ${props => props.theme.colors.orange};
         }
     }
 
     button{
         position:absolute;
-        height:60px;
+        height:3.75rem;
         right:2rem;
     }
 
@@ -117,6 +158,16 @@ export const ShoppingProductsListBox = styled.div`
         font-size: 1.6rem;
         font-weight: bold;
         margin-bottom: 1rem;
+    }
+
+    ${props => props.theme.breakpoints.xs} {
+
+        p{
+            margin-bottom: 0;
+            margin-top: .5rem;
+            font-size: 1.4rem;
+        }
+
     }
 
 `
@@ -152,32 +203,50 @@ export const ShoppedItemConfig = styled.div<IProps>`
     
         background-color: #ffffff;
 
-        border-radius: 12px;
+        border-radius: 0.75rem;
 
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 0.5rem;
-    
+
     `}
+
+    ${props => props.theme.breakpoints.xs} {
+        ${props => props.isEditMode && `
+            gap: 0.2rem;
+        `}
+    }
 
     button:not(.quantity){
         display: ${props => !props.isEditMode && 'none'};
     }
 
     button{
-        border-radius: 10px;
+        border-radius: 0.625rem;
         padding: .5rem .3rem;
-
-        transition: all .2s ease-in-out;
+        transition: background-color .2s ease-in-out;
     }
 
     button.quantity{
-        border-radius: 24px;
-        padding: .5rem 1.5rem;
+        word-break: keep-all;
+        border-radius: 1.5rem;
+        padding: .5rem 1rem;
+        font-size: 1rem;
 
-        border: 2px solid ${props => props.theme.colors.orange};
+        min-width: 6rem;
+        max-height: 2.5rem;
+
+        border: 0.125rem solid ${props => props.theme.colors.orange};
         color: ${props => props.theme.colors.orange};
+
+        ${props => props.theme.breakpoints.xs} {
+            
+            ${props => props.isEditMode && `
+                padding: .5rem .3rem;
+                border-radius: 1rem;
+            `}
+        }
     }
 
     .delete{
