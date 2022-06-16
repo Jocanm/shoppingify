@@ -10,6 +10,13 @@ export const SidebarContainer = styled.aside`
     justify-content: space-between;
     padding: 2.5rem 0;
     width: 6rem;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    background-color: ${props => props.theme.colors.white};
     
     img{
         cursor: pointer;
