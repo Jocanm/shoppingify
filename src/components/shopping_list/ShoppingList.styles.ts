@@ -34,9 +34,11 @@ export const ShoppingListContainer = styled.section<Props>`
     }
 
     ${props => props.theme.breakpoints.lg} {
-        position:absolute;
+        position:fixed;
         max-width: 29rem;
         right: 0;
+        top: 0;
+        bottom: 0;
 
         ${props => props.showShoppingList 
         ? `

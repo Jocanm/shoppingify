@@ -26,11 +26,11 @@ export const SidebarContainer = styled.aside`
 
 export const RouteItemBox = styled.li<{ isActive?: boolean }>`
 
-    color:${props => props.theme.colors.darkGray};
     position: relative;
 
     display: flex;
     align-items: center;
+    color:${props => props.theme.colors.darkGray};
     justify-content: ${props => props.isActive ? 'space-between' : 'center'};
 
     padding: 0.5rem 0;
