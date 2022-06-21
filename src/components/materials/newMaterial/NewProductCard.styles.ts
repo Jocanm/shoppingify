@@ -81,7 +81,7 @@ export const CategoriesList = styled.ul`
 
 `
 
-export const CategoryItem = styled.li`
+export const CategoryItem = styled.li<{ isSelected: boolean }>`
 
     cursor: pointer;
     padding: .5rem 1rem;
@@ -89,12 +89,15 @@ export const CategoryItem = styled.li`
     font-weight: 600;
 
     font-size: 1.2rem;
-    transition: all .2s ease-in-out;
+    transition: all .1s ease-in-out;
     border-radius: .75rem;
 
+    background-color: ${props => props.isSelected && props.theme.colors.orange};
+    color: ${props => props.isSelected && props.theme.colors.white};
+
     :hover{
-        background-color: #f2f2f2;
-        color: ${props => props.theme.colors.text};
+        background-color:${props => props.isSelected ? props.theme.colors.orange : '#f2f2f2'};
+        color: ${props => props.isSelected ? props.theme.colors.white : props.theme.colors.text};
     }
 
 `

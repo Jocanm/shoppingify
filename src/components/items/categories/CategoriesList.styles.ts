@@ -20,6 +20,7 @@ export const CategoryItemBox = styled.li`
     gap:1.5rem;
 
     h2{
+        text-transform:capitalize;
         font-size:1.4rem;
         font-weight: 500;
     }
