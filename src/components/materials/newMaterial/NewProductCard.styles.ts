@@ -76,7 +76,7 @@ export const CategoriesList = styled.ul`
     background-color: ${props => props.theme.colors.white};
 
     ${props => props.theme.breakpoints.xl}{
-        max-height: 15rem;
+        max-height: 12rem;
     }
 
 `

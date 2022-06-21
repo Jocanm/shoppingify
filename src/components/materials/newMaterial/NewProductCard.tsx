@@ -28,6 +28,10 @@ export const NewProductCard = ({ toggleShowNewProduct }: Props) => {
         console.log(data)
     }
 
+    const onSelectCategory = (value: string) => {
+        methods.setValue('category', value)
+    }
+
     return (
         <S.NewMaterialCardBox>
 

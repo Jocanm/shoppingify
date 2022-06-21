@@ -1,5 +1,5 @@
 import React from 'react';
-import { FieldValues, FormProvider, UseFormReturn } from 'react-hook-form';
+import { FormProvider, UseFormReturn } from 'react-hook-form';
 
 interface Props {
     methods: UseFormReturn<any, any>
@@ -15,7 +15,7 @@ export const Form = ({ methods, children, onSubmit, className }: Props) => {
             {...methods}
         >
             <form
-                onSubmit={methods.handleSubmit(onSubmit || (() => { }))}
+                onSubmit={onSubmit}
                 className={className}
             >
                 {children}

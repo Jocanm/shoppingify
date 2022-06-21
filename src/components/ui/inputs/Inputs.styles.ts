@@ -18,7 +18,7 @@ export const CustomInputBox = styled.div<IProps>`
         padding:1.3rem 1rem;
         border-radius: .75rem;
         font-size: 1rem;
-        resize: vertical;
+        resize: none;
         border: ${props => props.error ? '1px':'2px'} solid ${props => props.error ? props.theme.colors.red : props.theme.colors.input};
 
         :focus{
