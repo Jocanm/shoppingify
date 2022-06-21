@@ -38,6 +38,7 @@ export const ProductItemBox = styled.li<{ isInCart: boolean }>`
 
     span{
         border-radius: 12px 0 0 12px;
+        text-transform:capitalize;
         flex:1;
         :hover{
             background-color:#ededed;

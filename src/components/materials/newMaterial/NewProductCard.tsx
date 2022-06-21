@@ -3,14 +3,14 @@ import { Button, MyInput, Form, Box } from '../../';
 import * as S from './NewProductCard.styles';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useAppSelector } from '../../../config/redux';
+import { useAppSelector, useAppDispatch, startCreateNewProduct } from '../../../config/redux';
 import { patterns } from '../../../shared';
 
 interface Props {
     toggleShowNewProduct: () => void
 }
 
-const FormShape = Yup.object({
+export const ProductFormShape = Yup.object({
     name: Yup
         .string()
         .required('Name is required')
@@ -25,18 +25,21 @@ const FormShape = Yup.object({
         .string(),
 })
 
-interface FormProps extends Yup.InferType<typeof FormShape> { }
+export interface ProductFormProps extends Yup.InferType<typeof ProductFormShape> { }
 
 export const NewProductCard = ({ toggleShowNewProduct }: Props) => {
 
-    const methods = useForm<FormProps>({ resolver: yupResolver(FormShape) })
+    const methods = useForm<ProductFormProps>({ resolver: yupResolver(ProductFormShape) })
+    const dispatch = useAppDispatch()
 
     const { categories } = useAppSelector().categories;
+    const { showOpaqueLoader } = useAppSelector().ui;
 
     const selectedCategory = methods.watch('category')
 
-    const onSubmit = (data: FormProps) => {
-        console.log(data)
+    const onSubmit = async(data: ProductFormProps) => {
+        await dispatch(startCreateNewProduct(data))
+        methods.reset()
     }
 
     const onSelectCategory = (value: string) => {
@@ -80,7 +83,7 @@ export const NewProductCard = ({ toggleShowNewProduct }: Props) => {
                                     isSelected={selectedCategory?.toLowerCase() === cat.name.toLowerCase()}
                                     key={cat.id}
                                 >
-                                    {cat.name}
+                                    {cat.name.toLowerCase()}
                                 </S.CategoryItem>
                             ))
                         }
@@ -93,7 +96,7 @@ export const NewProductCard = ({ toggleShowNewProduct }: Props) => {
                 <Button onClick={toggleShowNewProduct}>
                     Cancel
                 </Button>
-                <Button onClick={methods.handleSubmit(onSubmit)}>
+                <Button onClick={methods.handleSubmit(onSubmit)} disabled={showOpaqueLoader}>
                     Save
                 </Button>
             </S.ButtonContainer>

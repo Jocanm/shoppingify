@@ -92,6 +92,8 @@ export const CategoryItem = styled.li<{ isSelected: boolean }>`
     transition: all .1s ease-in-out;
     border-radius: .75rem;
 
+    text-transform: capitalize;
+
     background-color: ${props => props.isSelected && props.theme.colors.orange};
     color: ${props => props.isSelected && props.theme.colors.white};
 

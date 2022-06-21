@@ -1,14 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { logout } from '../actions';
+import { startCreateNewProduct } from '../thunks';
 
 interface InitialState {
     showMenu: boolean;
     showShoppingList: boolean;
+    showOpaqueLoader: boolean;
 }
 
 const initialState: InitialState = {
     showMenu: false,
     showShoppingList: false,
+    showOpaqueLoader: false,
 }
 
 const uiReducer = createSlice({
@@ -36,6 +39,18 @@ const uiReducer = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(logout, () => initialState)
+
+            /* -------------------------------------------------- */
+
+            .addCase(startCreateNewProduct.pending, (state) => {
+                state.showOpaqueLoader = true;
+            })
+            .addCase(startCreateNewProduct.fulfilled, (state) => {
+                state.showOpaqueLoader = false;
+            })
+
+            /* -------------------------------------------------- */
+
     }
 })
 

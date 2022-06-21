@@ -2,37 +2,37 @@ import bcrypt from 'bcryptjs';
 
 export const categories = [
     {
-        name: "Verduras",
+        name: "verduras",
         userId: "62b1e29142cf75479a2c15ac",
         id: "62a9fb0402f33d6b9dcf2797",
     },
     {
-        name: "Alcohol",
+        name: "alcohol",
         userId: "62b1e29142cf75479a2c15ac",
         id: "62a9fb0402f33d6b9dcf2798",
     },
     {
-        name: "Carnes",
+        name: "carnes",
         userId: "62b1e29142cf75479a2c15ac",
         id: "62a9fb0402f33d6b9dcf2799",
     },
     {
-        name: "Frutas",
+        name: "frutas",
         userId: "62b1e29142cf75479a2c15ac",
         id: "62a9fb0402f33d6b9dcf279a",
     },
     {
-        name: "Lacteos",
+        name: "lacteos",
         userId: "62b1e29142cf75479a2c15ac",
         id: "62a9fb0402f33d6b9dcf279b",
     },
     {
-        name: "Pescados",
+        name: "pescados",
         userId: "62b1e29142cf75479a2c15ac",
         id: "62a9fb0402f33d6b9dcf279c",
     },
     {
-        name: "Cereales",
+        name: "cereales",
         userId: "62b1e29142cf75479a2c15ac",
         id: "62a9fb0402f33d6b9dcf279d",
     }
