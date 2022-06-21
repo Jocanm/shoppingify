@@ -11,6 +11,8 @@ export const NewMaterialCardBox = styled.div`
     flex-direction: column;
     justify-content: space-between;
 
+    overflow-y: auto;
+
     background-color: ${props => props.theme.colors.lowWhite};
 
     ${props => props.theme.breakpoints.xl}{
