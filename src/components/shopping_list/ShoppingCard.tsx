@@ -1,52 +1,29 @@
-/* eslint-disable @next/next/no-img-element */
-import React from 'react'
-import * as S from './ShoppingList.styles'
-import { ShoppingImage, ShoppingProductsList } from './';
-import { Button } from '../ui/buttons';
+import { useState } from 'react';
 import { useAppSelector } from '../../config/redux';
-import { Box } from '../globalComponents';
+import { ProductsListContent } from './';
+import * as S from './ShoppingList.styles';
+import { NewProductCard } from '../materials';
 
 export const ShoppingCard = () => {
 
-    const { cartTotal } = useAppSelector().cart
+    const [showNewProduct, setShowNewProduct] = useState(false)
     const { showShoppingList } = useAppSelector().ui
+
+    const toggleShowNewProduct = () => {
+        setShowNewProduct(!showNewProduct)
+    }
 
     return (
         <S.ShoppingListContainer
             showShoppingList={showShoppingList}
         >
 
-            <div className='img-container'>
-                <ShoppingImage />
-            </div>
-
             {
-                cartTotal
-                    ? <ShoppingProductsList />
-                    : <EmptyCart />
+                !showNewProduct
+                    ? <ProductsListContent toggleShowNewProduct={toggleShowNewProduct} />
+                    : <NewProductCard toggleShowNewProduct={toggleShowNewProduct}/>
             }
-
-            <S.ShoppingNameBox>
-                <input
-                    placeholder='Enter a name'
-                />
-                <Button>
-                    Save
-                </Button>
-            </S.ShoppingNameBox>
 
         </S.ShoppingListContainer>
     )
 }
-
-
-const EmptyCart = () => (
-    <Box flex flexColumn alignCenter fontSize='1.4rem' appear>
-        <span style={{ fontWeight: "600" }}>No Items</span>
-        <img
-            src="/assets/cart.svg"
-            alt="cart"
-        />
-    </Box>
-)
-

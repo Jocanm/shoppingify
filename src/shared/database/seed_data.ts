@@ -2,13 +2,13 @@ import bcrypt from 'bcryptjs';
 
 export const categories = [
     {
-        name: "Verdurass",
-        userId: "62a9fc2102f33d6b9dcf27a2",
+        name: "Verduras",
+        userId: "62b1e29142cf75479a2c15ac",
         id: "62a9fb0402f33d6b9dcf2797",
     },
     {
         name: "Alcohol",
-        userId: "62a9fc2102f33d6b9dcf27a2",
+        userId: "62b1e29142cf75479a2c15ac",
         id: "62a9fb0402f33d6b9dcf2798",
     },
 ]
@@ -36,8 +36,8 @@ export const initialData = {
             password: bcrypt.hashSync("123456"),
         },
         {
-            name: "David sarmiento",
-            email: "david@gmail.com",
+            name: "Demo demo",
+            email: "demo@demo.com",
             password: bcrypt.hashSync("123456"),
         },
     ],

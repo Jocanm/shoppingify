@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import React from 'react'
-import { Box, ShoppingCard, Sidebar } from '../components'
-import { closeMenu, useAppDispatch, useAppSelector } from '../config/redux'
+import { ShoppingCard, Sidebar } from '../components'
+import { closeMenu, useAppDispatch } from '../config/redux'
 import * as S from './PrivateLayout.styles'
 
 interface Props {
