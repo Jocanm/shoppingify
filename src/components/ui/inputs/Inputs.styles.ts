@@ -23,11 +23,13 @@ export const CustomInputBox = styled.div<IProps>`
 
         :focus{
             border: ${props => props.error ? '1px':'2px'} solid ${props => props.error ? props.theme.colors.red : props.theme.colors.orange};
+
+            ~ label{
+                color: ${props => props.error ? props.theme.colors.red : props.theme.colors.orange};
+            }
         }
-    }
 
-    label{
-
+        order: 1;
     }
 
     span{
@@ -35,6 +37,7 @@ export const CustomInputBox = styled.div<IProps>`
         font-size: .8rem;
         position: relative;
         left: .5rem;
+        order: 2;
 
         color: ${props => props.theme.colors.red};
     }

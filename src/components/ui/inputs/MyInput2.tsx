@@ -18,7 +18,6 @@ export const MyInput = ({ name, label, textarea, ...rest }: Props) => {
 
     return (
         <S.CustomInputBox error={error}>
-            <label>{label}</label>
 
             {
                 textarea
@@ -44,6 +43,8 @@ export const MyInput = ({ name, label, textarea, ...rest }: Props) => {
                 name={name}
                 render={({ message }) => <span>{message}</span>}
             />
+            <label>{label}</label>
+
         </S.CustomInputBox>
     )
 }

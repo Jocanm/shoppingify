@@ -20,6 +20,21 @@ export const categories = [
         name: "Frutas",
         userId: "62b1e29142cf75479a2c15ac",
         id: "62a9fb0402f33d6b9dcf279a",
+    },
+    {
+        name: "Lacteos",
+        userId: "62b1e29142cf75479a2c15ac",
+        id: "62a9fb0402f33d6b9dcf279b",
+    },
+    {
+        name: "Pescados",
+        userId: "62b1e29142cf75479a2c15ac",
+        id: "62a9fb0402f33d6b9dcf279c",
+    },
+    {
+        name: "Cereales",
+        userId: "62b1e29142cf75479a2c15ac",
+        id: "62a9fb0402f33d6b9dcf279d",
     }
 ]
 
@@ -47,6 +62,30 @@ export const products = [
     { name: "Naranja", categoryId: "62a9fb0402f33d6b9dcf279a" },
     { name: "Sandia", categoryId: "62a9fb0402f33d6b9dcf279a" },
     { name: "Melon", categoryId: "62a9fb0402f33d6b9dcf279a" },
+
+    { name: "Leche", categoryId: "62a9fb0402f33d6b9dcf279b" },
+    { name: "Queso", categoryId: "62a9fb0402f33d6b9dcf279b" },
+    { name: "Yogurt", categoryId: "62a9fb0402f33d6b9dcf279b" },
+    { name: "Crema", categoryId: "62a9fb0402f33d6b9dcf279b" },
+    { name: "Mantequilla", categoryId: "62a9fb0402f33d6b9dcf279b" },
+    { name: "Chocolate", categoryId: "62a9fb0402f33d6b9dcf279b" },
+    { name: "Queso crema", categoryId: "62a9fb0402f33d6b9dcf279b" },
+
+    { name: "Salmon", categoryId: "62a9fb0402f33d6b9dcf279c" },
+    { name: "Pescado", categoryId: "62a9fb0402f33d6b9dcf279c" },
+    { name: "Trucha", categoryId: "62a9fb0402f33d6b9dcf279c" },
+    { name: "Calamar", categoryId: "62a9fb0402f33d6b9dcf279c" },
+    { name: "Atun", categoryId: "62a9fb0402f33d6b9dcf279c" },
+    { name: "Pulpo", categoryId: "62a9fb0402f33d6b9dcf279c" },
+    { name: "Cangrejo", categoryId: "62a9fb0402f33d6b9dcf279c" },
+    { name: "Caviar", categoryId: "62a9fb0402f33d6b9dcf279c" },
+
+    { name: "Arroz", categoryId: "62a9fb0402f33d6b9dcf279d" },
+    { name: "Avena", categoryId: "62a9fb0402f33d6b9dcf279d" },
+    { name: "Trigo", categoryId: "62a9fb0402f33d6b9dcf279d" },
+    { name: "Cebada", categoryId: "62a9fb0402f33d6b9dcf279d" },
+    { name: "Cereal", categoryId: "62a9fb0402f33d6b9dcf279d" },
+    { name: "Otros", categoryId: "62a9fb0402f33d6b9dcf279d" },
 ]
 
 export const initialData = {

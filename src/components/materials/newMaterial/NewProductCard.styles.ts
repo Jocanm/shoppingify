@@ -7,10 +7,15 @@ export const NewMaterialCardBox = styled.div`
     height: 100%;
 
     display:flex;
+    gap:2rem;
     flex-direction: column;
     justify-content: space-between;
 
     background-color: ${props => props.theme.colors.lowWhite};
+
+    ${props => props.theme.breakpoints.xl}{
+        padding: 3rem;
+    }
 
     ${props => props.theme.breakpoints.xs} {
         padding: 2rem;
@@ -19,10 +24,17 @@ export const NewMaterialCardBox = styled.div`
     .form-container{
         display: flex;
         flex-direction: column;
-        gap: 1.5rem;
 
+        gap: 1.5rem;
+        
         textarea{
-            height: 10rem;
+            height: 7rem;
+        }
+
+        ${props => props.theme.breakpoints.xl}{
+            textarea{
+                height: 14rem;
+            }
         }
     }
 
@@ -59,10 +71,13 @@ export const CategoriesList = styled.ul`
     max-height: 10rem;
 
     overflow-y: auto;
-    margin-top: -.5rem;
 
     border: 1px solid ${props => props.theme.colors.lightGray};
     background-color: ${props => props.theme.colors.white};
+
+    ${props => props.theme.breakpoints.xl}{
+        max-height: 15rem;
+    }
 
 `
 

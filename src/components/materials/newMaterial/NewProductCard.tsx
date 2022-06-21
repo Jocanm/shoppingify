@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { Button, MyInput, Form } from '../../';
+import { Button, MyInput, Form, Box } from '../../';
 import * as S from './NewProductCard.styles';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -10,7 +10,7 @@ interface Props {
 }
 
 const FormShape = Yup.object({
-    name: Yup.string().required('Name is required'),
+    name: Yup.string().required('Name is required').min(3, 'Name must be at least 3 characters'),
     category: Yup.string().required('Category is required'),
     note: Yup.string(),
     image: Yup.string(),
@@ -49,21 +49,23 @@ export const NewProductCard = ({ toggleShowNewProduct }: Props) => {
                     placeholder="Enter a url"
                 />
 
-                <MyInput
-                    name='category'
-                    label='Category'
-                    placeholder="Enter a category or choose one below"
-                />
+                <Box flex flexColumn gap="1.5rem">
+                    <MyInput
+                        name='category'
+                        label='Category'
+                        placeholder="Enter a category or choose one below"
+                    />
 
-                <S.CategoriesList>
-                    {
-                        categories.map(cat => (
-                            <S.CategoryItem key={cat.id}>
-                                {cat.name}
-                            </S.CategoryItem>
-                        ))
-                    }
-                </S.CategoriesList>
+                    <S.CategoriesList>
+                        {
+                            categories.map(cat => (
+                                <S.CategoryItem key={cat.id}>
+                                    {cat.name}
+                                </S.CategoryItem>
+                            ))
+                        }
+                    </S.CategoriesList>
+                </Box>
 
             </Form>
 
