@@ -1,7 +1,7 @@
 import { Category, Product } from '@prisma/client';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/react';
-import { ProductFormProps, ProductFormShape } from '../../../components/materials';
+import { ProductFormProps } from '../../../components/materials';
 import { prisma } from '../../../lib';
 
 type response =
@@ -27,13 +27,6 @@ export const createProduct = async (req: NextApiRequest, res: NextApiResponse<re
     }
 
     const { id } = (session?.user as { id: string }) || {}
-
-    try {
-        await ProductFormShape.validate(req.body || {})
-    } catch (error) {
-        console.log(error)
-        return res.status(400).json({ message: (error as any)?.message })
-    }
 
     // Si hay sesión y los datos son válidos, ahora se verifica si la categoría existe. todos los nombres se manejan en minúsculas
 

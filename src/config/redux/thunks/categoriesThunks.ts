@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from '../../../shared/helpers';
 import { ICategory, IProduct } from '../../../shared/models';
 import { shopApi } from '../../services';
-import { addCategory, addProduct, setCategories } from '../reducers';
+import { addCategory, addProduct, setCategories, toggleShowShoppingList } from '../reducers';
 import { ProductFormProps } from '../../../components/materials/newMaterial/NewProductCard';
 
 
@@ -34,6 +34,7 @@ export const startCreateNewProduct = createAsyncThunk(
 
             dispatch(addProduct(data))
             dispatch(addCategory(category))
+            dispatch(toggleShowShoppingList())
 
             toast('Producto creado correctamente', 'success')
 

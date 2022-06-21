@@ -14,6 +14,8 @@ export const ShoppingProductsList = () => {
 
             <p>Shopping List</p>
 
+            {/* TODO: separar lista visualmente por categorias tambien */}
+
             {
                 Object.values(cart).map((item) => (
                     <ShoppedProductItem
