@@ -18,7 +18,7 @@ export const ProductListBox = styled.ul`
 
 `
 
-export const ProductItemBox = styled.li`
+export const ProductItemBox = styled.li<{ isInCart: boolean }>`
 
     ${globalWhiteCard}
     ${AppearAnimation}
@@ -47,7 +47,10 @@ export const ProductItemBox = styled.li`
     button{
         height:100%;
         border-radius: 0 12px 12px 0;
-        color:${props => props.theme.colors.lightGray};
+
+        color:${props => props.isInCart ? props => props.theme.colors.white : props.theme.colors.lightGray};
+        background-color:${props => props.isInCart && props.theme.colors.orange};
+
         :hover{
             background-color:${props => props.theme.colors.orange};
             color:${props => props.theme.colors.white};

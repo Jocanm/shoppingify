@@ -7,10 +7,11 @@ import * as S from './Inputs.styles';
 interface Props {
     name: string
     label?: string
+    textarea?: boolean
     [key: string]: any
 }
 
-export const MyInput = ({ name, label, ...rest }: Props) => {
+export const MyInput = ({ name, label, textarea, ...rest }: Props) => {
 
     const { register } = useFormContext()
     const error = !!useFormState().errors[name]
@@ -18,12 +19,27 @@ export const MyInput = ({ name, label, ...rest }: Props) => {
     return (
         <S.CustomInputBox error={error}>
             <label>{label}</label>
-            <input
-                {...register(name,{
-                    setValueAs: (value) => typeof value === 'string' ? value.trim() : value
-                })}
-                {...rest}
-            />
+
+            {
+                textarea
+                    ? (
+                        <textarea
+                            {...register(name, {
+                                setValueAs: (value) => typeof value === 'string' ? value.trim() : value
+                            })}
+                            {...rest}
+                        />
+                    )
+                    : (
+                        <input
+                            {...register(name, {
+                                setValueAs: (value) => typeof value === 'string' ? value.trim() : value
+                            })}
+                            {...rest}
+                        />
+                    )
+            }
+
             <ErrorMessage
                 name={name}
                 render={({ message }) => <span>{message}</span>}

@@ -11,12 +11,23 @@ export const categories = [
         userId: "62b1e29142cf75479a2c15ac",
         id: "62a9fb0402f33d6b9dcf2798",
     },
+    {
+        name: "Carnes",
+        userId: "62b1e29142cf75479a2c15ac",
+        id: "62a9fb0402f33d6b9dcf2799",
+    },
+    {
+        name: "Frutas",
+        userId: "62b1e29142cf75479a2c15ac",
+        id: "62a9fb0402f33d6b9dcf279a",
+    }
 ]
 
 export const products = [
     { name: "Tomate", categoryId: "62a9fb0402f33d6b9dcf2797" },
     { name: "Zanahoria", categoryId: "62a9fb0402f33d6b9dcf2797" },
     { name: "Papa", categoryId: "62a9fb0402f33d6b9dcf2797" },
+
     { name: "Whiskey", categoryId: "62a9fb0402f33d6b9dcf2798" },
     { name: "Buchanas Buchanas", categoryId: "62a9fb0402f33d6b9dcf2798" },
     { name: "Coronita", categoryId: "62a9fb0402f33d6b9dcf2798" },
@@ -26,6 +37,16 @@ export const products = [
     { name: "perro con perro", categoryId: "62a9fb0402f33d6b9dcf2798" },
     { name: "old par", categoryId: "62a9fb0402f33d6b9dcf2798" },
     { name: "otros", categoryId: "62a9fb0402f33d6b9dcf2798" },
+
+    { name: "Pollo", categoryId: "62a9fb0402f33d6b9dcf2799" },
+    { name: "Pescado", categoryId: "62a9fb0402f33d6b9dcf2799" },
+    { name: "Carne", categoryId: "62a9fb0402f33d6b9dcf2799" },
+    { name: "Cerdo", categoryId: "62a9fb0402f33d6b9dcf2799" },
+
+    { name: "Manzana", categoryId: "62a9fb0402f33d6b9dcf279a" },
+    { name: "Naranja", categoryId: "62a9fb0402f33d6b9dcf279a" },
+    { name: "Sandia", categoryId: "62a9fb0402f33d6b9dcf279a" },
+    { name: "Melon", categoryId: "62a9fb0402f33d6b9dcf279a" },
 ]
 
 export const initialData = {

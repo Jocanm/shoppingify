@@ -5,7 +5,10 @@ import bcrypt from 'bcryptjs';
 export const checkUser = async (email: string, password: string) => {
 
     const user = await prisma.user.findUnique({
-        where: { email }
+        where: { email },
+        include:{
+            categories: true,
+        }
     })
 
     if (!user) return null;

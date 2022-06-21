@@ -14,16 +14,20 @@ export const CustomInputBox = styled.div<IProps>`
     gap: .5rem;
     font-weight: 600;
 
-    input{
+    input,textarea{
         padding:1.3rem 1rem;
         border-radius: .75rem;
         font-size: 1rem;
-
+        resize: vertical;
         border: ${props => props.error ? '1px':'2px'} solid ${props => props.error ? props.theme.colors.red : props.theme.colors.input};
 
         :focus{
             border: ${props => props.error ? '1px':'2px'} solid ${props => props.error ? props.theme.colors.red : props.theme.colors.orange};
         }
+    }
+
+    label{
+
     }
 
     span{
