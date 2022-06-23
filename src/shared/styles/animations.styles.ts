@@ -26,20 +26,6 @@ export const standOutKF = keyframes`
     }
 `
 
-
-export const CustomScrollBar = css<{ color?: string }>`
-
-    &::-webkit-scrollbar{
-        width: .7rem;
-    }
-
-    &::-webkit-scrollbar-thumb{
-        background: ${props => props.color};
-        border-radius: 6px;
-    }
-
-`
-
 export const CompleteCentered = css`
 
     display:flex;
