@@ -20,7 +20,9 @@ export const ShoppingCard = () => {
             <S.ShoppingListContainer
                 showShoppingList={showShoppingList}
             >
-                <ProductDescription />
+                <ProductDescription 
+                    setShowNewProduct={setShowNewProduct}
+                />
             </S.ShoppingListContainer>
         )
     }

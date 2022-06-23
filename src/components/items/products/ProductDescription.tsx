@@ -1,16 +1,27 @@
 /* eslint-disable @next/next/no-img-element */
 import { ArrowRightAlt } from '@mui/icons-material'
-import { setActiveProduct, useAppDispatch, useAppSelector } from '../../../config/redux'
+import { addToCart, setActiveProduct, useAppDispatch, useAppSelector } from '../../../config/redux'
+import { IProduct } from '../../../shared/models'
 import { Button } from '../../ui/buttons'
 import * as S from './ProductsList.styles'
 
-export const ProductDescription = () => {
+interface Props{
+    setShowNewProduct: (show: boolean) => void
+}
+
+export const ProductDescription = ({setShowNewProduct}:Props) => {
 
     const dispatch = useAppDispatch()
     const { activeProduct } = useAppSelector().categories
 
     const cleanActiveProduct = () => {
         dispatch(setActiveProduct(undefined))
+    }
+
+    const onAddToCart = () => {
+        dispatch(addToCart(activeProduct as IProduct))
+        dispatch(setActiveProduct(undefined))
+        setShowNewProduct(false)
     }
 
     if (!activeProduct) return null
@@ -48,7 +59,7 @@ export const ProductDescription = () => {
 
             <S.ButtonSection>
                 <Button>Delete</Button>
-                <Button>Add To List</Button>
+                <Button onClick={onAddToCart}>Add To List</Button>
             </S.ButtonSection>
 
         </S.ProductDescriptionBox>

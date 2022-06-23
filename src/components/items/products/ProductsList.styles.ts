@@ -69,6 +69,10 @@ export const ProductDescriptionBox = styled.div`
 
     ${NoVisivleScrollBar}
 
+    >*{
+        ${AppearAnimation}
+    }
+
     height:100%;
     padding: 2rem 3rem;
 
@@ -152,6 +156,10 @@ export const ProductInfo = styled.div`
 `
 
 export const ButtonSection = styled(ButtonContainer)`
+
+    button{
+        font-weight: 600;
+    }
 
     button:first-child{
 
