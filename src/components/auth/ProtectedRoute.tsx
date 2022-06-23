@@ -24,12 +24,11 @@ export const ProtectedRoute: FC<Props> = ({ children }) => {
     }, [status, router])
 
     useEffect(() => {
-        console.log('hola')
         dispatch(startGetInitialData())
     }, [dispatch])
 
     if (status === "unauthenticated") {
-        return null
+        return null;
     }
 
     if (isGettingInitialData) {
