@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const NewMaterialCardBox = styled.div`
 
-    padding: 3rem 4rem;
+    padding: 2rem 3rem;
     height: 100%;
 
     display:flex;
@@ -15,10 +15,6 @@ export const NewMaterialCardBox = styled.div`
 
     background-color: ${props => props.theme.colors.lowWhite};
 
-    ${props => props.theme.breakpoints.xl}{
-        padding: 3rem;
-    }
-
     ${props => props.theme.breakpoints.xs} {
         padding: 2rem;
     }
@@ -26,12 +22,7 @@ export const NewMaterialCardBox = styled.div`
     .form-container{
         display: flex;
         flex-direction: column;
-
         gap: 1.5rem;
-        
-        textarea{
-            height: 7rem;
-        }
 
         ${props => props.theme.breakpoints.xl}{
             textarea{

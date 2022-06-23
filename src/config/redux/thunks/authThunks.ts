@@ -106,6 +106,6 @@ export const startGetInitialData = createAsyncThunk(
     async (any, { dispatch }) => {
 
         await dispatch(startGetCategories())
-        
+
     }
 )

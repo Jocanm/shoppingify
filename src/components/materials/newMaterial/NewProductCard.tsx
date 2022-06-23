@@ -51,6 +51,9 @@ export const NewProductCard = ({ toggleShowNewProduct }: Props) => {
         <S.NewMaterialCardBox>
 
             <Form methods={methods} className="form-container">
+
+                <p>Add new product</p>
+
                 <MyInput
                     name='name'
                     label='Name'
