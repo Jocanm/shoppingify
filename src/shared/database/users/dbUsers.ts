@@ -1,5 +1,6 @@
 import { prisma } from '../../../lib/prisma';
 import bcrypt from 'bcryptjs';
+import { createCategoriesForUser } from './userCategories';
 
 
 export const checkUser = async (email: string, password: string) => {
@@ -45,8 +46,12 @@ export const validateOrCreateUser = async (oAuthEmail: string, oAuthName: string
             }
         })
 
+        await createCategoriesForUser(newUser.id)
+
         const { password: toIgnore, ...rest } = newUser;
         return rest;
+
+
     } catch (error) {
         console.error(error)
         return null

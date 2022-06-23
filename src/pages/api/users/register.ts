@@ -3,6 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import * as Yup from 'yup';
 import { prisma } from '../../../lib';
 import { patterns } from '../../../shared';
+import { createCategoriesForUser } from '../../../shared/database';
 
 type Data =
     | { message: string }
@@ -57,7 +58,7 @@ async function registerUser(req: NextApiRequest, res: NextApiResponse<{ message:
 
     try {
 
-        await prisma.user.create({
+        const newUser = await prisma.user.create({
             data: {
                 email: email.toLowerCase(),
                 password: hashedPassword,
@@ -65,7 +66,7 @@ async function registerUser(req: NextApiRequest, res: NextApiResponse<{ message:
             },
         })
 
-        //TODO: create some defualt categories for each user
+        await createCategoriesForUser(newUser.id)
 
         return res.status(200).json({ message: 'User created successfully' })
 

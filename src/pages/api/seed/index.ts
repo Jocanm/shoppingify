@@ -15,13 +15,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     };
 
     try {
-        // await user.deleteMany()
         await category.deleteMany()
+        await user.deleteMany()
         await product.deleteMany()
 
         // await user.createMany({ data: initialData.users })
-        await category.createMany({ data: initialData.categories })
-        await product.createMany({ data: initialData.products })
+        // await category.createMany({ data: initialData.categories })
+        // await product.createMany({ data: initialData.products })
 
         res.status(200).json({ message: "ok!" })
     } catch (error) {
