@@ -7,38 +7,43 @@ interface Props {
     name: string;
     label?: string;
     variant?: 'filled' | 'outlined' | 'standard';
-    // Icon: OverridableComponent<SvgIconTypeMap<{}, "svg">> & {muiName: string;}
     icon?: JSX.Element;
     iconPosition?: 'start' | 'end';
+    message?: string;
     [key: string]: any;
 }
 
-export const MyTextField = ({ name, label, variant = "outlined", icon, iconPosition, ...rest }: Props) => {
+export const MyTextField = ({ name, label, variant = "outlined", icon, iconPosition, message,...rest }: Props) => {
 
     const { register } = useFormContext()
     const { errors } = useFormState()
 
     return (
-        <TextField
-            {...register(name)}
-            label={label}
-            variant={variant}
-            error={!!errors[name]}
-            helperText={errors[name]?.message}
-            autoComplete="off"
-            InputProps={{
-                startAdornment: (
-                    <InputAdornment position={iconPosition || "start"}>
-                        {icon}
-                    </InputAdornment>
-                ),
-                sx: {
-                    borderRadius: '8px',
-                },
-                autoComplete: 'off',
-            }}
-            {...rest}
-        />
+        <>
+            {message && <label>{message}</label>}
+            <TextField
+                {...register(name, {
+                    setValueAs: (value) => typeof value === 'string' ? value.trim() : value
+                })}
+                label={label}
+                variant={variant}
+                error={!!errors[name]}
+                helperText={errors[name]?.message}
+                autoComplete="off"
+                InputProps={{
+                    startAdornment: (
+                        <InputAdornment position={iconPosition || "start"}>
+                            {icon}
+                        </InputAdornment>
+                    ),
+                    sx: {
+                        borderRadius: '8px',
+                    },
+                    autoComplete: 'off',
+                }}
+                {...rest}
+            />
+        </>
     )
 }
 

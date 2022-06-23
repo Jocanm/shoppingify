@@ -38,7 +38,7 @@ export const VanillaLoaderStyles = styled.div<LoaderProps>`
 
 `
 
-export const FullScreenContainer = styled.div`
+export const FullScreenContainer = styled.div<{ isOpaque?: boolean }>`
 
     display: flex;
     justify-content: center;
@@ -48,5 +48,12 @@ export const FullScreenContainer = styled.div`
     background-color:${props => props.theme.colors.lowWhite};
     position:fixed;
     inset:0;
+
+    ${props => props.isOpaque && `
+
+        background-color: ${props.theme.colors.white}99;
+        z-index: 100;
+    
+    `}
 
 `

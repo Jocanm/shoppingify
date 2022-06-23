@@ -65,6 +65,8 @@ async function registerUser(req: NextApiRequest, res: NextApiResponse<{ message:
             },
         })
 
+        //TODO: create some defualt categories for each user
+
         return res.status(200).json({ message: 'User created successfully' })
 
     } catch (error) {

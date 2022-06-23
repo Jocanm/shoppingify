@@ -98,7 +98,9 @@ export const PublicLayout: FC<Props> = ({ children, description, title, viewTitl
                 </Box>
             </S.FormWrapper>
             <Box flex justifyBetween width='450px' className='user-info-not-sm'>
-                <span>created by <span className='creator-name'>Jose Angarita</span></span>
+                <span> created by
+                    <a target='_blank' href='https://github.com/Jocanm' rel='noreferrer' className='creator-name'> Jose Angarita</a>
+                </span>
                 <span>devChallenges.io</span>
             </Box>
         </S.PublicLayoutWrapper>

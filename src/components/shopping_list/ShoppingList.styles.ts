@@ -127,6 +127,11 @@ export const ShoppingNameBox = styled.section`
         padding: 0.8rem;
         padding-right:7rem;
         height:3.75rem;
+        font-size: 1.2rem;
+
+        ${props => props.theme.breakpoints.md} {
+            font-size: 1rem;
+        }
 
         border: 0.125rem solid ${props => props.theme.colors.lightGray};
         color: ${props => props.theme.colors.text};

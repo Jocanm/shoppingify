@@ -4,6 +4,7 @@ import { FullScreenContainer, VanillaLoaderStyles } from "./Loaders.styles"
 interface Props {
     size?: string
     color?: string
+    isOpaque?: boolean
 }
 
 export const VanillaLoader: FC<Props> = ({ color, size }) => {
@@ -26,9 +27,11 @@ export const VanillaLoader: FC<Props> = ({ color, size }) => {
     )
 }
 
-export const FullScreenVanillaLoder: FC<Props> = ({ color, size }) => {
+export const FullScreenVanillaLoder: FC<Props> = ({ color, size, isOpaque }) => {
     return (
-        <FullScreenContainer>
+        <FullScreenContainer
+            isOpaque={isOpaque}
+        >
             <VanillaLoaderStyles
                 width={size}
                 height={size}

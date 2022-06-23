@@ -19,24 +19,33 @@ model User {
   categories      Category[]
   purchases       Purchase[]
   activePurchases ActivePurchase?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Category {
   id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  name     String    @unique
+  name     String
   user     User      @relation(fields: [userId], references: [id])
   userId   String    @db.ObjectId
   products Product[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Product {
   id               String            @id @default(auto()) @map("_id") @db.ObjectId
-  name             String            @unique
+  name             String
   category         Category          @relation(fields: [categoryId], references: [id])
   categoryId       String            @db.ObjectId
   purchasedProduct PurchasedProduct?
   note             String?
   image            String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model PurchasedProduct {
@@ -46,6 +55,9 @@ model PurchasedProduct {
   product    Product  @relation(fields: [productId], references: [id])
   productId  String   @unique @db.ObjectId
   amount     Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Purchase {
@@ -54,8 +66,11 @@ model Purchase {
   userId          String             @db.ObjectId
   products        PurchasedProduct[]
   name            String
-  state           PurchaseStateEnum @default(pending)
+  state           PurchaseStateEnum  @default(pending)
   activePurchases ActivePurchase?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model ActivePurchase {
@@ -64,6 +79,9 @@ model ActivePurchase {
   userId     String   @unique @db.ObjectId
   purchase   Purchase @relation(fields: [purchaseId], references: [id])
   purchaseId String   @unique @db.ObjectId
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 enum PurchaseStateEnum {

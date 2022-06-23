@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import React from 'react'
 import { ShoppingCard, Sidebar } from '../components'
-import { closeMenu, useAppDispatch } from '../config/redux'
+import { FullScreenVanillaLoder } from '../components/ui/loders'
+import { closeMenu, useAppDispatch, useAppSelector } from '../config/redux'
 import * as S from './PrivateLayout.styles'
 
 interface Props {
@@ -13,6 +14,7 @@ interface Props {
 export const PrivateLayout = ({ children, description, title }: Props) => {
 
     const dispatch = useAppDispatch()
+    const { showOpaqueLoader } = useAppSelector().ui
 
     const onCloseMenu = () => {
         dispatch(closeMenu())
@@ -35,7 +37,15 @@ export const PrivateLayout = ({ children, description, title }: Props) => {
                 {children}
             </S.ChildrenWrapper>
 
-            <ShoppingCard/>
+            <ShoppingCard />
+
+            {
+                showOpaqueLoader && (
+                    <FullScreenVanillaLoder
+                        isOpaque
+                    />
+                )
+            }
 
         </S.PrivateLayoutContainer>
     )

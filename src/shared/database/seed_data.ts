@@ -2,21 +2,47 @@ import bcrypt from 'bcryptjs';
 
 export const categories = [
     {
-        name: "Verdurass",
-        userId: "62a9fc2102f33d6b9dcf27a2",
+        name: "verduras",
+        userId: "62b1e29142cf75479a2c15ac",
         id: "62a9fb0402f33d6b9dcf2797",
     },
     {
-        name: "Alcohol",
-        userId: "62a9fc2102f33d6b9dcf27a2",
+        name: "alcohol",
+        userId: "62b1e29142cf75479a2c15ac",
         id: "62a9fb0402f33d6b9dcf2798",
     },
+    {
+        name: "carnes",
+        userId: "62b1e29142cf75479a2c15ac",
+        id: "62a9fb0402f33d6b9dcf2799",
+    },
+    {
+        name: "frutas",
+        userId: "62b1e29142cf75479a2c15ac",
+        id: "62a9fb0402f33d6b9dcf279a",
+    },
+    {
+        name: "lacteos",
+        userId: "62b1e29142cf75479a2c15ac",
+        id: "62a9fb0402f33d6b9dcf279b",
+    },
+    {
+        name: "pescados",
+        userId: "62b1e29142cf75479a2c15ac",
+        id: "62a9fb0402f33d6b9dcf279c",
+    },
+    {
+        name: "cereales",
+        userId: "62b1e29142cf75479a2c15ac",
+        id: "62a9fb0402f33d6b9dcf279d",
+    }
 ]
 
 export const products = [
     { name: "Tomate", categoryId: "62a9fb0402f33d6b9dcf2797" },
     { name: "Zanahoria", categoryId: "62a9fb0402f33d6b9dcf2797" },
     { name: "Papa", categoryId: "62a9fb0402f33d6b9dcf2797" },
+
     { name: "Whiskey", categoryId: "62a9fb0402f33d6b9dcf2798" },
     { name: "Buchanas Buchanas", categoryId: "62a9fb0402f33d6b9dcf2798" },
     { name: "Coronita", categoryId: "62a9fb0402f33d6b9dcf2798" },
@@ -26,6 +52,40 @@ export const products = [
     { name: "perro con perro", categoryId: "62a9fb0402f33d6b9dcf2798" },
     { name: "old par", categoryId: "62a9fb0402f33d6b9dcf2798" },
     { name: "otros", categoryId: "62a9fb0402f33d6b9dcf2798" },
+
+    { name: "Pollo", categoryId: "62a9fb0402f33d6b9dcf2799" },
+    { name: "Pescado", categoryId: "62a9fb0402f33d6b9dcf2799" },
+    { name: "Carne", categoryId: "62a9fb0402f33d6b9dcf2799" },
+    { name: "Cerdo", categoryId: "62a9fb0402f33d6b9dcf2799" },
+
+    { name: "Manzana", categoryId: "62a9fb0402f33d6b9dcf279a" },
+    { name: "Naranja", categoryId: "62a9fb0402f33d6b9dcf279a" },
+    { name: "Sandia", categoryId: "62a9fb0402f33d6b9dcf279a" },
+    { name: "Melon", categoryId: "62a9fb0402f33d6b9dcf279a" },
+
+    { name: "Leche", categoryId: "62a9fb0402f33d6b9dcf279b" },
+    { name: "Queso", categoryId: "62a9fb0402f33d6b9dcf279b" },
+    { name: "Yogurt", categoryId: "62a9fb0402f33d6b9dcf279b" },
+    { name: "Crema", categoryId: "62a9fb0402f33d6b9dcf279b" },
+    { name: "Mantequilla", categoryId: "62a9fb0402f33d6b9dcf279b" },
+    { name: "Chocolate", categoryId: "62a9fb0402f33d6b9dcf279b" },
+    { name: "Queso crema", categoryId: "62a9fb0402f33d6b9dcf279b" },
+
+    { name: "Salmon", categoryId: "62a9fb0402f33d6b9dcf279c" },
+    { name: "Pescado", categoryId: "62a9fb0402f33d6b9dcf279c" },
+    { name: "Trucha", categoryId: "62a9fb0402f33d6b9dcf279c" },
+    { name: "Calamar", categoryId: "62a9fb0402f33d6b9dcf279c" },
+    { name: "Atun", categoryId: "62a9fb0402f33d6b9dcf279c" },
+    { name: "Pulpo", categoryId: "62a9fb0402f33d6b9dcf279c" },
+    { name: "Cangrejo", categoryId: "62a9fb0402f33d6b9dcf279c" },
+    { name: "Caviar", categoryId: "62a9fb0402f33d6b9dcf279c" },
+
+    { name: "Arroz", categoryId: "62a9fb0402f33d6b9dcf279d" },
+    { name: "Avena", categoryId: "62a9fb0402f33d6b9dcf279d" },
+    { name: "Trigo", categoryId: "62a9fb0402f33d6b9dcf279d" },
+    { name: "Cebada", categoryId: "62a9fb0402f33d6b9dcf279d" },
+    { name: "Cereal", categoryId: "62a9fb0402f33d6b9dcf279d" },
+    { name: "Otros", categoryId: "62a9fb0402f33d6b9dcf279d" },
 ]
 
 export const initialData = {
@@ -36,8 +96,8 @@ export const initialData = {
             password: bcrypt.hashSync("123456"),
         },
         {
-            name: "David sarmiento",
-            email: "david@gmail.com",
+            name: "Demo demo",
+            email: "demo@demo.com",
             password: bcrypt.hashSync("123456"),
         },
     ],

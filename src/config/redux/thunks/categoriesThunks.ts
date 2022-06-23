@@ -1,8 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from '../../../shared/helpers';
-import { ICategory } from '../../../shared/models';
+import { ICategory, IProduct } from '../../../shared/models';
 import { shopApi } from '../../services';
-import { setCategories } from '../reducers';
+import { addCategory, addProduct, setCategories, toggleShowShoppingList } from '../reducers';
+import { ProductFormProps } from '../../../components/materials/newMaterial/NewProductCard';
 
 
 export const startGetCategories = createAsyncThunk(
@@ -12,11 +13,37 @@ export const startGetCategories = createAsyncThunk(
 
             const { data } = await shopApi.get<ICategory[]>('/categories')
 
-            dispatch(setCategories(data))
+            dispatch(setCategories(data.reverse()))
 
         } catch (error) {
             console.error(error)
             toast('Error al obtener los productos', 'error')
         }
     },
+)
+
+export const startCreateNewProduct = createAsyncThunk(
+    'categories/startCreateNewProduct',
+    async (product: ProductFormProps, { dispatch }) => {
+
+        try {
+
+            const { data } = await shopApi.post<IProduct>('/product', product)
+
+            const { category } = data
+
+            dispatch(addProduct(data))
+            dispatch(addCategory(category))
+            dispatch(toggleShowShoppingList())
+
+            toast('Producto creado correctamente', 'success')
+
+        } catch (error) {
+
+            console.error(error)
+            toast('Error al crear el producto', 'error')
+
+        }
+
+    }
 )

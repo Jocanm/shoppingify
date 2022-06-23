@@ -18,7 +18,7 @@ export const GlobalStyle = createGlobalStyle`
         box-sizing: inherit;
     }
 
-    input,select{
+    input,select,textarea{
         outline: none;
     }
 
