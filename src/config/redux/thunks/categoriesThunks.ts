@@ -32,6 +32,8 @@ export const startCreateNewProduct = createAsyncThunk(
 
             const { category } = data
 
+            console.log(data)
+
             dispatch(addProduct(data))
             dispatch(addCategory(category))
             dispatch(toggleShowShoppingList())

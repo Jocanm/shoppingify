@@ -3,14 +3,26 @@ import { useAppSelector } from '../../config/redux';
 import { ProductsListContent } from './';
 import * as S from './ShoppingList.styles';
 import { NewProductCard } from '../materials';
+import { ProductDescription } from '../items';
 
 export const ShoppingCard = () => {
 
     const [showNewProduct, setShowNewProduct] = useState(false)
     const { showShoppingList } = useAppSelector().ui
+    const { activeProduct } = useAppSelector().categories
 
     const toggleShowNewProduct = () => {
         setShowNewProduct(!showNewProduct)
+    }
+
+    if (activeProduct) {
+        return (
+            <S.ShoppingListContainer
+                showShoppingList={showShoppingList}
+            >
+                <ProductDescription />
+            </S.ShoppingListContainer>
+        )
     }
 
     return (
@@ -21,7 +33,7 @@ export const ShoppingCard = () => {
             {
                 !showNewProduct
                     ? <ProductsListContent toggleShowNewProduct={toggleShowNewProduct} />
-                    : <NewProductCard toggleShowNewProduct={toggleShowNewProduct}/>
+                    : <NewProductCard toggleShowNewProduct={toggleShowNewProduct} />
             }
 
         </S.ShoppingListContainer>

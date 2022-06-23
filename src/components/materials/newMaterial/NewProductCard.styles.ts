@@ -1,7 +1,10 @@
 import styled from 'styled-components';
+import { CustomScrollBar, NoVisivleScrollBar } from '../../../shared';
 
 
 export const NewMaterialCardBox = styled.div`
+
+    ${NoVisivleScrollBar}
 
     padding: 2rem 3rem;
     height: 100%;
@@ -29,6 +32,11 @@ export const NewMaterialCardBox = styled.div`
                 height: 14rem;
             }
         }
+
+        p{
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
     }
 
 `
@@ -43,12 +51,19 @@ export const ButtonContainer = styled.div`
 
     button{
         padding: 1rem 1.5rem;
-        font-weight: 500;
+        font-weight: 600;
     }
 
     button:first-child{
-        background-color: ${props => props.theme.colors.white};
+
+        transition:all .2s ease-in-out;
+
+        background-color: ${props => props.theme.colors.lowWhite};
         color: ${props => props.theme.colors.text};
+
+        :hover{
+            background-color:#ededed;
+        }
     }
 
 `
@@ -64,6 +79,8 @@ export const CategoriesList = styled.ul`
     max-height: 10rem;
 
     overflow-y: auto;
+
+    ${CustomScrollBar}
 
     border: 1px solid ${props => props.theme.colors.lightGray};
     background-color: ${props => props.theme.colors.white};

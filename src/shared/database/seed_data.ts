@@ -39,11 +39,11 @@ export const categories = [
 ]
 
 export const products = [
-    { name: "Tomate", categoryId: "62a9fb0402f33d6b9dcf2797" },
+    { name: "Tomate", categoryId: "62a9fb0402f33d6b9dcf2797",image:'https://cdn.pixabay.com/photo/2014/04/10/11/06/tomatoes-320860__340.jpg',note:"esto es un tomate de prueba para ver como se ve la descripcion de un producto" },
     { name: "Zanahoria", categoryId: "62a9fb0402f33d6b9dcf2797" },
     { name: "Papa", categoryId: "62a9fb0402f33d6b9dcf2797" },
 
-    { name: "Whiskey", categoryId: "62a9fb0402f33d6b9dcf2798" },
+    { name: "Whiskey", categoryId: "62a9fb0402f33d6b9dcf2798",image:'https://media.istockphoto.com/photos/whisky-picture-id518755773?b=1&k=20&m=518755773&s=170667a&w=0&h=zKPIej52dMzM_RB1JqG519A8RppNk4-sYkbI7m5HWKg=' },
     { name: "Buchanas Buchanas", categoryId: "62a9fb0402f33d6b9dcf2798" },
     { name: "Coronita", categoryId: "62a9fb0402f33d6b9dcf2798" },
     { name: "red label", categoryId: "62a9fb0402f33d6b9dcf2798" },

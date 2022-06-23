@@ -66,7 +66,17 @@ export const createProduct = async (req: NextApiRequest, res: NextApiResponse<re
         },
         include: {
             category: {
-                include: { products: true }
+                include: {
+                    products: {
+                        include: {
+                            category: {
+                                select: {
+                                    name: true
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
     })

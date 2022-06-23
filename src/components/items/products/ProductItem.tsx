@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import * as S from './ProductsList.styles'
 import { IProduct } from '../../../shared/models';
 import { Add } from '@mui/icons-material';
-import { addToCart, useAppDispatch, useAppSelector } from '../../../config/redux';
+import { addToCart, setActiveProduct, useAppDispatch, useAppSelector } from '../../../config/redux';
 
 export const ProductItem = (product: IProduct) => {
 
@@ -11,6 +11,10 @@ export const ProductItem = (product: IProduct) => {
 
     const onAddToCart = () => {
         dispatch(addToCart(product))
+    }
+
+    const onSelectProduct = () => {
+        dispatch(setActiveProduct(product))
     }
 
     const isInCart = useMemo(() => {
@@ -24,7 +28,7 @@ export const ProductItem = (product: IProduct) => {
             isInCart={isInCart}
         >
 
-            <span>{product.name}</span>
+            <span onClick={onSelectProduct}>{product.name}</span>
 
             <button
                 onClick={onAddToCart}

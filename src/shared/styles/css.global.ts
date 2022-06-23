@@ -33,3 +33,16 @@ export const NoVisivleScrollBar = css`
     }
 
 `
+
+export const CustomScrollBar = css`
+
+    &::-webkit-scrollbar{
+        width: .5rem;
+    }
+
+    &::-webkit-scrollbar-thumb{
+        background: ${props => props.theme.colors.orange};
+        border-radius: .5rem;
+    }
+
+`

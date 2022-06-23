@@ -5,11 +5,13 @@ import { logout } from '../actions';
 
 interface InitialState {
     categories: ICategory[];
+    activeProduct?: IProduct;
 }
 
 
 const initialState: InitialState = {
     categories: [],
+    activeProduct: undefined
 }
 
 const categoriesReducer = createSlice({
@@ -42,6 +44,10 @@ const categoriesReducer = createSlice({
 
             category.products.push(payload);
 
+        },
+
+        setActiveProduct: (state, { payload }: PayloadAction<IProduct | undefined>) => {
+            state.activeProduct = payload;
         }
 
     },
@@ -59,6 +65,7 @@ export const {
 
     setCategories,
     addCategory,
-    addProduct
+    addProduct,
+    setActiveProduct
 
 } = categoriesReducer.actions;
