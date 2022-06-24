@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { ArrowRightAlt } from '@mui/icons-material'
-import { addToCart, setActiveProduct, useAppDispatch, useAppSelector } from '../../../config/redux'
+import { addToCart, setActiveProduct, toggleShowShoppingList, useAppDispatch, useAppSelector } from '../../../config/redux'
 import { IProduct } from '../../../shared/models'
 import { Button } from '../../ui/buttons'
 import * as S from './ProductsList.styles'
@@ -16,6 +16,7 @@ export const ProductDescription = ({setShowNewProduct}:Props) => {
 
     const cleanActiveProduct = () => {
         dispatch(setActiveProduct(undefined))
+        dispatch(toggleShowShoppingList())
     }
 
     const onAddToCart = () => {
