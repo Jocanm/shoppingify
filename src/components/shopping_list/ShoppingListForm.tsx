@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useAppDispatch, useAppSelector } from '../../config/redux';
-import { startCreateShoppingList } from '../../config/redux/thunks/categoriesThunks';
+import { startCreateShoppingList } from '../../config/redux/thunks/shoppingThunks';
 
 const FormShape = Yup.object({
     name: Yup.string().required('Name is required').min(3, 'Name must be at least 3 characters long'),

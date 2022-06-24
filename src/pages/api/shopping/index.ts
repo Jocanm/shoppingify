@@ -1,4 +1,4 @@
-import { User } from '@prisma/client';
+import { ActivePurchase, User } from '@prisma/client';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/react';
 import { prisma } from '../../../lib';
@@ -6,6 +6,7 @@ import { IPurchasedProduct } from '../../../shared/models';
 
 type Data =
     | { message: string }
+    | ActivePurchase | null
 
 export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
 
@@ -31,11 +32,7 @@ const newPurchase = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
         name: string,
     }
 
-    console.log(req.body)
-
-    // return res.status(200).json({ message: 'ok!' })
-
-    await prisma.purchase.create({
+    const newPurchase = await prisma.purchase.create({
         data: {
             userId,
             name,
@@ -50,6 +47,23 @@ const newPurchase = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
         },
     })
 
-    return res.status(200).json({ message: 'ok!' })
+    const newActivePurchase = await prisma.activePurchase.findUnique({
+        where: {
+            purchaseId: newPurchase.id
+        },
+        include:{
+            purchase: {
+                include: {
+                    products: {
+                        include: {
+                            product: true
+                        }
+                    }
+                }
+            }
+        }
+    })
+
+    return res.status(200).json(newActivePurchase)
 
 }

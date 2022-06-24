@@ -1,8 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from '../../../shared/helpers';
-import { IActivePurchase } from '../../../shared/models';
+import { IActivePurchase, IPurchasedProduct } from '../../../shared/models';
 import { shopApi } from '../../services';
 import { CartItem, setActivePurchase, setCart } from '../reducers';
+import { RootState } from '../store';
 
 
 export const startGetActivePurchase = createAsyncThunk(
@@ -14,14 +15,10 @@ export const startGetActivePurchase = createAsyncThunk(
             const { data } = await shopApi.get<IActivePurchase | null>('/shopping/activePurchase');
 
             if (data) {
-                const productsToCard = data.purchase.products.map(({ amount, product }) => ({
-                    product,
-                    amount
-                }))
 
                 const newCartObject: CartItem = {};
 
-                productsToCard.forEach(({ product, amount }) => {
+                data.purchase.products.forEach(({ product, amount }) => {
                     newCartObject[product.id] = {
                         product,
                         quantity: amount
@@ -35,6 +32,35 @@ export const startGetActivePurchase = createAsyncThunk(
 
             console.error(error)
             toast("Something went wrong", "error")
+
+        }
+
+    }
+)
+
+export const startCreateShoppingList = createAsyncThunk(
+    'categories/startCreateShoppingList',
+    async (name: string, { dispatch, getState }) => {
+
+        try {
+            
+            const { cart } = (getState() as RootState).cart
+
+            const products: IPurchasedProduct[] = Object.values(cart).map(({ product, quantity }) => ({
+                productId: product.id,
+                amount:quantity
+            }))
+
+            const dataToSend = { name, products }
+
+            const { data } = await shopApi.post<IActivePurchase>('/shopping', dataToSend)
+
+            dispatch(setActivePurchase(data))
+
+        } catch (error) {
+
+            console.error(error)
+            toast('Something went wrong, please try again', 'error')
 
         }
 

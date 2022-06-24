@@ -8,11 +8,12 @@ import * as S from './ShoppingList.styles'
 export const ShoppingProductsList = () => {
 
     const { cart } = useAppSelector().cart
+    const { ActivePurchase } = useAppSelector().shopping
 
     return (
         <S.ShoppingProductsListBox>
 
-            <p>Shopping List</p>
+            <p>Shopping List {ActivePurchase && <span> - {ActivePurchase.purchase.name}</span>}</p>
 
             {/* TODO: separar lista visualmente por categorias tambien */}
 

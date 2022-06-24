@@ -19,10 +19,6 @@ export const shoppingReducer = createSlice({
 
         setActivePurchase: (state, action: PayloadAction<IActivePurchase>) => {
             state.ActivePurchase = action.payload;
-
-            // if(state.ActivePurchase){
-            //     state.ActivePurchase.
-            // }
         },
 
     },
