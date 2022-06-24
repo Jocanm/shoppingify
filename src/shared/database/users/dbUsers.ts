@@ -7,7 +7,9 @@ export const checkUser = async (email: string, password: string) => {
 
     const user = await prisma.user.findUnique({
         where: { email },
-        include:{
+        include: {
+            //TODO: quitar este @ts-ignore cuando se arregle el bug
+            //@ts-ignore
             activePurchase: true,
         }
     })
