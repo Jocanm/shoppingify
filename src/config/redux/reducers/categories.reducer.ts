@@ -46,6 +46,16 @@ const categoriesReducer = createSlice({
 
         },
 
+        deleteProduct: (state, { payload }: PayloadAction<string>) => {
+
+            state.categories.forEach(category => {
+
+                category.products = category.products.filter(product => product.id !== payload);
+
+            })
+
+        },
+
         setActiveProduct: (state, { payload }: PayloadAction<IProduct | undefined>) => {
             state.activeProduct = payload;
         }
@@ -66,6 +76,7 @@ export const {
     setCategories,
     addCategory,
     addProduct,
-    setActiveProduct
+    setActiveProduct,
+    deleteProduct
 
 } = categoriesReducer.actions;

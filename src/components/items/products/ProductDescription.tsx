@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import { ArrowRightAlt } from '@mui/icons-material'
-import { addToCart, setActiveProduct, toggleShowShoppingList, useAppDispatch, useAppSelector } from '../../../config/redux'
+import { addToCart, setActiveProduct, setDeleteProductModal, toggleShowShoppingList, useAppDispatch, useAppSelector } from '../../../config/redux'
 import { IProduct } from '../../../shared/models'
 import { Button } from '../../ui/buttons'
+import { DeleteProductModal } from '../../ui/modals'
 import * as S from './ProductsList.styles'
 
 interface Props{
@@ -23,6 +24,10 @@ export const ProductDescription = ({setShowNewProduct}:Props) => {
         dispatch(addToCart(activeProduct as IProduct))
         dispatch(setActiveProduct(undefined))
         setShowNewProduct(false)
+    }
+
+    const onDeleteProduct = () => {
+        dispatch(setDeleteProductModal(true))
     }
 
     if (!activeProduct) return null
@@ -59,9 +64,11 @@ export const ProductDescription = ({setShowNewProduct}:Props) => {
             }
 
             <S.ButtonSection>
-                <Button>Delete</Button>
+                <Button onClick={onDeleteProduct}>Delete</Button>
                 <Button onClick={onAddToCart}>Add To List</Button>
             </S.ButtonSection>
+
+            <DeleteProductModal />
 
         </S.ProductDescriptionBox>
     )

@@ -1,5 +1,5 @@
 import { ShoppingCartOutlined } from '@mui/icons-material'
-import { toggleShowShoppingList, useAppDispatch, useAppSelector } from '../../../config/redux'
+import { setActiveProduct, toggleShowShoppingList, useAppDispatch, useAppSelector } from '../../../config/redux'
 import * as S from './Cart.styles'
 import React from 'react';
 
@@ -10,6 +10,7 @@ export const Cart = () => {
 
     const onToggleList = () => {
         dispatch(toggleShowShoppingList())
+        dispatch(setActiveProduct(undefined))
     }
 
     return (

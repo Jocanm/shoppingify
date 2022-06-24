@@ -159,6 +159,7 @@ export const ButtonSection = styled(ButtonContainer)`
 
     button{
         font-weight: 600;
+        padding:1.5rem;
     }
 
     button:first-child{
