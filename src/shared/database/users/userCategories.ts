@@ -4,7 +4,7 @@ export const createCategoriesForUser = async (userId: string) => {
 
     await prisma.category.create({
         data: {
-            name: 'Vegetables',
+            name: 'vegetables',
             userId,
             products: {
                 create: [
@@ -35,7 +35,7 @@ export const createCategoriesForUser = async (userId: string) => {
 
     await prisma.category.create({
         data: {
-            name: 'Alcohols',
+            name: 'alcohols',
             userId,
             products: {
                 create: [
