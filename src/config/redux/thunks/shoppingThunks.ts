@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from '../../../shared/helpers';
 import { IActivePurchase } from '../../../shared/models';
 import { shopApi } from '../../services';
-import { setActivePurchase } from '../reducers';
+import { CartItem, setActivePurchase, setCart } from '../reducers';
 
 
 export const startGetActivePurchase = createAsyncThunk(
@@ -13,7 +13,23 @@ export const startGetActivePurchase = createAsyncThunk(
 
             const { data } = await shopApi.get<IActivePurchase | null>('/shopping/activePurchase');
 
-            dispatch(setActivePurchase(data));
+            if (data) {
+                const productsToCard = data.purchase.products.map(({ amount, product }) => ({
+                    product,
+                    amount
+                }))
+
+                const newCartObject: CartItem = {};
+
+                productsToCard.forEach(({ product, amount }) => {
+                    newCartObject[product.id] = {
+                        product,
+                        quantity: amount
+                    }
+                })
+
+                dispatch(setCart(newCartObject))
+            }
 
         } catch (error) {
 

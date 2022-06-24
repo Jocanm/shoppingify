@@ -17,8 +17,8 @@ export const shoppingReducer = createSlice({
 
     reducers: {
 
-        setActivePurchase: (state, action: PayloadAction<IActivePurchase | null>) => {
-            state.ActivePurchase = action.payload || undefined;
+        setActivePurchase: (state, action: PayloadAction<IActivePurchase>) => {
+            state.ActivePurchase = action.payload;
 
             // if(state.ActivePurchase){
             //     state.ActivePurchase.

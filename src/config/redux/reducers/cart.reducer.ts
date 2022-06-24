@@ -2,13 +2,15 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IProduct } from '../../../shared/models';
 import { logout } from '../actions';
 
-interface InitialState {
-    cart: {
-        [key: string]: {
-            product: IProduct;
-            quantity: number;
-        };
+export interface CartItem {
+    [key: string]: {
+        product: IProduct;
+        quantity: number;
     };
+}
+
+interface InitialState {
+    cart: CartItem;
     cartTotal: number;
 }
 
@@ -23,6 +25,11 @@ const cartReducer = createSlice({
 
     reducers: {
 
+        setCart: (state, {payload}: PayloadAction<CartItem>) => {
+            state.cart = payload;
+            state.cartTotal = Object.values(payload).length
+        },
+
         addToCart: (state, { payload }: PayloadAction<IProduct>) => {
 
             const { id } = payload;
@@ -34,6 +41,18 @@ const cartReducer = createSlice({
                     [id]: {
                         product: payload,
                         quantity: 1
+                    }
+                }
+                const numberOfItems = Object.keys(newCart).length;
+
+                state.cart = newCart;
+                state.cartTotal = numberOfItems;
+            }else{
+                const newCart = {
+                    ...state.cart,
+                    [id]: {
+                        ...toAdd,
+                        quantity: toAdd.quantity + 1
                     }
                 }
                 const numberOfItems = Object.keys(newCart).length;
@@ -86,6 +105,7 @@ export const {
     addToCart,
     removeFromCart,
     addQuantity,
-    removeQuantity
+    removeQuantity,
+    setCart
 
 } = cartReducer.actions;
