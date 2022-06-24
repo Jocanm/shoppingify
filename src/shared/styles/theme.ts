@@ -5,8 +5,9 @@ export const breakpoints = {
     md: '@media ( max-width: 768px )',
     lg: '@media ( max-width: 1024px )',
     xl: '@media ( max-width: 1280px )',
-    'xl2': '@media ( max-width: 1440px )',
-    'xl3': '@media ( max-width: 1600px )',
+    xl2: '@media ( max-width: 1440px )',
+    xl3: '@media ( max-width: 1600px )',
+    xl4: '@media ( min-width: 1920px )',
 }
 
 export const colors = {
@@ -20,13 +21,13 @@ export const colors = {
     black: "#000000",
     lightBlue: "#56CCF2",
     lightOrange: "#FFF0DE",
-    blue:"#2F80ED",
+    blue: "#2F80ED",
     lowWhite: "#F9F9F9",
     redWine: "#80485B",
 }
 
 export const globals = {
-    shadow:"0px 2px 12px rgba(0, 0, 0, 0.05)"
+    shadow: "0px 2px 12px rgba(0, 0, 0, 0.05)"
 }
 
 export const themes = {

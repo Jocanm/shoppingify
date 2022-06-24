@@ -15,4 +15,8 @@ export { default as uiReducer } from './ui.reducer'
 export * from './categories.reducer'
 export { default as categoriesReducer } from './categories.reducer'
 
+// !Shopping-reducer
+export * from './shopping.reducer'
+export { default as shoppingReducer } from './shopping.reducer'
+
 

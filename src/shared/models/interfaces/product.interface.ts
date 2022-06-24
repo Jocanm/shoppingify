@@ -6,6 +6,8 @@ export interface IProduct {
     categoryId: string;
     image?: string;
     note?: string;
+    createdAt: string;
+    updatedAt: string;
     category: ICategory;
 }
 

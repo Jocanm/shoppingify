@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
-import { authReducer, cartReducer, categoriesReducer, uiReducer } from '../reducers';
+import { authReducer, cartReducer, categoriesReducer, shoppingReducer, uiReducer } from '../reducers';
 
 
 export const store = configureStore({
@@ -9,6 +9,7 @@ export const store = configureStore({
         cart: cartReducer,
         ui: uiReducer,
         categories: categoriesReducer,
+        shopping: shoppingReducer
     }
 })
 
