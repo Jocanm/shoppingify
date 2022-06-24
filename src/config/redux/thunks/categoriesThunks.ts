@@ -18,7 +18,7 @@ export const startGetCategories = createAsyncThunk(
 
         } catch (error) {
             console.error(error)
-            toast('Error al obtener los productos', 'error')
+            toast('Something went wrong', 'error')
         }
     },
 )
@@ -39,12 +39,12 @@ export const startCreateNewProduct = createAsyncThunk(
             dispatch(addCategory(category))
             dispatch(toggleShowShoppingList())
 
-            toast('Producto creado correctamente', 'success')
+            toast('Product created successfully', 'success')
 
         } catch (error) {
 
             console.error(error)
-            toast('Error al crear el producto', 'error')
+            toast('Something went wrong, please try again', 'error')
 
         }
 
@@ -67,11 +67,11 @@ export const startDeleteProduct = createAsyncThunk(
             dispatch(removeFromCart(activeProduct!))
             dispatch(toggleShowShoppingList())
 
-            toast('Producto eliminado correctamente')
+            toast('Product deleted successfully', 'success')
 
         } catch (error) {
             console.error(error)
-            toast('Error al eliminar el producto, intente nuevamente', 'error')
+            toast('Something went wrong, please try again', 'error')
         }
 
     }
