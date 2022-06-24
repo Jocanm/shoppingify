@@ -8,3 +8,8 @@ export interface IProduct {
     note?: string;
     category: ICategory;
 }
+
+export interface IPurchasedProduct{
+    productId: string;
+    amount: number;
+}

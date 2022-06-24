@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { logout } from '../actions';
-import { startCreateNewProduct } from '../thunks';
+import { startCreateNewProduct, startCreateShoppingList } from '../thunks';
 
 interface InitialState {
     showMenu: boolean;
@@ -55,8 +55,16 @@ const uiReducer = createSlice({
                 state.showOpaqueLoader = false;
             })
 
-        /* -------------------------------------------------- */
-
+            /* -------------------------------------------------- */
+            
+            .addCase(startCreateShoppingList.pending, (state) => {
+                state.showOpaqueLoader = true;
+            })
+            .addCase(startCreateShoppingList.fulfilled, (state) => {
+                state.showOpaqueLoader = false;
+            })
+            
+            /* -------------------------------------------------- */
     }
 })
 

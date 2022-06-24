@@ -43,7 +43,7 @@ export const MyInput = ({ name, label, textarea, ...rest }: Props) => {
                 name={name}
                 render={({ message }) => <span>{message}</span>}
             />
-            <label>{label}</label>
+            {label && <label>{label}</label>}
 
         </S.CustomInputBox>
     )

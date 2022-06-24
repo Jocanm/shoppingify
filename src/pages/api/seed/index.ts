@@ -15,6 +15,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     };
 
     try {
+        await prisma.activePurchase.deleteMany()
+        await prisma.purchasedProduct.deleteMany()
+        await prisma.purchase.deleteMany()
         await category.deleteMany()
         await user.deleteMany()
         await product.deleteMany()

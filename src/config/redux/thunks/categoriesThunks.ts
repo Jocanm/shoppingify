@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from '../../../shared/helpers';
-import { ICategory, IProduct } from '../../../shared/models';
+import { ICategory, IProduct, IPurchasedProduct } from '../../../shared/models';
 import { shopApi } from '../../services';
 import { addCategory, addProduct, deleteProduct, removeFromCart, setActiveProduct, setCategories, setDeleteProductModal, toggleShowShoppingList } from '../reducers';
 import { ProductFormProps } from '../../../components/materials/newMaterial/NewProductCard';
@@ -72,6 +72,33 @@ export const startDeleteProduct = createAsyncThunk(
         } catch (error) {
             console.error(error)
             toast('Something went wrong, please try again', 'error')
+        }
+
+    }
+)
+
+export const startCreateShoppingList = createAsyncThunk(
+    'categories/startCreateShoppingList',
+    async (name: string, { dispatch, getState }) => {
+
+        try {
+            
+            const { cart } = (getState() as RootState).cart
+
+            const products: IPurchasedProduct[] = Object.values(cart).map(({ product, quantity }) => ({
+                productId: product.id,
+                amount:quantity
+            }))
+
+            const dataToSend = { name, products }
+
+            const { data } = await shopApi.post('/shopping', dataToSend)
+
+        } catch (error) {
+
+            console.error(error)
+            toast('Something went wrong, please try again', 'error')
+
         }
 
     }

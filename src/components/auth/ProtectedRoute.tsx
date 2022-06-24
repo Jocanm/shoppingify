@@ -31,9 +31,9 @@ export const ProtectedRoute: FC<Props> = ({ children }) => {
         return null;
     }
 
-    if (isGettingInitialData) {
-        return <FullScreenVanillaLoder size='2rem'/>
-    }
+    // if (isGettingInitialData) {
+    //     return <FullScreenVanillaLoder size='2rem'/>
+    // }
 
     return (
         <>{children}</>

@@ -121,6 +121,10 @@ export const ShoppingNameBox = styled.section`
         padding: 2rem;
     }
 
+    >div:first-child{
+        display:inline;
+    }
+
     input{
         width: 100%;
         border-radius:0.75rem;
@@ -145,6 +149,22 @@ export const ShoppingNameBox = styled.section`
         position:absolute;
         height:3.75rem;
         right:2rem;
+        top:3rem;
+
+        ${props => props.theme.breakpoints.xs} {
+            top:2rem;
+        }
+    }
+
+    
+    >div{
+
+        position:relative;
+
+        span{
+            position:absolute;
+            bottom:-2.5rem;
+        }
     }
 
 `

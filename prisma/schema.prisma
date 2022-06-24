@@ -11,14 +11,14 @@ datasource db {
 }
 
 model User {
-  id              String          @id @default(auto()) @map("_id") @db.ObjectId
-  email           String          @unique
-  name            String
-  password        String
-  isOauth         Boolean         @default(false)
-  categories      Category[]
-  purchases       Purchase[]
-  activePurchases ActivePurchase?
+  id             String          @id @default(auto()) @map("_id") @db.ObjectId
+  email          String          @unique
+  name           String
+  password       String
+  isOauth        Boolean         @default(false)
+  categories     Category[]
+  purchases      Purchase[]
+  activePurchase ActivePurchase?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -54,20 +54,22 @@ model PurchasedProduct {
   purchaseId String   @db.ObjectId
   product    Product  @relation(fields: [productId], references: [id])
   productId  String   @unique @db.ObjectId
-  amount     Int
+
+  quantity Int
+  done   Boolean @default(false)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Purchase {
-  id              String             @id @default(auto()) @map("_id") @db.ObjectId
-  user            User               @relation(fields: [userId], references: [id])
-  userId          String             @db.ObjectId
-  products        PurchasedProduct[]
-  name            String
-  state           PurchaseStateEnum  @default(pending)
-  activePurchases ActivePurchase?
+  id             String             @id @default(auto()) @map("_id") @db.ObjectId
+  user           User               @relation(fields: [userId], references: [id])
+  userId         String             @db.ObjectId
+  products       PurchasedProduct[]
+  name           String
+  state          PurchaseStateEnum  @default(pending)
+  activePurchase ActivePurchase?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

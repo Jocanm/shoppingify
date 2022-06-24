@@ -1,9 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
+import { useRef } from "react";
 import { useAppSelector } from "../../config/redux";
 import { Box } from "../globalComponents";
 import { Button } from "../ui/buttons";
 import * as S from './ShoppingList.styles';
 import { ShoppingProductsList } from "./ShoppingProductsList";
+import { useForm } from 'react-hook-form';
+import { Form } from "../ui/form";
+import { MyInput } from "../ui/inputs";
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { ShoppingListForm } from "./ShoppingListForm";
 
 interface Props {
     toggleShowNewProduct: () => void
@@ -37,14 +44,8 @@ export const ProductsListContent = ({ toggleShowNewProduct }: Props) => {
                     : <EmptyCart />
             }
 
-            <S.ShoppingNameBox>
-                <input
-                    placeholder='Enter a name'
-                />
-                <Button>
-                    Save
-                </Button>
-            </S.ShoppingNameBox>
+            <ShoppingListForm/>
+
         </>
     )
 }
