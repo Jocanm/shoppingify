@@ -65,6 +65,7 @@ export const startDeleteProduct = createAsyncThunk(
             dispatch(setDeleteProductModal(false))
             dispatch(deleteProduct(activeProduct?.id as string))
             dispatch(removeFromCart(activeProduct!))
+            dispatch(toggleShowShoppingList())
 
             toast('Producto eliminado correctamente')
 
