@@ -119,6 +119,8 @@ export const ShoppingNameBox = styled.section`
     padding: 3rem 2rem;
     position:relative;
 
+    height: 9rem;
+
     ${props => props.theme.breakpoints.xs} {
         padding: 2rem;
     }
@@ -167,6 +169,56 @@ export const ShoppingNameBox = styled.section`
             position:absolute;
             bottom:-2.5rem;
         }
+    }
+
+    >*{
+        ${AppearAnimation}
+    }
+
+`
+
+export const ActivePurchaseOptions = styled.section`
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    
+    width: 100%;
+    background-color: ${props => props.theme.colors.white};
+    padding: 3rem 2rem;
+
+    height: 9rem;
+
+    ${props => props.theme.breakpoints.xs} {
+        padding: 2rem;
+    }
+
+    button{
+        padding: 1rem 1.5rem;
+        font-weight: 600;
+        transition:all .2s ease-in-out;
+    }
+
+    button:first-child{
+
+        background-color: ${props => props.theme.colors.white};
+        color: ${props => props.theme.colors.text};
+
+        :hover{
+            background-color:#ededed;
+        }
+    }
+
+    button:last-child{
+        background-color: ${props => props.theme.colors.lightBlue};
+        :hover{
+            background-color: #45bbe1;
+        }
+    }
+
+    >*{
+        ${AppearAnimation}
     }
 
 `

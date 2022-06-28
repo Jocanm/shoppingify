@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import { useRef } from "react";
-import { useAppSelector } from "../../config/redux";
+import { useRef, useState } from "react";
+import { toggleEditShoppingListMode, useAppSelector } from "../../config/redux";
 import { Box } from "../globalComponents";
 import { Button } from "../ui/buttons";
 import * as S from './ShoppingList.styles';
@@ -10,7 +10,8 @@ import { Form } from "../ui/form";
 import { MyInput } from "../ui/inputs";
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { ShoppingListForm } from "./ShoppingListForm";
+import { ShoppingListForm } from "./form/ShoppingListForm";
+import { useDispatch } from 'react-redux';
 
 interface Props {
     toggleShowNewProduct: () => void
@@ -19,13 +20,18 @@ interface Props {
 export const ProductsListContent = ({ toggleShowNewProduct }: Props) => {
 
     const { cartTotal } = useAppSelector().cart
+    const dispatch = useDispatch()
+
+    const toggleEditMode = () => {
+        dispatch(toggleEditShoppingListMode())
+    }
 
     return (
         <>
-            <Box 
+            <Box
                 className="products-list-box"
                 flex flexColumn gap="1.2rem"
-                style={{overflow: 'auto'}}
+                style={{ overflow: 'auto' }}
             >
                 <div className='img-container'>
                     <S.ShoppingImageCard>
@@ -45,7 +51,9 @@ export const ProductsListContent = ({ toggleShowNewProduct }: Props) => {
 
                 {
                     cartTotal
-                        ? <ShoppingProductsList />
+                        ? <ShoppingProductsList
+                            toggleEditMode={toggleEditMode}
+                        />
                         : <EmptyCart />
                 }
             </Box>

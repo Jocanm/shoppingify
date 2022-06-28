@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from 'react'
-import { useAppSelector } from '../../config/redux'
+import { useAppDispatch, useAppSelector } from '../../config/redux'
 import { Box } from '../globalComponents'
 import { Button } from '../ui/buttons'
 import { ShoppedProductItem } from './ShoppedProductItem'
@@ -8,16 +8,15 @@ import * as S from './ShoppingList.styles'
 import { Create, ShoppingCart } from '@mui/icons-material';
 import { Tooltip } from '@mui/material'
 
-export const ShoppingProductsList = () => {
+interface Props {
+    toggleEditMode: () => void
+}
+
+export const ShoppingProductsList = ({ toggleEditMode }: Props) => {
 
     const { cart } = useAppSelector().cart
     const { activePurchase } = useAppSelector().shopping
-
-    const [isEditMode, setIsEditMode] = useState(false)
-
-    const toggleEditMode = () => {
-        setIsEditMode(!isEditMode)
-    }
+    const { editShoppingListMode } = useAppSelector().ui
 
     return (
         <S.ShoppingProductsListBox>
@@ -27,13 +26,13 @@ export const ShoppingProductsList = () => {
                 {
                     activePurchase &&
                     <Tooltip
-                        title={isEditMode ? "complete list" : "edit list"}
+                        title={editShoppingListMode ? "complete list" : "edit list"}
                         placement="bottom"
                         arrow
                         enterDelay={300}
                     >
                         <Button
-                            Icon={isEditMode ? <ShoppingCart /> : <Create />}
+                            Icon={editShoppingListMode ? <ShoppingCart /> : <Create />}
                             bgColor="transparent"
                             iconColor='#34333A'
                             onClick={toggleEditMode}

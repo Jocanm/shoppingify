@@ -1,6 +1,6 @@
 import { DeleteOutline } from '@mui/icons-material'
-import { useState } from 'react'
-import { addQuantity, removeFromCart, removeQuantity, useAppDispatch } from '../../config/redux'
+import { useEffect, useState } from 'react'
+import { addQuantity, removeFromCart, removeQuantity, useAppDispatch, useAppSelector } from '../../config/redux'
 import { IProduct } from '../../shared/models'
 import * as S from './ShoppingList.styles'
 
@@ -11,11 +11,15 @@ interface Props {
 
 export const ShoppedProductItem = ({ product, quantity }: Props) => {
 
-    const [isEditMode, IsEditMode] = useState(false)
+    const { editShoppingListMode } = useAppSelector().ui
+    const { activePurchase } = useAppSelector().shopping
+
+    const [isEditMode, setIsEditMode] = useState(false)
     const dispatch = useAppDispatch()
 
     const toogleEditMode = () => {
-        IsEditMode(!isEditMode)
+        if (!editShoppingListMode && activePurchase) return;
+        setIsEditMode(!isEditMode)
     }
 
     const onRemove = () => {
@@ -29,6 +33,14 @@ export const ShoppedProductItem = ({ product, quantity }: Props) => {
     const onRemoveQuantity = () => {
         dispatch(removeQuantity(product))
     }
+
+    useEffect(() => {
+
+        if (!editShoppingListMode) {
+            setIsEditMode(false)
+        }
+
+    }, [editShoppingListMode])
 
     return (
         <S.ShoppedItemStyles
@@ -58,6 +70,11 @@ export const ShoppedProductItem = ({ product, quantity }: Props) => {
                 <button
                     className='quantity'
                     onClick={toogleEditMode}
+                    style={{
+                        cursor: activePurchase
+                            ? editShoppingListMode ? 'pointer' : 'default'
+                            : 'pointer'
+                    }}
                 >
                     {
                         quantity > 1

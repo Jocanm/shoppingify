@@ -1,14 +1,15 @@
 import React from 'react'
-import { Button } from '../ui/buttons';
-import { Form } from '../ui/form'
-import { MyInput } from '../ui/inputs';
-import * as S from './ShoppingList.styles';
+import { Button } from '../../ui/buttons';
+import { Form } from '../../ui/form'
+import { MyInput } from '../../ui/inputs';
+import * as S from '../ShoppingList.styles';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useAppDispatch, useAppSelector } from '../../config/redux';
-import { startCreateShoppingList, startUpdateShoppingListData } from '../../config/redux/thunks/shoppingThunks';
-import { toast } from '../../shared/helpers';
+import { useAppDispatch, useAppSelector } from '../../../config/redux';
+import { startCreateShoppingList, startUpdateShoppingListData } from '../../../config/redux/thunks/shoppingThunks';
+import { ShoppingListFormData } from './ShoppingListFormData';
+import { ShoppingListFormStatus } from './ShoppingListFormStatus';
 
 const FormShape = Yup.object({
     name: Yup.string().required('Name is required').min(3, 'Name must be at least 3 characters long'),
@@ -21,6 +22,7 @@ export const ShoppingListForm = () => {
     const dispatch = useAppDispatch()
     const { cartTotal } = useAppSelector().cart
     const { activePurchase } = useAppSelector().shopping
+    const { editShoppingListMode } = useAppSelector().ui
 
     const methods = useForm<FormProps>({
         resolver: yupResolver(FormShape),
@@ -45,19 +47,13 @@ export const ShoppingListForm = () => {
 
     return (
         <Form methods={methods} onSubmit={methods.handleSubmit(onSubmit)}>
-            <S.ShoppingNameBox>
-                <MyInput
-                    name='name'
-                    placeholder='Enter a name'
-                />
-                <Button type="submit">
-                    {
-                        activePurchase
-                            ? 'Update'
-                            : 'Save'
-                    }
-                </Button>
-            </S.ShoppingNameBox>
+            {
+                activePurchase
+                    ? editShoppingListMode
+                        ? <ShoppingListFormData />
+                        : <ShoppingListFormStatus />
+                    : <ShoppingListFormData />
+            }
         </Form>
     )
 }

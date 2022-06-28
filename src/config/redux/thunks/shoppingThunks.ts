@@ -56,6 +56,7 @@ export const startCreateShoppingList = createAsyncThunk(
             const dataToSend = { name, products }
 
             const { data } = await shopApi.post<IActivePurchase>('/shopping', dataToSend)
+            toast("Shopping list created", "success")
 
             dispatch(setActivePurchase(data))
 
