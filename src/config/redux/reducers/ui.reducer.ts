@@ -9,6 +9,7 @@ interface InitialState {
     
     deleteProductModal: boolean;
     cancelListModal: boolean;
+    completeListModal: boolean;
 
     editShoppingListMode: boolean;
 }
@@ -20,6 +21,7 @@ const initialState: InitialState = {
 
     deleteProductModal: false,
     cancelListModal: false,
+    completeListModal: false,
 
     editShoppingListMode: false,
 }
@@ -58,6 +60,10 @@ const uiReducer = createSlice({
 
         setCancelListModal: (state, { payload }: PayloadAction<boolean>) => {
             state.cancelListModal = payload;
+        },
+
+        setCompleteListModal: (state, { payload }: PayloadAction<boolean>) => {
+            state.completeListModal = payload;
         }
 
     },
@@ -92,6 +98,7 @@ const uiReducer = createSlice({
             .addCase(startUpdateShoppingListData.fulfilled, (state) => {
                 state.showOpaqueLoader = false;
             })
+
     }
 })
 
@@ -105,6 +112,7 @@ export const {
     setDeleteProductModal,
     setEditShoppingListMode,
     toggleEditShoppingListMode,
-    setCancelListModal
+    setCancelListModal,
+    setCompleteListModal
 
 } = uiReducer.actions;

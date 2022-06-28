@@ -25,9 +25,8 @@ async function updatePurchaseState(req: NextApiRequest, res: NextApiResponse<Dat
 
     const { purchaseId } = req.query as { purchaseId: string }
 
-    const { state, activePurchaseId } = req.body as {
+    const { state } = req.body as {
         state: PurchaseStatus,
-        activePurchaseId: string
     }
 
     if (!session) {
@@ -42,11 +41,6 @@ async function updatePurchaseState(req: NextApiRequest, res: NextApiResponse<Dat
 
     if (!purchaseId) {
         res.status(400).json({ message: 'Missing purchaseId' })
-        return
-    }
-
-    if (!activePurchaseId) {
-        res.status(400).json({ message: 'Missing activePurchaseId' })
         return
     }
 

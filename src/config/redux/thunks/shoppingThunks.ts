@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from '../../../shared/helpers';
 import { IActivePurchase, IPurchasedProduct } from '../../../shared/models';
 import { shopApi } from '../../services';
-import { CartItem, setActivePurchase, setCancelListModal, setCart, setDoneStatus } from '../reducers';
+import { CartItem, setActivePurchase, setCancelListModal, setCart, setCompleteListModal, setDoneStatus } from '../reducers';
 import { RootState } from '../store';
 
 
@@ -140,21 +140,49 @@ export const startCancelShoppingList = createAsyncThunk(
 
         const { activePurchase } = (getState() as RootState).shopping
 
-        const { id: activePurchaseId, purchase: { id: purchaseId } } = activePurchase!
+        const { id: purchaseId } = activePurchase!.purchase
 
         const body = {
             state: 'cancelled',
-            activePurchaseId,
         }
 
         try {
-            
+
             await shopApi.put(`/shopping/purchaseState/${purchaseId}`, body)
 
             dispatch(setCancelListModal(false))
             dispatch(setActivePurchase(undefined as any))
             dispatch(setCart({}))
             toast('Shopping list cancelled')
+
+        } catch (error) {
+            console.error(error)
+            toast('Something went wrong, please try again', 'error')
+        }
+
+    }
+)
+
+export const startCompleteShoppingList = createAsyncThunk(
+    'shopping/startCompleteShoppingList',
+    async (any, { getState, dispatch }) => {
+
+        const { activePurchase } = (getState() as RootState).shopping
+
+        const { id: purchaseId } = activePurchase!.purchase
+
+        const body = {
+            state: 'completed',
+        }
+
+        try {
+
+            await shopApi.put(`/shopping/purchaseState/${purchaseId}`, body)
+
+            dispatch(setCompleteListModal(false))
+            dispatch(setActivePurchase(undefined as any))
+            dispatch(setCart({}))
+            toast('Shopping list completed')
 
         } catch (error) {
             console.error(error)
