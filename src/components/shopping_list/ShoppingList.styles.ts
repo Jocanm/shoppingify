@@ -25,6 +25,9 @@ export const ShoppingListContainer = styled.section<Props>`
         padding: 3rem 2rem 0 2rem;
     }
 
+    .products-list-box{
+        ${NoVisivleScrollBar}
+    }
 
     img:last-child{
         width: 20rem;
@@ -114,8 +117,7 @@ export const ShoppingNameBox = styled.section`
 
     background-color: ${props => props.theme.colors.white};
     padding: 3rem 2rem;
-    position: sticky;
-    bottom: 0;
+    position:relative;
 
     ${props => props.theme.breakpoints.xs} {
         padding: 2rem;

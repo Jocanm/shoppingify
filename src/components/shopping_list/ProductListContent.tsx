@@ -22,29 +22,35 @@ export const ProductsListContent = ({ toggleShowNewProduct }: Props) => {
 
     return (
         <>
-            <div className='img-container'>
-                <S.ShoppingImageCard>
-                    <img
-                        className='shopping-image'
-                        src="/assets/bottle.svg"
-                        alt="bottle"
-                    />
-                    <div className="box-content">
-                        <span>Didn’t find what you need?</span>
-                        <Button onClick={toggleShowNewProduct}>
-                            Add Item
-                        </Button>
-                    </div>
-                </S.ShoppingImageCard>
-            </div>
+            <Box 
+                className="products-list-box"
+                flex flexColumn gap="1.2rem"
+                style={{overflow: 'auto'}}
+            >
+                <div className='img-container'>
+                    <S.ShoppingImageCard>
+                        <img
+                            className='shopping-image'
+                            src="/assets/bottle.svg"
+                            alt="bottle"
+                        />
+                        <div className="box-content">
+                            <span>Didn’t find what you need?</span>
+                            <Button onClick={toggleShowNewProduct}>
+                                Add Item
+                            </Button>
+                        </div>
+                    </S.ShoppingImageCard>
+                </div>
 
-            {
-                cartTotal
-                    ? <ShoppingProductsList />
-                    : <EmptyCart />
-            }
+                {
+                    cartTotal
+                        ? <ShoppingProductsList />
+                        : <EmptyCart />
+                }
+            </Box>
 
-            <ShoppingListForm/>
+            <ShoppingListForm />
 
         </>
     )
