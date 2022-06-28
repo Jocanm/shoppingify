@@ -4,11 +4,11 @@ import { logout } from '../actions';
 
 
 interface InitialState {
-    ActivePurchase?: IActivePurchase;
+    activePurchase?: IActivePurchase;
 }
 
 const initialState: InitialState = {
-    ActivePurchase: undefined
+    activePurchase: undefined
 }
 
 export const shoppingReducer = createSlice({
@@ -18,7 +18,7 @@ export const shoppingReducer = createSlice({
     reducers: {
 
         setActivePurchase: (state, action: PayloadAction<IActivePurchase>) => {
-            state.ActivePurchase = action.payload;
+            state.activePurchase = action.payload;
         },
 
     },

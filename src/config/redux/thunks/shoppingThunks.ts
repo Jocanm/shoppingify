@@ -27,7 +27,7 @@ export const startGetActivePurchase = createAsyncThunk(
 
                 dispatch(setCart(newCartObject))
                 dispatch(setActivePurchase(data))
-                
+
             }
 
         } catch (error) {
@@ -45,7 +45,7 @@ export const startCreateShoppingList = createAsyncThunk(
     async (name: string, { dispatch, getState }) => {
 
         try {
-            
+
             const { cart } = (getState() as RootState).cart
 
             const products: IPurchasedProduct[] = Object.values(cart).map(({ product, quantity }) => ({
@@ -64,6 +64,38 @@ export const startCreateShoppingList = createAsyncThunk(
             console.error(error)
             toast('Something went wrong, please try again', 'error')
 
+        }
+
+    }
+)
+
+export const startUpdateShoppingListData = createAsyncThunk(
+    'categories/startUpdateShoppingList',
+    async (name: string, { getState, dispatch }) => {
+
+        const { activePurchase } = (getState() as RootState).shopping
+        const { cart } = (getState() as RootState).cart
+
+        const { id } = activePurchase!.purchase
+
+        const products = Object.values(cart).map(({ product, quantity }) => ({
+            productId: product.id,
+            quantity,
+        }))
+
+        const body = {
+            name,
+            products
+        }
+
+        try {
+
+            const { data } = await shopApi.put(`/shopping/${id}`, body)
+            toast('Shopping list updated')
+
+        } catch (error) {
+            console.error(error)
+            toast('Something went wrong, please try again', 'error')
         }
 
     }

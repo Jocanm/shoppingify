@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { logout } from '../actions';
-import { startCreateNewProduct, startCreateShoppingList } from '../thunks';
+import { startCreateNewProduct, startCreateShoppingList, startUpdateShoppingListData } from '../thunks';
 
 interface InitialState {
     showMenu: boolean;
@@ -35,7 +35,7 @@ const uiReducer = createSlice({
         toggleShowShoppingList: (state) => {
             state.showShoppingList = !state.showShoppingList;
         },
-        
+
         setDeleteProductModal: (state, { payload }: PayloadAction<boolean>) => {
             state.deleteProductModal = payload;
         }
@@ -56,15 +56,22 @@ const uiReducer = createSlice({
             })
 
             /* -------------------------------------------------- */
-            
+
             .addCase(startCreateShoppingList.pending, (state) => {
                 state.showOpaqueLoader = true;
             })
             .addCase(startCreateShoppingList.fulfilled, (state) => {
                 state.showOpaqueLoader = false;
             })
-            
+
             /* -------------------------------------------------- */
+
+            .addCase(startUpdateShoppingListData.pending, (state) => {
+                state.showOpaqueLoader = true;
+            })
+            .addCase(startUpdateShoppingListData.fulfilled, (state) => {
+                state.showOpaqueLoader = false;
+            })
     }
 })
 

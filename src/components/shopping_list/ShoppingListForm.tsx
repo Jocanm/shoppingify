@@ -7,7 +7,8 @@ import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useAppDispatch, useAppSelector } from '../../config/redux';
-import { startCreateShoppingList } from '../../config/redux/thunks/shoppingThunks';
+import { startCreateShoppingList, startUpdateShoppingListData } from '../../config/redux/thunks/shoppingThunks';
+import { toast } from '../../shared/helpers';
 
 const FormShape = Yup.object({
     name: Yup.string().required('Name is required').min(3, 'Name must be at least 3 characters long'),
@@ -17,10 +18,16 @@ interface FormProps extends Yup.InferType<typeof FormShape> { }
 
 export const ShoppingListForm = () => {
 
-    const methods = useForm<FormProps>({ resolver: yupResolver(FormShape) })
     const dispatch = useAppDispatch()
-
     const { cartTotal } = useAppSelector().cart
+    const { activePurchase } = useAppSelector().shopping
+
+    const methods = useForm<FormProps>({
+        resolver: yupResolver(FormShape),
+        defaultValues: {
+            name: activePurchase?.purchase.name || '',
+        }
+    })
 
     const onSubmit = ({ name }: FormProps) => {
         if (!cartTotal) {
@@ -28,7 +35,11 @@ export const ShoppingListForm = () => {
             return;
         }
 
-        dispatch(startCreateShoppingList(name))
+        if (activePurchase) {
+            dispatch(startUpdateShoppingListData(name))
+        } else {
+            dispatch(startCreateShoppingList(name))
+        }
 
     }
 
@@ -40,7 +51,11 @@ export const ShoppingListForm = () => {
                     placeholder='Enter a name'
                 />
                 <Button type="submit">
-                    Save
+                    {
+                        activePurchase
+                            ? 'Update'
+                            : 'Save'
+                    }
                 </Button>
             </S.ShoppingNameBox>
         </Form>
