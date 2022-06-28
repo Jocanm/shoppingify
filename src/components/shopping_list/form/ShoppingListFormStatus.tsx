@@ -3,12 +3,15 @@ import { setCancelListModal, setCompleteListModal, startCompleteShoppingList, us
 import { Button } from '../../ui/buttons'
 import { CancelListModal, CompleteListModal } from '../../ui/modals'
 import * as S from '../ShoppingList.styles'
+import { useRouter } from 'next/router';
 
 export const ShoppingListFormStatus = () => {
 
     const [isLoading, setIsLoading] = useState(false)
     const dispatch = useAppDispatch()
     const { cart } = useAppSelector().cart
+
+    const router = useRouter()
 
     const openModal = () => {
         dispatch(setCancelListModal(true))
@@ -21,6 +24,9 @@ export const ShoppingListFormStatus = () => {
             setIsLoading(true)
             await dispatch(startCompleteShoppingList())
             setIsLoading(false)
+            if(!(['/','/profile'].includes(router.asPath))) {
+                router.push('/')
+            }
         } else {
             dispatch(setCompleteListModal(true))
         }

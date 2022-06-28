@@ -3,6 +3,7 @@ import { setCompleteListModal, startCompleteShoppingList, useAppDispatch, useApp
 import { Dialog } from '@mui/material';
 import * as S from './modals.styles';
 import { Button } from '../buttons';
+import { useRouter } from 'next/router';
 
 export const CompleteListModal = () => {
 
@@ -10,14 +11,19 @@ export const CompleteListModal = () => {
     const { completeListModal } = useAppSelector().ui
     const dispatch = useAppDispatch()
 
+    const { push, asPath } = useRouter()
+
     const handleClose = () => {
         dispatch(setCompleteListModal(false))
     }
 
-    const onComplete = async() => {
+    const onComplete = async () => {
         setisLoading(true)
         await dispatch(startCompleteShoppingList())
         setisLoading(false)
+        if (!(['/','/profile'].includes(asPath))) {
+            push('/')
+        }
     }
 
     return (

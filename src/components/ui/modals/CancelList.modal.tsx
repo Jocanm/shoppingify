@@ -3,12 +3,15 @@ import { Dialog } from '@mui/material';
 import { setCancelListModal, startCancelShoppingList, useAppDispatch, useAppSelector } from '../../../config/redux';
 import * as S from './modals.styles';
 import { Button } from '../buttons';
+import { useRouter } from 'next/router';
 
 export const CancelListModal = () => {
 
     const [isLoading, setIsLoading] = useState(false)
     const dispatch = useAppDispatch()
     const { cancelListModal } = useAppSelector().ui
+
+    const router = useRouter()
 
     const closeModal = () => {
         dispatch(setCancelListModal(false))
@@ -18,6 +21,9 @@ export const CancelListModal = () => {
         setIsLoading(true)
         await dispatch(startCancelShoppingList())
         setIsLoading(false)
+        if(!(['/','/profile'].includes(router.asPath))) {
+            router.push('/')
+        }
     }
 
     return (

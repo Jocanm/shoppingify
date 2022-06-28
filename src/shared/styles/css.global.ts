@@ -46,3 +46,18 @@ export const CustomScrollBar = css`
     }
 
 `
+
+export const GlobalTitle = css`
+
+    font-size:1.9rem;
+    font-weight: 500;
+    
+    ${props => props.theme.breakpoints.lg} {
+        font-size: 1.4rem;
+    }
+    
+    ${props => props.theme.breakpoints.md} {
+        font-size: 1.6rem;
+    }
+
+`
