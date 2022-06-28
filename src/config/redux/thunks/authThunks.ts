@@ -27,7 +27,7 @@ export const startCreateUser = createAsyncThunk(
 
             if (!ok) return;
 
-            toast("User created successfully")
+            toast("Welcome!")
             return true;
 
         } catch (error) {
