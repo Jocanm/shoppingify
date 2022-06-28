@@ -17,7 +17,7 @@ export interface IPurchase {
 export interface IPurchasedProductV2 {
     id: string;
     productId: string;
-    amount: number;
+    quantity: number;
     purchaseId: string;
     createdAt: string;
     updatedAt: string;

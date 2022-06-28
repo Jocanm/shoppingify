@@ -18,14 +18,16 @@ export const startGetActivePurchase = createAsyncThunk(
 
                 const newCartObject: CartItem = {};
 
-                data.purchase.products.forEach(({ product, amount }) => {
+                data.purchase.products.forEach(({ product, quantity }) => {
                     newCartObject[product.id] = {
                         product,
-                        quantity: amount
+                        quantity
                     }
                 })
 
                 dispatch(setCart(newCartObject))
+                dispatch(setActivePurchase(data))
+                
             }
 
         } catch (error) {
