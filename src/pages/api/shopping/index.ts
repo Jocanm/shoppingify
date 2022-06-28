@@ -36,14 +36,10 @@ const newPurchase = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
         data: {
             userId,
             name,
-            //TODO: quitar este @ts-ignore cuando se arregle el bug
-            //@ts-ignore
             activePurchase: {
                 create: { userId }
             },
             products: {
-                //TODO: quitar este @ts-ignore cuando se arregle el bug
-                //@ts-ignore
                 create: products
             }
         },

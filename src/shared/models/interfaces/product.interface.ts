@@ -13,5 +13,5 @@ export interface IProduct {
 
 export interface IPurchasedProduct{
     productId: string;
-    amount: number;
+    quantity: number;
 }

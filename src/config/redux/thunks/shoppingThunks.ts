@@ -48,7 +48,7 @@ export const startCreateShoppingList = createAsyncThunk(
 
             const products: IPurchasedProduct[] = Object.values(cart).map(({ product, quantity }) => ({
                 productId: product.id,
-                amount:quantity
+                quantity
             }))
 
             const dataToSend = { name, products }

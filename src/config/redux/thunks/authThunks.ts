@@ -55,13 +55,14 @@ export const startSignInUser = createAsyncThunk(
 
         try {
 
-            //@ts-ignore
-            const { ok } = await signIn('credentials', {
+            const res = await signIn('credentials', {
                 ...user,
                 redirect: false
             })
 
-            if (!ok) {
+            console.log({ res: JSON.stringify(res) })
+
+            if (!(res as any)?.ok) {
                 return toast("Invalid email or password", "error")
             }
 

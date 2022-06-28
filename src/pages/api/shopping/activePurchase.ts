@@ -26,23 +26,28 @@ const getActivePurchase = async (req: NextApiRequest, res: NextApiResponse<Data>
 
     const { id: userId } = (session?.user as { id: string }) || {}
 
-    const activePurchase = await prisma.activePurchase.findUnique({
-        where: {
-            userId
-        },
-        include:{
-            purchase: {
-                include: {
-                    products: {
-                        include: {
-                            product: true
+    try {
+        const activePurchase = await prisma.activePurchase.findUnique({
+            where: {
+                userId
+            },
+            include: {
+                purchase: {
+                    include: {
+                        products: {
+                            include: {
+                                product: true
+                            }
                         }
                     }
                 }
             }
-        }
-    })
+        })
 
-    return res.status(200).json(activePurchase)
+        return res.status(200).json(activePurchase)
+    } catch (error) {
+        console.error(error)
+        return res.status(500).json({ message: 'Internal error' })
+    }
 
 }
