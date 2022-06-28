@@ -7,9 +7,10 @@ import { IProduct } from '../../../shared/models';
 interface Props {
     done: boolean
     product: IProduct
+    quantity: number
 }
 
-export const CustomCheck = ({ done, product: { id } }: Props) => {
+export const CustomCheck = ({ done, quantity, product: { id } }: Props) => {
 
     const { editShoppingListMode } = useAppSelector().ui
     const { activePurchase } = useAppSelector().shopping
@@ -19,7 +20,8 @@ export const CustomCheck = ({ done, product: { id } }: Props) => {
     const onToggle = () => {
         dispatch(startSetDoneStatus({
             id,
-            done: !done
+            done: !done,
+            quantity
         }))
     }
 

@@ -36,11 +36,11 @@ model Category {
 }
 
 model Product {
-  id               String            @id @default(auto()) @map("_id") @db.ObjectId
+  id               String             @id @default(auto()) @map("_id") @db.ObjectId
   name             String
-  category         Category          @relation(fields: [categoryId], references: [id])
-  categoryId       String            @db.ObjectId
-  purchasedProduct PurchasedProduct?
+  category         Category           @relation(fields: [categoryId], references: [id])
+  categoryId       String             @db.ObjectId
+  purchasedProduct PurchasedProduct[]
   note             String?
   image            String?
 
@@ -53,10 +53,10 @@ model PurchasedProduct {
   purchase   Purchase @relation(fields: [purchaseId], references: [id])
   purchaseId String   @db.ObjectId
   product    Product  @relation(fields: [productId], references: [id])
-  productId  String   @unique @db.ObjectId
+  productId  String   @db.ObjectId
 
   quantity Int
-  done   Boolean @default(false)
+  done     Boolean @default(false)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button } from '../../ui/buttons';
 import { Form } from '../../ui/form'
 import { MyInput } from '../../ui/inputs';
@@ -24,12 +24,17 @@ export const ShoppingListForm = () => {
     const { activePurchase } = useAppSelector().shopping
     const { editShoppingListMode } = useAppSelector().ui
 
-    const methods = useForm<FormProps>({
-        resolver: yupResolver(FormShape),
-        defaultValues: {
-            name: activePurchase?.purchase.name || '',
+    const methods = useForm<FormProps>({ resolver: yupResolver(FormShape) })
+
+    useEffect(() => {
+
+        if (activePurchase) {
+            methods.setValue('name', activePurchase.purchase.name)
+        }else{
+            methods.setValue('name', '')
         }
-    })
+
+    }, [activePurchase, methods])
 
     const onSubmit = ({ name }: FormProps) => {
         if (!cartTotal) {

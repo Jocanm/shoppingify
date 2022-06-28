@@ -12,7 +12,9 @@ interface Props {
     done: boolean
 }
 
-export const ShoppedProductItem = ({ product, quantity, done }: Props) => {
+export const ShoppedProductItem = (props: Props) => {
+
+    const { product, quantity, done } = props
 
     const { editShoppingListMode } = useAppSelector().ui
     const { activePurchase } = useAppSelector().shopping
@@ -51,7 +53,7 @@ export const ShoppedProductItem = ({ product, quantity, done }: Props) => {
         >
 
             <Box flex alignCenter gap=".8rem">
-                <CustomCheck done={done} product={product} />
+                <CustomCheck {...props} />
                 <span
                     style={{
                         textDecoration:

@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from '../../../shared/helpers';
 import { IActivePurchase, IPurchasedProduct } from '../../../shared/models';
 import { shopApi } from '../../services';
-import { CartItem, setActivePurchase, setCart, setDoneStatus } from '../reducers';
+import { CartItem, setActivePurchase, setCancelListModal, setCart, setDoneStatus } from '../reducers';
 import { RootState } from '../store';
 
 
@@ -105,9 +105,61 @@ export const startUpdateShoppingListData = createAsyncThunk(
 
 export const startSetDoneStatus = createAsyncThunk(
     'shopping/startSetDoneStatus',
-    async ({ id, done }: { id: string, done: boolean }, { getState, dispatch }) => {
+    async ({ id: productId, done, quantity }: {
 
-        dispatch(setDoneStatus({ id, done }))
+        id: string, done: boolean, quantity: number
+
+    }, { getState, dispatch }) => {
+
+        const { activePurchase } = (getState() as RootState).shopping
+
+        const { id: purchaseId } = activePurchase!.purchase
+
+        dispatch(setDoneStatus({ id: productId, done }))
+
+        const body = {
+            done,
+            quantity
+        }
+
+        try {
+
+            await shopApi.put(`/purchasedProduct/setDoneStatus?purchaseId=${purchaseId}&productId=${productId}`, body)
+
+        } catch (error) {
+            console.error(error)
+            toast('Something went wrong, please try again', 'error')
+        }
+
+    }
+)
+
+export const startCancelShoppingList = createAsyncThunk(
+    'shopping/startCancelShoppingList',
+    async (any, { getState, dispatch }) => {
+
+        const { activePurchase } = (getState() as RootState).shopping
+
+        const { id: activePurchaseId, purchase: { id: purchaseId } } = activePurchase!
+
+        const body = {
+            state: 'cancelled',
+            activePurchaseId,
+        }
+
+        try {
+            
+            await shopApi.put(`/shopping/purchaseState/${purchaseId}`, body)
+
+            dispatch(setCancelListModal(false))
+            dispatch(setActivePurchase(undefined as any))
+            dispatch(setCart({}))
+            toast('Shopping list cancelled')
+
+        } catch (error) {
+            console.error(error)
+            toast('Something went wrong, please try again', 'error')
+        }
 
     }
 )
