@@ -26,7 +26,7 @@ export const DeleteProductModal = () => {
             open={deleteProductModal}
             onClose={handleClose}
         >
-            <S.DeleteProductModalWrapper>
+            <S.ModalWrapper>
                 <h2>
                     Are you sure you want to delete this product?
                 </h2>
@@ -48,7 +48,7 @@ export const DeleteProductModal = () => {
                     </Button>
 
                 </S.ButtonContainer>
-            </S.DeleteProductModalWrapper>
+            </S.ModalWrapper>
         </Dialog>
     )
 }

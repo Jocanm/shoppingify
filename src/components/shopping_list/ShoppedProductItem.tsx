@@ -2,14 +2,17 @@ import { DeleteOutline } from '@mui/icons-material'
 import { useEffect, useState } from 'react'
 import { addQuantity, removeFromCart, removeQuantity, useAppDispatch, useAppSelector } from '../../config/redux'
 import { IProduct } from '../../shared/models'
+import { Box } from '../globalComponents'
+import { CustomCheck } from '../'
 import * as S from './ShoppingList.styles'
 
 interface Props {
     product: IProduct
     quantity: number
+    done: boolean
 }
 
-export const ShoppedProductItem = ({ product, quantity }: Props) => {
+export const ShoppedProductItem = ({ product, quantity, done }: Props) => {
 
     const { editShoppingListMode } = useAppSelector().ui
     const { activePurchase } = useAppSelector().shopping
@@ -47,7 +50,17 @@ export const ShoppedProductItem = ({ product, quantity }: Props) => {
             isEditMode={isEditMode}
         >
 
-            <span>{product.name}</span>
+            <Box flex alignCenter gap=".8rem">
+                <CustomCheck done={done} product={product} />
+                <span
+                    style={{
+                        textDecoration:
+                            (done && activePurchase && !editShoppingListMode) ? 'line-through' : 'none'
+                    }}
+                >
+                    {product.name}
+                </span>
+            </Box>
 
             <S.ShoppedItemConfig
                 isEditMode={isEditMode}

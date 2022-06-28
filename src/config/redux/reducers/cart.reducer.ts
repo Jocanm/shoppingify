@@ -6,6 +6,7 @@ export interface CartItem {
     [key: string]: {
         product: IProduct;
         quantity: number;
+        done: boolean;
     };
 }
 
@@ -25,7 +26,7 @@ const cartReducer = createSlice({
 
     reducers: {
 
-        setCart: (state, {payload}: PayloadAction<CartItem>) => {
+        setCart: (state, { payload }: PayloadAction<CartItem>) => {
             state.cart = payload;
             state.cartTotal = Object.values(payload).length
         },
@@ -40,14 +41,15 @@ const cartReducer = createSlice({
                     ...state.cart,
                     [id]: {
                         product: payload,
-                        quantity: 1
+                        quantity: 1,
+                        done: false
                     }
                 }
                 const numberOfItems = Object.keys(newCart).length;
 
                 state.cart = newCart;
                 state.cartTotal = numberOfItems;
-            }else{
+            } else {
                 const newCart = {
                     ...state.cart,
                     [id]: {
@@ -89,6 +91,15 @@ const cartReducer = createSlice({
             if (toRemove.quantity > 1) {
                 toRemove.quantity--;
             }
+        },
+
+        setDoneStatus: (state, { payload }: PayloadAction<{ id: string, done: boolean }>) => {
+
+            const { id, done } = payload;
+            const { [id]: toSet } = state.cart;
+
+            toSet.done = done;
+
         }
     },
 
@@ -106,6 +117,7 @@ export const {
     removeFromCart,
     addQuantity,
     removeQuantity,
-    setCart
+    setCart,
+    setDoneStatus
 
 } = cartReducer.actions;

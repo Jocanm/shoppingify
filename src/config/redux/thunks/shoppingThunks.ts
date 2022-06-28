@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from '../../../shared/helpers';
 import { IActivePurchase, IPurchasedProduct } from '../../../shared/models';
 import { shopApi } from '../../services';
-import { CartItem, setActivePurchase, setCart } from '../reducers';
+import { CartItem, setActivePurchase, setCart, setDoneStatus } from '../reducers';
 import { RootState } from '../store';
 
 
@@ -18,10 +18,11 @@ export const startGetActivePurchase = createAsyncThunk(
 
                 const newCartObject: CartItem = {};
 
-                data.purchase.products.forEach(({ product, quantity }) => {
+                data.purchase.products.forEach(({ product, quantity, done }) => {
                     newCartObject[product.id] = {
                         product,
-                        quantity
+                        quantity,
+                        done
                     }
                 })
 
@@ -98,6 +99,15 @@ export const startUpdateShoppingListData = createAsyncThunk(
             console.error(error)
             toast('Something went wrong, please try again', 'error')
         }
+
+    }
+)
+
+export const startSetDoneStatus = createAsyncThunk(
+    'shopping/startSetDoneStatus',
+    async ({ id, done }: { id: string, done: boolean }, { getState, dispatch }) => {
+
+        dispatch(setDoneStatus({ id, done }))
 
     }
 )

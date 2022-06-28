@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { ButtonSection } from '../../items/products/ProductsList.styles';
 
 
-export const DeleteProductModalWrapper = styled.section`
+export const ModalWrapper = styled.section`
 
     padding: 2rem;
     display:flex;

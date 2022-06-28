@@ -21,6 +21,6 @@ export interface IPurchasedProductV2 {
     purchaseId: string;
     createdAt: string;
     updatedAt: string;
-
+    done: boolean;
     product: IProduct;
 }
