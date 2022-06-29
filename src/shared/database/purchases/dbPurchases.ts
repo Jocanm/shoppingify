@@ -5,7 +5,7 @@ import { prisma } from '../../../lib';
 
 export const getPurchasesByUserId = async (userId: string): Promise<Purchase[]> => {
 
-    const purchases = await prisma.purchase.findMany({
+    const getPurchases = prisma.purchase.findMany({
         where: {
             AND: [
                 { userId },
@@ -16,6 +16,8 @@ export const getPurchasesByUserId = async (userId: string): Promise<Purchase[]> 
             updatedAt: 'desc'
         }
     })
+
+    const [purchases] = await prisma.$transaction([getPurchases])
 
     return JSON.parse(JSON.stringify(purchases));
 }
