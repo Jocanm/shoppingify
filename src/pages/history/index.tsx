@@ -5,9 +5,10 @@ import { GetServerSideProps, NextPage } from 'next'
 import { getSession } from 'next-auth/react';
 import { prisma } from '../../lib/prisma';
 import { getPurchasesByUserId } from '../../shared/database';
+import { IPurchase } from '../../shared/models';
 
 interface Props {
-    purchases: any[]
+    purchases: IPurchase[]
 }
 
 const HistoryPage = ({ purchases }: Props) => {
@@ -16,12 +17,14 @@ const HistoryPage = ({ purchases }: Props) => {
             title="Shoppingify | History"
             description="Record page"
         >
-            <Box flex flexColumn gap="2rem">
+            <Box flex flexColumn gap="3rem">
+
                 <ViewTitle>Shopping history</ViewTitle>
-                <PurchasesList />
-                <pre>
-                    {JSON.stringify(purchases, null, 2)}
-                </pre>
+                
+                <PurchasesList
+                    purchases={purchases}
+                />
+
             </Box>
         </PrivateLayout>
     )
@@ -49,6 +52,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
             purchases
         }
     }
+    
 }
 
 HistoryPage.auth = true;

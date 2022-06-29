@@ -8,8 +8,7 @@ export interface IPurchase {
     createdAt: string;
     updatedAt: string;
     name: string;
-    state: string;
-    status: PurchaseStatus;
+    state: PurchaseStatus;
 
     products: IPurchasedProductV2[];
 }

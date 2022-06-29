@@ -13,6 +13,7 @@ export const ShoppingListFormData = () => {
             <MyInput
                 name='name'
                 placeholder='Enter a name'
+                autoComplete='off'
             />
             <Button type="submit">
                 {

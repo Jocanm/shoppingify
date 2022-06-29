@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NoVisivleScrollBar } from '../../shared';
 
 
 export const PublicLayoutWrapper = styled.div`
@@ -46,6 +47,8 @@ export const PublicLayoutWrapper = styled.div`
 
 
 export const FormWrapper = styled.main`
+
+    ${NoVisivleScrollBar}
 
     background-color: ${props => props.theme.colors.white};
     box-shadow: 3px 3px 8px #00000029;
