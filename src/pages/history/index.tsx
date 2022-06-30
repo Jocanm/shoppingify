@@ -46,11 +46,10 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     // const { id: userId } = (session.user as { id: string }) || {}
 
     // const purchases = await getPurchasesByUserId(userId)
-    const purchases = await getPurchasesByUserId('62bb70e3fbda137b170034ef')
 
     return {
         props: {
-            purchases
+            purchases:[]
         }
     }
     
