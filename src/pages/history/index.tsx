@@ -11,7 +11,7 @@ interface Props {
     purchases: IPurchase[]
 }
 
-const HistoryPage = ({ purchases }: Props) => {
+const HistoryPage = ({ purchases = [] }: Props) => {
     return (
         <PrivateLayout
             title="Shoppingify | History"
@@ -30,30 +30,30 @@ const HistoryPage = ({ purchases }: Props) => {
     )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+// export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
-    // const session = await getSession({ req })
+//     // const session = await getSession({ req })
 
-    // if (!session) {
-    //     return {
-    //         redirect: {
-    //             destination: '/auth/login',
-    //             permanent: false,
-    //         }
-    //     }
-    // }
+//     // if (!session) {
+//     //     return {
+//     //         redirect: {
+//     //             destination: '/auth/login',
+//     //             permanent: false,
+//     //         }
+//     //     }
+//     // }
 
-    // const { id: userId } = (session.user as { id: string }) || {}
+//     // const { id: userId } = (session.user as { id: string }) || {}
 
-    // const purchases = await getPurchasesByUserId(userId)
+//     // const purchases = await getPurchasesByUserId(userId)
 
-    return {
-        props: {
-            purchases:[]
-        }
-    }
+//     return {
+//         props: {
+//             purchases:[]
+//         }
+//     }
     
-}
+// }
 
 HistoryPage.auth = true;
 export default HistoryPage
