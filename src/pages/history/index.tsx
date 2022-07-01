@@ -1,9 +1,5 @@
-import React from 'react'
 import { Box, PurchasesList, ViewTitle } from '../../components';
-import { PrivateLayout } from '../../layout'
-import { GetServerSideProps, NextPage } from 'next'
-import { getSession } from 'next-auth/react';
-import { prisma } from '../../lib/prisma';
+import { PrivateLayout } from '../../layout';
 import { IPurchase } from '../../shared/models';
 
 interface Props {
