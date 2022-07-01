@@ -153,55 +153,22 @@ export const startSetDoneStatus = createAsyncThunk(
     }
 )
 
-export const startCancelShoppingList = createAsyncThunk(
-    'shopping/startCancelShoppingList',
-    async (any, { getState, dispatch }) => {
+export const startUpdateShoppingListState = createAsyncThunk(
+    'shopping/startUpdateShoppingList',
+    async (state: 'cancelled' | 'completed', { getState, dispatch }) => {
 
         const { activePurchase } = (getState() as RootState).shopping
 
         const { id: purchaseId } = activePurchase!.purchase
 
-        const body = {
-            state: 'cancelled',
-        }
-
         try {
 
-            await shopApi.put(`/shopping/purchaseState/${purchaseId}`, body)
+            await shopApi.put(`/shopping/purchaseState/${purchaseId}`, { state })
 
             dispatch(setCancelListModal(false))
             dispatch(setActivePurchase(undefined as any))
             dispatch(setCart({}))
-            toast('Shopping list cancelled')
-
-        } catch (error) {
-            console.error(error)
-            toast('Something went wrong, please try again', 'error')
-        }
-
-    }
-)
-
-export const startCompleteShoppingList = createAsyncThunk(
-    'shopping/startCompleteShoppingList',
-    async (any, { getState, dispatch }) => {
-
-        const { activePurchase } = (getState() as RootState).shopping
-
-        const { id: purchaseId } = activePurchase!.purchase
-
-        const body = {
-            state: 'completed',
-        }
-
-        try {
-
-            await shopApi.put(`/shopping/purchaseState/${purchaseId}`, body)
-
-            dispatch(setCompleteListModal(false))
-            dispatch(setActivePurchase(undefined as any))
-            dispatch(setCart({}))
-            toast('Shopping list completed')
+            toast(`Shopping list ${state}`)
 
         } catch (error) {
             console.error(error)

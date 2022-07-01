@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { setCompleteListModal, startCompleteShoppingList, useAppDispatch, useAppSelector } from '../../../config/redux'
 import { Dialog } from '@mui/material';
-import * as S from './modals.styles';
-import { Button } from '../buttons';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { setCompleteListModal, startUpdateShoppingListState, useAppDispatch, useAppSelector } from '../../../config/redux';
+import { Button } from '../buttons';
+import * as S from './modals.styles';
 
 export const CompleteListModal = () => {
 
@@ -19,9 +19,9 @@ export const CompleteListModal = () => {
 
     const onComplete = async () => {
         setisLoading(true)
-        await dispatch(startCompleteShoppingList())
+        await dispatch(startUpdateShoppingListState('completed'))
         setisLoading(false)
-        if (!(['/','/profile'].includes(asPath))) {
+        if (!(['/', '/profile'].includes(asPath))) {
             push('/')
         }
     }

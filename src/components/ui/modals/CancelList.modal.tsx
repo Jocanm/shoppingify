@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
 import { Dialog } from '@mui/material';
-import { setCancelListModal, startCancelShoppingList, useAppDispatch, useAppSelector } from '../../../config/redux';
-import * as S from './modals.styles';
-import { Button } from '../buttons';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { setCancelListModal, startUpdateShoppingListState, useAppDispatch, useAppSelector } from '../../../config/redux';
+import { Button } from '../buttons';
+import * as S from './modals.styles';
 
 export const CancelListModal = () => {
 
@@ -17,11 +17,11 @@ export const CancelListModal = () => {
         dispatch(setCancelListModal(false))
     }
 
-    const onCancelList = async() => {
+    const onCancelList = async () => {
         setIsLoading(true)
-        await dispatch(startCancelShoppingList())
+        await dispatch(startUpdateShoppingListState('cancelled'))
         setIsLoading(false)
-        if(!(['/','/profile'].includes(router.asPath))) {
+        if (!(['/', '/profile'].includes(router.asPath))) {
             router.push('/')
         }
     }

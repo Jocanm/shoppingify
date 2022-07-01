@@ -1,7 +1,6 @@
 import { Box, PurchasesList, ViewTitle } from '../../components';
 import { useAppSelector } from '../../config/redux';
 import { PrivateLayout } from '../../layout';
-import { IPurchase } from '../../shared/models';
 
 const HistoryPage = () => {
 

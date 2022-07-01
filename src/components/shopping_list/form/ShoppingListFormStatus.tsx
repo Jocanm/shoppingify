@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { setCancelListModal, setCompleteListModal, startCompleteShoppingList, useAppDispatch, useAppSelector } from '../../../config/redux'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import { setCancelListModal, setCompleteListModal, startUpdateShoppingListState, useAppDispatch, useAppSelector } from '../../../config/redux'
 import { Button } from '../../ui/buttons'
 import { CancelListModal, CompleteListModal } from '../../ui/modals'
 import * as S from '../ShoppingList.styles'
-import { useRouter } from 'next/router';
 
 export const ShoppingListFormStatus = () => {
 
@@ -22,9 +22,9 @@ export const ShoppingListFormStatus = () => {
 
         if (isAllChecked) {
             setIsLoading(true)
-            await dispatch(startCompleteShoppingList())
+            await dispatch(startUpdateShoppingListState('completed'))
             setIsLoading(false)
-            if(!(['/','/profile'].includes(router.asPath))) {
+            if (!(['/', '/profile'].includes(router.asPath))) {
                 router.push('/')
             }
         } else {
