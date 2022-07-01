@@ -21,9 +21,9 @@ export const CompleteListModal = () => {
         setisLoading(true)
         await dispatch(startUpdateShoppingListState('completed'))
         setisLoading(false)
-        if (!(['/', '/profile'].includes(asPath))) {
-            push('/')
-        }
+        // if (!(['/', '/profile'].includes(asPath))) {
+        //     push('/')
+        // }
     }
 
     return (

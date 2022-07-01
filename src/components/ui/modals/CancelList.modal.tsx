@@ -21,9 +21,9 @@ export const CancelListModal = () => {
         setIsLoading(true)
         await dispatch(startUpdateShoppingListState('cancelled'))
         setIsLoading(false)
-        if (!(['/', '/profile'].includes(router.asPath))) {
-            router.push('/')
-        }
+        // if (!(['/', '/profile'].includes(router.asPath))) {
+        //     router.push('/')
+        // }
     }
 
     return (

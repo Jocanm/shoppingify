@@ -24,9 +24,9 @@ export const ShoppingListFormStatus = () => {
             setIsLoading(true)
             await dispatch(startUpdateShoppingListState('completed'))
             setIsLoading(false)
-            if (!(['/', '/profile'].includes(router.asPath))) {
-                router.push('/')
-            }
+            // if (!(['/', '/profile'].includes(router.asPath))) {
+            //     router.push('/')
+            // }
         } else {
             dispatch(setCompleteListModal(true))
         }

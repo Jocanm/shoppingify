@@ -18,7 +18,6 @@ export const startGetCategories = createAsyncThunk(
 
         } catch (error) {
             console.error(error)
-            toast('Something went wrong', 'error')
         }
     },
 )

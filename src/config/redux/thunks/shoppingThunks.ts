@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from '../../../shared/helpers';
 import { IActivePurchase, IPurchase, IPurchasedProduct } from '../../../shared/models';
 import { shopApi } from '../../services';
-import { addNewPurchase, CartItem, setActivePurchase, setCancelListModal, setCart, setCompleteListModal, setDoneStatus, setPurchases } from '../reducers';
+import { addNewPurchase, CartItem, setActivePurchase, setCancelListModal, setCart, setDoneStatus, setPurchases } from '../reducers';
 import { RootState } from '../store';
 
 
@@ -34,7 +34,6 @@ export const startGetActivePurchase = createAsyncThunk(
         } catch (error) {
 
             console.error(error)
-            toast("Something went wrong", "error")
 
         }
 
@@ -147,7 +146,6 @@ export const startSetDoneStatus = createAsyncThunk(
 
         } catch (error) {
             console.error(error)
-            toast('Something went wrong, please try again', 'error')
         }
 
     }
