@@ -23,11 +23,6 @@ export const SidebarContainer = styled.aside`
 
     background-color: ${props => props.theme.colors.white};
 
-    ${props => props.theme.breakpoints.md} {
-        padding:2rem 0;
-        width: 5rem;
-    }
-
     @media (max-height: 400px) {
         padding:1rem 0;
     }
@@ -35,6 +30,17 @@ export const SidebarContainer = styled.aside`
     img{
         cursor: pointer;
     }
+
+    ${props => props.theme.breakpoints.md} {
+        padding:2rem 0;
+        width: 5rem;
+
+        img{
+            width: 3.5rem;
+            height: 3.5rem;
+        }
+    }
+
 
 `
 

@@ -18,7 +18,7 @@ export const Sidebar = () => {
     return (
         <S.SidebarContainer>
             <Box relative>
-                <Image
+                <img
                     src="/assets/logo.svg"
                     alt="logo"
                     width={40}
