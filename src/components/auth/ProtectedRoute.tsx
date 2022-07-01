@@ -12,7 +12,7 @@ interface Props {
 export const ProtectedRoute: FC<Props> = ({ children }) => {
 
     const dispatch = useAppDispatch()
-    const { isGettingInitialData } = useAppSelector().auth
+    const { isGettingInitialData, isAuthenticated } = useAppSelector().auth
 
     const { status } = useSession()
     const router = useRouter()
@@ -24,15 +24,16 @@ export const ProtectedRoute: FC<Props> = ({ children }) => {
     }, [status, router])
 
     useEffect(() => {
+        if(!isAuthenticated) return;
         dispatch(startGetInitialData())
-    }, [dispatch])
+    }, [dispatch, isAuthenticated])
 
     if (status === "unauthenticated") {
         return null;
     }
 
     if (isGettingInitialData) {
-        return <FullScreenVanillaLoder size='2.5rem'/>
+        return <FullScreenVanillaLoder size='2.5rem' />
     }
 
     return (
