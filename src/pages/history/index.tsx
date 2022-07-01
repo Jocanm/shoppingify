@@ -1,6 +1,7 @@
-import { Box, PurchasesList, ViewTitle, ViewWrapper } from '../../components';
+import { PurchasesList } from '../../components';
 import { useAppSelector } from '../../config/redux';
 import { PrivateLayout } from '../../layout';
+import { ViewTitle, ViewWrapper } from '../../shared';
 
 const HistoryPage = () => {
 

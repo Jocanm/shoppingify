@@ -48,6 +48,7 @@ export const InputContainer = styled.div`
 
     position: relative;
     width: 100%;
+    align-self: start;
     
     input{
         ${globalWhiteCard}
