@@ -19,12 +19,16 @@ export const shoppingReducer = createSlice({
 
     reducers: {
 
-        setActivePurchase: (state, action: PayloadAction<IActivePurchase>) => {
-            state.activePurchase = action.payload;
+        setActivePurchase: (state, { payload }: PayloadAction<IActivePurchase>) => {
+            state.activePurchase = payload;
         },
 
-        setPurchases: (state, action: PayloadAction<IPurchase[]>) => {
-            state.purchases = action.payload;
+        setPurchases: (state, { payload }: PayloadAction<IPurchase[]>) => {
+            state.purchases = payload;
+        },
+
+        addNewPurchase: (state, { payload }: PayloadAction<IPurchase>) => {
+            state.purchases.unshift(payload);
         }
 
     },
@@ -40,6 +44,7 @@ export default shoppingReducer.reducer;
 export const {
 
     setActivePurchase,
-    setPurchases
+    setPurchases,
+    addNewPurchase
 
 } = shoppingReducer.actions;
