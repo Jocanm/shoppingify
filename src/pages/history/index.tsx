@@ -1,12 +1,12 @@
 import { Box, PurchasesList, ViewTitle } from '../../components';
+import { useAppSelector } from '../../config/redux';
 import { PrivateLayout } from '../../layout';
 import { IPurchase } from '../../shared/models';
 
-interface Props {
-    purchases: IPurchase[]
-}
+const HistoryPage = () => {
 
-const HistoryPage = ({ purchases = [] }: Props) => {
+    const { purchases } = useAppSelector().shopping
+
     return (
         <PrivateLayout
             title="Shoppingify | History"
@@ -15,7 +15,7 @@ const HistoryPage = ({ purchases = [] }: Props) => {
             <Box flex flexColumn gap="3rem">
 
                 <ViewTitle>Shopping history</ViewTitle>
-                
+
                 <PurchasesList
                     purchases={purchases}
                 />
@@ -47,7 +47,7 @@ const HistoryPage = ({ purchases = [] }: Props) => {
 //             purchases
 //         }
 //     }
-    
+
 // }
 
 HistoryPage.auth = true;
