@@ -4,7 +4,6 @@ import { PrivateLayout } from '../../layout'
 import { GetServerSideProps, NextPage } from 'next'
 import { getSession } from 'next-auth/react';
 import { prisma } from '../../lib/prisma';
-import { getPurchasesByUserId } from '../../shared/database';
 import { IPurchase } from '../../shared/models';
 
 interface Props {
