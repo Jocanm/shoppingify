@@ -5,7 +5,7 @@ import { CredentialsTypes, ICreateUser, ISignInUser } from "./thunks.interfaces"
 import { setIsGettingInitialData, setIsValidating } from "../reducers";
 import { signIn } from "next-auth/react";
 import { startGetCategories } from "./";
-import { startGetActivePurchase } from "./shoppingThunks";
+import { startGetActivePurchase, startGetAllPurchases } from "./shoppingThunks";
 
 
 export const startCreateUser = createAsyncThunk(
@@ -109,6 +109,7 @@ export const startGetInitialData = createAsyncThunk(
 
         await dispatch(startGetCategories())
         await dispatch(startGetActivePurchase())
+        await dispatch(startGetAllPurchases())
 
     }
 )

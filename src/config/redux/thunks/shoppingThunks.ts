@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from '../../../shared/helpers';
-import { IActivePurchase, IPurchasedProduct } from '../../../shared/models';
+import { IActivePurchase, IPurchase, IPurchasedProduct } from '../../../shared/models';
 import { shopApi } from '../../services';
-import { CartItem, setActivePurchase, setCancelListModal, setCart, setCompleteListModal, setDoneStatus } from '../reducers';
+import { CartItem, setActivePurchase, setCancelListModal, setCart, setCompleteListModal, setDoneStatus, setPurchases } from '../reducers';
 import { RootState } from '../store';
 
 
@@ -35,6 +35,25 @@ export const startGetActivePurchase = createAsyncThunk(
 
             console.error(error)
             toast("Something went wrong", "error")
+
+        }
+
+    }
+)
+
+export const startGetAllPurchases = createAsyncThunk(
+    'shopping/startGetAllPurchases',
+    async (any, { dispatch }) => {
+
+        try {
+
+            const { data } = await shopApi.get<IPurchase[]>('/shopping/history');
+            dispatch(setPurchases(data))
+
+        } catch (error) {
+
+            console.error(error)
+            dispatch(setPurchases([]))
 
         }
 
