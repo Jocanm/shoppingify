@@ -19,7 +19,7 @@
     "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
     "dayjs": "^1.11.3",
-    "next": "^12.2.0",
+    "next": "12.1.0",
     "next-auth": "^4.3.4",
     "nextjs-progressbar": "^0.0.14",
     "react": "18.1.0",
