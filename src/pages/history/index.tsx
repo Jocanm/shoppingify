@@ -1,4 +1,4 @@
-import { Box, PurchasesList, ViewTitle } from '../../components';
+import { Box, PurchasesList, ViewTitle, ViewWrapper } from '../../components';
 import { useAppSelector } from '../../config/redux';
 import { PrivateLayout } from '../../layout';
 
@@ -11,7 +11,7 @@ const HistoryPage = () => {
             title="Shoppingify | History"
             description="Record page"
         >
-            <Box flex flexColumn gap="3rem">
+            <ViewWrapper>
 
                 <ViewTitle>Shopping history</ViewTitle>
 
@@ -19,7 +19,7 @@ const HistoryPage = () => {
                     purchases={purchases}
                 />
 
-            </Box>
+            </ViewWrapper>
         </PrivateLayout>
     )
 }

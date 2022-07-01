@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NoVisivleScrollBar } from '../../shared';
 import { AppearAnimation } from '../../shared/styles/animations.styles';
 
 
@@ -11,6 +12,9 @@ export const SidebarContainer = styled.aside`
     padding: 2.5rem 0;
     width: 6rem;
 
+    overflow: auto;
+    ${NoVisivleScrollBar}
+
     position: fixed;
     top: 0;
     left: 0;
@@ -18,9 +22,31 @@ export const SidebarContainer = styled.aside`
     z-index:10;
 
     background-color: ${props => props.theme.colors.white};
+
+    ${props => props.theme.breakpoints.md} {
+        padding:2rem 0;
+        width: 5rem;
+    }
+
+    @media (max-height: 400px) {
+        padding:1rem 0;
+    }
     
     img{
         cursor: pointer;
+    }
+
+`
+
+export const RoutesList = styled.ul`
+
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    width: 100%;
+
+    @media (max-height: 400px) {
+        gap: 1.5rem;
     }
 
 `

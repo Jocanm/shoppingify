@@ -16,7 +16,12 @@ export const MainViewStyles = css`
     padding: 2rem 4rem 2rem 10rem;
 
     ${props => props.theme.breakpoints.md} {
-        padding: 2rem 1rem 2rem 7rem;
+        padding: 2rem 1rem 2rem 6rem;
+    }
+
+    @media (max-height: 400px) {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
     }
 
 `

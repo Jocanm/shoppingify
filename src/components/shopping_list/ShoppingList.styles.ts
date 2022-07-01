@@ -55,7 +55,7 @@ export const ShoppingListContainer = styled.section<Props>`
 
     ${props => props.theme.breakpoints.xs} {
         width: auto;
-        left: 6rem;
+        left: 5rem;
 
         .img-container{
             padding-top:1.5rem;

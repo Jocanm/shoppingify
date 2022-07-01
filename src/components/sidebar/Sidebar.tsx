@@ -27,7 +27,7 @@ export const Sidebar = () => {
                 />
                 <Menu />
             </Box>
-            <Box flex flexColumn gap="2.5rem" as="ul" width="100%">
+            <S.RoutesList>
                 {
                     routesList.map(route => (
                         <SidebarItem
@@ -36,7 +36,7 @@ export const Sidebar = () => {
                         />
                     ))
                 }
-            </Box>
+            </S.RoutesList>
             <Cart />
         </S.SidebarContainer>
     )
