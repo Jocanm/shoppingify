@@ -7,6 +7,7 @@ import { ProductDescription } from '../items';
 import { motion } from 'framer-motion';
 
 const variants = {
+    initial: { x: '100%' },
     animate: { x: 0 },
     exit: { x: '100%' },
 }
@@ -45,6 +46,7 @@ export const ShoppingCard = () => {
                 as={motion.div}
                 variants={variants}
                 animate={showShoppingList ? 'animate' : 'exit'}
+                initial='initial'
                 transition={{ duration: 0.5 }}
             >
                 {
