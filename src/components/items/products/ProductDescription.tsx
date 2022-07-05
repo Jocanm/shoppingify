@@ -5,10 +5,16 @@ import { IProduct } from '../../../shared/models'
 import { Button } from '../../ui/buttons'
 import { DeleteProductModal } from '../../ui/modals'
 import * as S from './ProductsList.styles'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface Props {
     setShowNewProduct: (show: boolean) => void
+}
+
+const variants = {
+    initial: { x: '100%' },
+    animate: { x: 0 },
+    exit: { x: '100%' },
 }
 
 export const ProductDescription = ({ setShowNewProduct }: Props) => {
@@ -30,61 +36,58 @@ export const ProductDescription = ({ setShowNewProduct }: Props) => {
         dispatch(setDeleteProductModal(true))
     }
 
-    if (!activeProduct) return null
 
     return (
-        <S.ProductDescriptionBox
-            as={motion.div}
-        >
+        <AnimatePresence>
+            {activeProduct && <S.ProductDescriptionBox
+                as={motion.div}
+                // variants={variants}
+                // animate='animate'
+                // initial='initial'
+                // exit='exit'
+                // transition={{ duration: 0.3 }}
+                // key='product-description'
+            >
 
-            <S.BackButton onClick={cleanActiveProduct}>
-                <ArrowRightAlt />
-                back
-            </S.BackButton>
+                <S.BackButton onClick={cleanActiveProduct}>
+                    <ArrowRightAlt />
+                    back
+                </S.BackButton>
 
-            {
-                activeProduct?.image &&
-                <S.ProductImage
-                    src={activeProduct.image}
-                    alt={activeProduct.name}
-                    // drag
-                    // dragConstrains={{
-                    //     top: -10,
-                    //     left: -10,
-                    //     right: 10,
-                    //     bottom: 10,
-                    // }}
-                    // as={motion.img}
-                    // dragMomentum={false}
-                    // drag='x'
-                />
-            }
+                {
+                    activeProduct?.image &&
+                    <S.ProductImage
+                        src={activeProduct.image}
+                        alt={activeProduct.name}
+                    />
+                }
 
-            <S.ProductInfo>
-                <span>name</span>
-                <h3>{activeProduct.name.toLowerCase()}</h3>
-            </S.ProductInfo>
-
-            <S.ProductInfo>
-                <span>category</span>
-                <h3>{activeProduct.category?.name.toLowerCase()}</h3>
-            </S.ProductInfo>
-
-            {
-                activeProduct.note &&
                 <S.ProductInfo>
-                    <span>note</span>
-                    <h3>{activeProduct.note}</h3>
+                    <span>name</span>
+                    <h3>{activeProduct.name.toLowerCase()}</h3>
                 </S.ProductInfo>
-            }
 
-            <S.ButtonSection>
-                <Button onClick={onDeleteProduct}>Delete</Button>
-                <Button onClick={onAddToCart}>Add To List</Button>
-            </S.ButtonSection>
+                <S.ProductInfo>
+                    <span>category</span>
+                    <h3>{activeProduct.category?.name.toLowerCase()}</h3>
+                </S.ProductInfo>
 
-            <DeleteProductModal />
+                {
+                    activeProduct.note &&
+                    <S.ProductInfo>
+                        <span>note</span>
+                        <h3>{activeProduct.note}</h3>
+                    </S.ProductInfo>
+                }
 
-        </S.ProductDescriptionBox>
+                <S.ButtonSection>
+                    <Button onClick={onDeleteProduct}>Delete</Button>
+                    <Button onClick={onAddToCart}>Add To List</Button>
+                </S.ButtonSection>
+
+                <DeleteProductModal />
+
+            </S.ProductDescriptionBox>}
+        </AnimatePresence>
     )
 }

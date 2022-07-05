@@ -12,12 +12,21 @@ export const ShoppingListContainer = styled.section<Props>`
     width: 100%;
     overflow-y: auto;
 
+    ${props => props.theme.breakpoints.lg} {
+        display:none;
+    }
+
+`
+
+export const ProductsInCart = styled.div`
+
+    background-color: ${props => props.theme.colors.lightOrange};
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 1.2rem;
+    height: 100%;
 
-    background-color: ${props => props.theme.colors.lightOrange};
 
     .img-container{
         padding: 3rem 2rem 0 2rem;
@@ -31,10 +40,6 @@ export const ShoppingListContainer = styled.section<Props>`
         width: 20rem;
         height: 20rem;
         position:relative;
-    }
-
-    ${props => props.theme.breakpoints.lg} {
-        display:none;
     }
 
 `

@@ -16,7 +16,6 @@ export const ShoppingCard = () => {
 
     const [showNewProduct, setShowNewProduct] = useState(false)
     const { showShoppingList } = useAppSelector().ui
-    const { activeProduct } = useAppSelector().categories
 
     const toggleShowNewProduct = () => {
         setShowNewProduct(!showNewProduct)
@@ -27,17 +26,11 @@ export const ShoppingCard = () => {
             <S.ShoppingListContainer
                 showShoppingList={showShoppingList}
             >
-                {
-                    activeProduct
-                        ? (
-                            <ProductDescription
-                                setShowNewProduct={setShowNewProduct}
-                            />
-                        )
-                        : !showNewProduct
-                            ? <ProductsListContent toggleShowNewProduct={toggleShowNewProduct} />
-                            : <NewProductCard toggleShowNewProduct={toggleShowNewProduct} />
-                }
+                <Content
+                    showNewProduct={showNewProduct}
+                    toggleShowNewProduct={toggleShowNewProduct}
+                    setShowNewProduct={setShowNewProduct}
+                />
 
             </S.ShoppingListContainer>
 
@@ -47,21 +40,51 @@ export const ShoppingCard = () => {
                 variants={variants}
                 animate={showShoppingList ? 'animate' : 'exit'}
                 initial='initial'
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.3 }}
             >
-                {
-                    activeProduct
-                        ? (
-                            <ProductDescription
-                                setShowNewProduct={setShowNewProduct}
-                            />
-                        )
-                        : !showNewProduct
-                            ? <ProductsListContent toggleShowNewProduct={toggleShowNewProduct} />
-                            : <NewProductCard toggleShowNewProduct={toggleShowNewProduct} />
-                }
+
+                <Content
+                    showNewProduct={showNewProduct}
+                    toggleShowNewProduct={toggleShowNewProduct}
+                    setShowNewProduct={setShowNewProduct}
+                />
 
             </S.SmallViewShoppingListContainer>
+        </>
+    )
+}
+
+interface Props {
+    toggleShowNewProduct: () => void
+    setShowNewProduct: (showNewProduct: boolean) => void;
+    showNewProduct: boolean;
+}
+
+export const Content = (props: Props) => {
+
+    const { activeProduct } = useAppSelector().categories
+
+    return (
+        <>
+            {
+                activeProduct
+                    ? (
+                        <ProductDescription
+                            setShowNewProduct={props.setShowNewProduct}
+                        />
+                    )
+                    : !props.showNewProduct
+                        ? <ProductsListContent toggleShowNewProduct={props.toggleShowNewProduct} />
+                        : <NewProductCard toggleShowNewProduct={props.toggleShowNewProduct} />
+            }
+            {/* {
+                !props.showNewProduct
+                    ? <ProductsListContent toggleShowNewProduct={props.toggleShowNewProduct} />
+                    : <NewProductCard toggleShowNewProduct={props.toggleShowNewProduct} />
+            }
+            <ProductDescription
+                setShowNewProduct={props.setShowNewProduct}
+            /> */}
         </>
     )
 }

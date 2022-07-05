@@ -27,7 +27,7 @@ export const ProductsListContent = ({ toggleShowNewProduct }: Props) => {
     }
 
     return (
-        <>
+        <S.ProductsInCart>
             <Box
                 className="products-list-box"
                 flex flexColumn gap="1.2rem"
@@ -60,7 +60,7 @@ export const ProductsListContent = ({ toggleShowNewProduct }: Props) => {
 
             <ShoppingListForm />
 
-        </>
+        </S.ProductsInCart>
     )
 }
 

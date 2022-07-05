@@ -68,26 +68,26 @@ export const ProductItemBox = styled.li<{ isInCart: boolean }>`
 
 export const ProductDescriptionBox = styled.div`
 
-${NoVisivleScrollBar}
+    ${NoVisivleScrollBar}
 
->*{
-    ${AppearAnimation}
-}
+    >*{
+        ${AppearAnimation}
+    }
 
-height:100%;
-padding: 2rem 3rem;
+    height:100%;
+    padding: 2rem 3rem;
 
-display:flex;
-flex-direction:column;
-gap:2rem;
+    display:flex;
+    flex-direction:column;
+    gap:2rem;
 
-overflow:auto;
+    overflow:auto;
 
-${props => props.theme.breakpoints.xs} {
-    padding: 2rem;
-}
+    ${props => props.theme.breakpoints.xs} {
+        padding: 2rem;
+    }
 
-background-color:${props => props.theme.colors.white};
+    background-color:${props => props.theme.colors.white};
 
 `
 

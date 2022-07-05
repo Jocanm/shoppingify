@@ -1,4 +1,4 @@
-import { PurchasesList } from '../../components';
+import { Box, PurchasesList } from '../../components';
 import { useAppSelector } from '../../config/redux';
 import { PrivateLayout } from '../../layout';
 import { ViewTitle, ViewWrapper } from '../../shared';
@@ -16,9 +16,15 @@ const HistoryPage = () => {
 
                 <ViewTitle>Shopping history</ViewTitle>
 
-                <PurchasesList
-                    purchases={purchases}
-                />
+                {
+                    (purchases.length > 0)
+                        ? <PurchasesList purchases={purchases} />
+                        : (
+                            <Box fontSize='1.2rem'>
+                                {"You don't have any shopping history yet."}
+                            </Box>
+                        )
+                }
 
             </ViewWrapper>
         </PrivateLayout>
