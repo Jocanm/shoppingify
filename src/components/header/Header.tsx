@@ -1,5 +1,6 @@
 import { Search } from '@mui/icons-material'
 import React from 'react'
+import { useAppSelector } from '../../config/redux'
 import { useFilterContext } from '../../shared/context'
 import * as S from './Header.styles'
 

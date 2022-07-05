@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { AppearAnimation, NoVisivleScrollBar } from '../../shared';
 
-interface Props{
+interface Props {
     showShoppingList: boolean;
 }
 
@@ -19,8 +19,6 @@ export const ShoppingListContainer = styled.section<Props>`
 
     background-color: ${props => props.theme.colors.lightOrange};
 
-    transition: transform 0.3s ease-in-out;
-
     .img-container{
         padding: 3rem 2rem 0 2rem;
     }
@@ -36,21 +34,22 @@ export const ShoppingListContainer = styled.section<Props>`
     }
 
     ${props => props.theme.breakpoints.lg} {
+        display:none;
+    }
+
+`
+
+export const SmallViewShoppingListContainer = styled(ShoppingListContainer)`
+
+    display:none;
+
+    ${props => props.theme.breakpoints.lg} {
+        display:flex;
         position:fixed;
         max-width: 29rem;
         right: 0;
         top: 0;
         bottom: 0;
-
-        ${props => props.showShoppingList 
-        ? `
-            transform: translateX(0rem);
-        ` 
-        : `
-            display:none;
-        `
-    }
-
     }
 
     ${props => props.theme.breakpoints.xs} {
@@ -150,6 +149,7 @@ export const ShoppingNameBox = styled.section`
     }
 
     button{
+        transition:all .2s ease-in-out;
         position:absolute;
         height:3.75rem;
         right:2rem;
@@ -157,6 +157,10 @@ export const ShoppingNameBox = styled.section`
 
         ${props => props.theme.breakpoints.xs} {
             top:2rem;
+        }
+
+        :hover{
+            background-color: ${props => props.theme.colors.darkOrange}
         }
     }
 
@@ -252,7 +256,7 @@ export const ShoppingProductsListBox = styled.div`
 
 `
 
-interface IProps{
+interface IProps {
     isEditMode: boolean;
 }
 

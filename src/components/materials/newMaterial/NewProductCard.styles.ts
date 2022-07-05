@@ -53,11 +53,13 @@ export const ButtonContainer = styled.div`
         padding: 1rem 1.5rem;
         font-weight: 600;
     }
-
+    
+    button:last-child:hover{
+        background-color: ${props => props.theme.colors.darkOrange}
+    }
+    
     button:first-child{
-
         transition:all .2s ease-in-out;
-
         background-color: ${props => props.theme.colors.lowWhite};
         color: ${props => props.theme.colors.text};
 

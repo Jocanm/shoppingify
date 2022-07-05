@@ -1,13 +1,8 @@
 import styled from 'styled-components';
 
-interface IProps {
-    showMenu: boolean;
-}
+export const MenuWrapper = styled.section`
 
-export const MenuWrapper = styled.section<IProps>`
-
-    transition: all 0.3s ease-in-out;
-    display: ${props => props.showMenu ? 'flex' : 'none'};
+    display: flex;
     flex-direction: column;
     gap: .2rem;
     border-radius: 0.5rem;

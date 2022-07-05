@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { AppearAnimation, globalWhiteCard, NoVisivleScrollBar } from '../../../shared';
 import { ButtonContainer } from '../../materials/newMaterial/NewProductCard.styles';
+import { motion } from 'framer-motion';
 
 
 export const ProductListBox = styled.ul`
@@ -67,26 +68,26 @@ export const ProductItemBox = styled.li<{ isInCart: boolean }>`
 
 export const ProductDescriptionBox = styled.div`
 
-    ${NoVisivleScrollBar}
+${NoVisivleScrollBar}
 
-    >*{
-        ${AppearAnimation}
-    }
+>*{
+    ${AppearAnimation}
+}
 
-    height:100%;
-    padding: 2rem 3rem;
+height:100%;
+padding: 2rem 3rem;
 
-    display:flex;
-    flex-direction:column;
-    gap:2rem;
+display:flex;
+flex-direction:column;
+gap:2rem;
 
-    overflow:auto;
+overflow:auto;
 
-    ${props => props.theme.breakpoints.xs} {
-        padding: 2rem;
-    }
+${props => props.theme.breakpoints.xs} {
+    padding: 2rem;
+}
 
-    background-color:${props => props.theme.colors.white};
+background-color:${props => props.theme.colors.white};
 
 `
 
@@ -158,14 +159,17 @@ export const ProductInfo = styled.div`
 export const ButtonSection = styled(ButtonContainer)`
 
     button{
+        transition:all .2s ease-in-out;
         font-weight: 600;
         padding:1.5rem;
+        transition:all .1s ease-in-out;
+    }
+
+    button:last-child:hover{
+        background-color:${props => props.theme.colors.darkOrange};
     }
 
     button:first-child{
-
-        transition:all .2s ease-in-out;
-
         background-color: ${props => props.theme.colors.white};
         color: ${props => props.theme.colors.text};
 

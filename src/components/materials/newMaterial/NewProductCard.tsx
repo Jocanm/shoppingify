@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useAppSelector, useAppDispatch, startCreateNewProduct } from '../../../config/redux';
 import { patterns } from '../../../shared';
+import { motion } from 'framer-motion';
 
 interface Props {
     toggleShowNewProduct: () => void
@@ -37,7 +38,7 @@ export const NewProductCard = ({ toggleShowNewProduct }: Props) => {
 
     const selectedCategory = methods.watch('category')
 
-    const onSubmit = async(data: ProductFormProps) => {
+    const onSubmit = async (data: ProductFormProps) => {
         await dispatch(startCreateNewProduct(data))
         methods.reset()
     }
@@ -99,7 +100,12 @@ export const NewProductCard = ({ toggleShowNewProduct }: Props) => {
                 <Button onClick={toggleShowNewProduct}>
                     Cancel
                 </Button>
-                <Button onClick={methods.handleSubmit(onSubmit)} disabled={showOpaqueLoader}>
+                <Button
+                    onClick={methods.handleSubmit(onSubmit)} disabled={showOpaqueLoader} as={motion.button}
+                    whileTap={{ scale: 0.9 }}
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.2 }}
+                >
                     Save
                 </Button>
             </S.ButtonContainer>

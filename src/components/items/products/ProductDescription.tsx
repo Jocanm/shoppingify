@@ -5,19 +5,19 @@ import { IProduct } from '../../../shared/models'
 import { Button } from '../../ui/buttons'
 import { DeleteProductModal } from '../../ui/modals'
 import * as S from './ProductsList.styles'
+import { motion } from 'framer-motion'
 
-interface Props{
+interface Props {
     setShowNewProduct: (show: boolean) => void
 }
 
-export const ProductDescription = ({setShowNewProduct}:Props) => {
+export const ProductDescription = ({ setShowNewProduct }: Props) => {
 
     const dispatch = useAppDispatch()
     const { activeProduct } = useAppSelector().categories
 
     const cleanActiveProduct = () => {
         dispatch(setActiveProduct(undefined))
-        dispatch(toggleShowShoppingList())
     }
 
     const onAddToCart = () => {
@@ -33,7 +33,9 @@ export const ProductDescription = ({setShowNewProduct}:Props) => {
     if (!activeProduct) return null
 
     return (
-        <S.ProductDescriptionBox>
+        <S.ProductDescriptionBox
+            as={motion.div}
+        >
 
             <S.BackButton onClick={cleanActiveProduct}>
                 <ArrowRightAlt />
@@ -42,7 +44,20 @@ export const ProductDescription = ({setShowNewProduct}:Props) => {
 
             {
                 activeProduct?.image &&
-                <S.ProductImage src={activeProduct.image} alt="123123" />
+                <S.ProductImage
+                    src={activeProduct.image}
+                    alt={activeProduct.name}
+                    // drag
+                    // dragConstrains={{
+                    //     top: -10,
+                    //     left: -10,
+                    //     right: 10,
+                    //     bottom: 10,
+                    // }}
+                    // as={motion.img}
+                    // dragMomentum={false}
+                    // drag='x'
+                />
             }
 
             <S.ProductInfo>

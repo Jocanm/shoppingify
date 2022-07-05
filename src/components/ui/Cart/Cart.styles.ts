@@ -12,9 +12,14 @@ export const CartWrapper = styled.div`
     justify-content: center;
 
     position: relative;
+    transition:all .2s ease-in-out;
 
     background-color: ${props => props.theme.colors.orange};
     color: ${props => props.theme.colors.white};
+
+    :hover{
+        background-color: ${props => props.theme.colors.darkOrange};
+    }
 
 `
 

@@ -12,6 +12,7 @@ export const breakpoints = {
 
 export const colors = {
     orange: "#F9A109",
+    darkOrange:'#d58905',
     red: "#EB5757",
     text: "#34333A",
     input: "#BDBDBD",
