@@ -1,6 +1,5 @@
-import React from 'react'
 import { openProductDetails } from '../../../../config/redux/actions'
-import { IProduct, IPurchasedProductV2 } from '../../../../shared/models'
+import { IPurchasedProductV2 } from '../../../../shared/models'
 import * as S from './ShoppingDetailsList.styles'
 
 export const ShoppingDetailsProductItem = ({ product, quantity, done }: IPurchasedProductV2) => {

@@ -1,9 +1,9 @@
-import React, { useMemo } from 'react'
-import * as S from './ProductsList.styles'
-import { IProduct } from '../../../shared/models';
 import { Add } from '@mui/icons-material';
-import { addToCart, setActiveProduct, setShowProductDetails, setShowShopingList, toggleShowShoppingList, useAppDispatch, useAppSelector } from '../../../config/redux';
+import { useMemo } from 'react';
+import { addToCart, useAppDispatch, useAppSelector } from '../../../config/redux';
 import { openProductDetails } from '../../../config/redux/actions';
+import { IProduct } from '../../../shared/models';
+import * as S from './ProductsList.styles';
 
 export const ProductItem = (product: IProduct) => {
 
@@ -15,10 +15,7 @@ export const ProductItem = (product: IProduct) => {
     }
 
     const onSelectProduct = () => {
-        dispatch(setShowShopingList(true))
-        // openProductDetails(product)
-        dispatch(setActiveProduct(product));
-        dispatch(setShowProductDetails(true));
+        openProductDetails(product)
     }
 
     const isInCart = useMemo(() => {

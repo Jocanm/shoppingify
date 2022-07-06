@@ -1,6 +1,6 @@
 import { createAction } from "@reduxjs/toolkit";
 import { IProduct } from "../../../shared/models";
-import { setActiveProduct, setShowProductDetails } from "../reducers";
+import { setActiveProduct, setShowProductDetails, setShowShopingList } from "../reducers";
 import { store } from "../store";
 
 
@@ -16,6 +16,7 @@ export const closeProductDetails = () => {
 }
 
 export const openProductDetails = (product: IProduct) => {
+    store.dispatch(setShowShopingList(true))
     store.dispatch(setActiveProduct(product));
     store.dispatch(setShowProductDetails(true));
 }
