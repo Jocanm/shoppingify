@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { PurchaseStatus } from '../../../../shared/models';
+import { GlobalStatusBox } from '../../../../shared';
 
 
 export const PurchasesListContainer = styled.ul`
@@ -79,10 +79,6 @@ export const PurchaseOptions = styled.div`
 `
 export const PurchaseState = styled.span<{ color: string }>`
 
-    border-radius: 0.5rem;
-    padding: .3rem .5rem;
-
-    border: 1px solid ${props => props.color};
-    color: ${props => props.color};
+    ${GlobalStatusBox}
 
 `

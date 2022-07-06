@@ -34,7 +34,7 @@ export const getPurchases = async (req: NextApiRequest, res: NextApiResponse<Dat
             where: {
                 AND: [
                     { userId },
-                    { state: { not: 'pending' } }
+                    { state: { not: 'pending' } },
                 ]
             },
             orderBy: {
@@ -45,7 +45,7 @@ export const getPurchases = async (req: NextApiRequest, res: NextApiResponse<Dat
         const [purchases] = await prisma.$transaction([getPurchases])
 
         return res.status(200).json(purchases)
-        
+
     } catch (error) {
 
         console.error(error)

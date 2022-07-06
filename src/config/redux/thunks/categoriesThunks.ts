@@ -3,7 +3,7 @@ import { ProductFormProps } from '../../../components/materials/newMaterial/NewP
 import { toast } from '../../../shared/helpers';
 import { ICategory, IProduct } from '../../../shared/models';
 import { shopApi } from '../../services';
-import { addCategory, addProduct, deleteProduct, removeFromCart, setActiveProduct, setCategories, setDeleteProductModal, toggleShowShoppingList } from '../reducers';
+import { addCategory, addProduct, deleteProduct, removeFromCart, setActiveProduct, setCategories, setDeleteProductModal, setShowProductDetails, toggleShowShoppingList } from '../reducers';
 import { RootState } from '../store';
 
 
@@ -59,6 +59,7 @@ export const startDeleteProduct = createAsyncThunk(
             await shopApi.delete(`/product/${activeProduct?.id}`)
 
             dispatch(setActiveProduct(undefined))
+            dispatch(setShowProductDetails(false))
             dispatch(setDeleteProductModal(false))
             dispatch(deleteProduct(activeProduct?.id as string))
             dispatch(removeFromCart(activeProduct!))

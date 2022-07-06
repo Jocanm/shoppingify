@@ -15,6 +15,15 @@ export const ViewWrapper = styled.div`
 
 export const ViewTitle = styled.h1`
 
-    ${GlobalTitle}
+    font-size:1.9rem;
+    font-weight: 600;
+    
+    ${props => props.theme.breakpoints.lg} {
+        font-size: 1.4rem;
+    }
+    
+    ${props => props.theme.breakpoints.md} {
+        font-size: 1.6rem;
+    }
 
 `

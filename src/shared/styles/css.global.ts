@@ -103,3 +103,40 @@ export const GlobalMdCard = css`
     }
 
 `
+
+export const GlobalBackButton = css`
+
+    display:flex;
+    align-items:center;
+    font-size:1.2rem;
+    font-weight:500;
+
+    width:5.5rem;
+
+    transition:background .1s ease-in-out;
+    transition-property: background, color;
+    padding:.2rem .5rem;
+    border-radius:.75rem;
+
+    color:${props => props.theme.colors.orange};
+
+    :hover{
+        background-color:${props => props.theme.colors.orange};
+        color:${props => props.theme.colors.white};
+    }
+
+    svg{
+        transform:rotate(180deg);
+    }
+
+`
+
+export const GlobalStatusBox = css<{ color: string }>`
+
+    border-radius: 0.5rem;
+    padding: .3rem .5rem;
+
+    border: 1px solid ${props => props.color};
+    color: ${props => props.color};
+
+`

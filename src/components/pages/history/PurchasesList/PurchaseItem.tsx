@@ -14,8 +14,6 @@ export const PurchaseItem = ({ purchase }: Props) => {
 
     const customDate = getDate(purchase.updatedAt)
 
-
-
     return (
         <Link href={{
             pathname: `/history/${purchase.name}`,

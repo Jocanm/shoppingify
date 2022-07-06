@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { AppearAnimation, GlobalCard, GlobalMdCard, globalWhiteCard, NoVisivleScrollBar } from '../../../shared';
+import { AppearAnimation, GlobalBackButton, GlobalCard, GlobalMdCard, globalWhiteCard, NoVisivleScrollBar } from '../../../shared';
 import { ButtonContainer } from '../../materials/newMaterial/NewProductCard.styles';
 import { motion } from 'framer-motion';
 
@@ -35,7 +35,7 @@ export const ProductItemBox = styled.li<{ isInCart: boolean }>`
 
     >*{
         padding:.8rem;
-        /* transition:all .1s ease-in-out; */
+        transition:background .1s ease-in-out;
     }
 
     span{
@@ -103,42 +103,10 @@ export const ProductDescriptionBox = styled(motion.div)`
 
 export const BackButton = styled.button`
 
-    display:flex;
-    align-items:center;
-    font-size:1.2rem;
-    font-weight:500;
-
-    width:5.5rem;
-
-    /* transition:all .1s ease-in-out; */
-    padding:.2rem .5rem;
-    border-radius:.75rem;
-
-    color:${props => props.theme.colors.orange};
-
-    :hover{
-        background-color:${props => props.theme.colors.orange};
-        color:${props => props.theme.colors.white};
-    }
-
-    svg{
-        transform:rotate(180deg);
-    }
+    ${GlobalBackButton}
 
 `
 
-// export const ProductImage = styled.div<{ img: string }>`
-
-//     width:100%;
-//     height:15rem;
-//     border-radius:1.5rem;
-
-//     background-image:url(${props => props.img});
-//     background-size:cover;
-//     background-position:center;
-//     background-repeat:no-repeat;
-
-// `
 export const ProductImage = styled.img`
 
     width:100%;
@@ -169,10 +137,9 @@ export const ProductInfo = styled.div`
 export const ButtonSection = styled(ButtonContainer)`
 
     button{
-        /* transition:all .2s ease-in-out; */
         font-weight: 600;
         padding:1.5rem;
-        /* transition:all .1s ease-in-out; */
+        transition:background .1s ease-in-out;
     }
 
     button:last-child:hover{

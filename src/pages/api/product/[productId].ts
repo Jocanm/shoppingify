@@ -29,12 +29,27 @@ async function deleteProduct(req: NextApiRequest, res: NextApiResponse<Data>) {
         return res.status(401).json({ message: "Unauthorized" })
     }
 
-    await prisma.product.delete({
-        where: {
-            id: productId,
-        }
-    })
+    try {
 
-    return res.status(200).json({ message: "Product deleted" })
+        const deleteProduct = prisma.product.delete({
+            where: {
+                id: productId,
+            }
+        })
+
+        const deletePurchasedProducts = prisma.purchasedProduct.deleteMany({
+            where: { productId }
+        })
+
+        await prisma.$transaction([deleteProduct, deletePurchasedProducts])
+
+        return res.status(200).json({ message: "Product deleted" })
+
+    } catch (error) {
+
+        console.log(error)
+        return res.status(500).json({ message: "Internal server error" })
+
+    }
 
 }

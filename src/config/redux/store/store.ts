@@ -1,6 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { setupListeners } from "@reduxjs/toolkit/query";
 import { useDispatch, useSelector } from "react-redux";
 import { authReducer, cartReducer, categoriesReducer, shoppingReducer, uiReducer } from '../reducers';
+import { globalApi } from '../query/globalApi';
 
 
 export const store = configureStore({
@@ -9,8 +11,14 @@ export const store = configureStore({
         cart: cartReducer,
         ui: uiReducer,
         categories: categoriesReducer,
-        shopping: shoppingReducer
-    }
+        shopping: shoppingReducer,
+
+        // TOOLKIT QUERY
+        [globalApi.reducerPath]: globalApi.reducer,
+    },
+
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(globalApi.middleware),
 })
 
 export type RootState = ReturnType<typeof store.getState>
@@ -21,3 +29,5 @@ export const useAppDispatch = () => useDispatch<AppDispatch>()
 
 // Custom app selector
 export const useAppSelector = () => useSelector((state: RootState) => state)
+
+setupListeners(store.dispatch)
