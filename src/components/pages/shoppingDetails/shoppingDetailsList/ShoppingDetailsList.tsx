@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react'
 import { IPurchase } from '../../../../shared/models'
+import { ShoppingDetailsCategory } from './ShoppingDetailsCategory'
 import * as S from './ShoppingDetailsList.styles'
 
 export const ShoppingDetailsList = ({ products }: IPurchase) => {
@@ -17,7 +18,10 @@ export const ShoppingDetailsList = ({ products }: IPurchase) => {
         <S.ShoppingDetailsListWrapper>
             {
                 allCategories.map(category => (
-                    <span key={category}>{category}</span>
+                    <ShoppingDetailsCategory
+                        key={category}
+                        categoryName={category}
+                    />
                 ))
             }
         </S.ShoppingDetailsListWrapper>
