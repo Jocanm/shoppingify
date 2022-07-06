@@ -1,21 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 import { ArrowRightAlt } from '@mui/icons-material'
-import { addToCart, setActiveProduct, setDeleteProductModal, toggleShowShoppingList, useAppDispatch, useAppSelector } from '../../../config/redux'
+import { AnimatePresence } from 'framer-motion'
+import { addToCart, setDeleteProductModal, setShowShopingList, useAppDispatch, useAppSelector } from '../../../config/redux'
+import { closeProductDetails } from '../../../config/redux/actions'
+import { useIsLarge } from '../../../shared/hooks'
 import { IProduct } from '../../../shared/models'
 import { Button } from '../../ui/buttons'
 import { DeleteProductModal } from '../../ui/modals'
 import * as S from './ProductsList.styles'
-import { motion, AnimatePresence } from 'framer-motion';
-import { closeProductDetails } from '../../../config/redux/actions'
 
 interface Props {
     setShowNewProduct: (show: boolean) => void
-}
-
-const variants = {
-    initial: { x: '100%' },
-    animate: { x: 0 },
-    exit: { x: '100%' },
 }
 
 export const ProductDescription = ({ setShowNewProduct }: Props) => {
@@ -36,19 +31,38 @@ const Content = ({ setShowNewProduct }: Props) => {
 
     const dispatch = useAppDispatch()
     const { activeProduct } = useAppSelector().categories
+    const isLarge = useIsLarge()
 
     const cleanActiveProduct = () => {
+        dispatch(setShowShopingList(false))
         closeProductDetails()
     }
 
     const onAddToCart = () => {
         dispatch(addToCart(activeProduct as IProduct))
-        dispatch(setActiveProduct(undefined))
+        closeProductDetails()
         setShowNewProduct(false)
     }
 
     const onDeleteProduct = () => {
         dispatch(setDeleteProductModal(true))
+    }
+
+    const variants = {
+        initial: { x: '100%' },
+        animate: {
+            x: 0,
+            transition: {
+                duration: 0.3,
+            }
+        },
+        exit: {
+            x: '100%',
+            transition: {
+                delay: isLarge ? 0.3 : 0,
+                duration: 0.3,
+            },
+        },
     }
 
     return (
@@ -57,7 +71,6 @@ const Content = ({ setShowNewProduct }: Props) => {
             animate='animate'
             initial='initial'
             exit='exit'
-            transition={{ duration: 0.3 }}
             key='product-description'
         >
 

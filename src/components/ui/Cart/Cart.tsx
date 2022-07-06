@@ -22,6 +22,8 @@ export const Cart = () => {
     return (
         <S.CartWrapper
             onClick={onToggleList}
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.1 }}
         >
             <ShoppingCartOutlined />
             {

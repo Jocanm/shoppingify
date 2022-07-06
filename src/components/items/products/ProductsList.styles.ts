@@ -35,7 +35,7 @@ export const ProductItemBox = styled.li<{ isInCart: boolean }>`
 
     >*{
         padding:.8rem;
-        transition:all .1s ease-in-out;
+        /* transition:all .1s ease-in-out; */
     }
 
     span{
@@ -89,6 +89,10 @@ export const ProductDescriptionBox = styled(motion.div)`
         width:30rem;
     }
 
+    ${props => props.theme.breakpoints.lg}{
+        width:100%;
+    }
+
     ${props => props.theme.breakpoints.xs} {
         padding: 2rem;
     }
@@ -106,7 +110,7 @@ export const BackButton = styled.button`
 
     width:5.5rem;
 
-    transition:all .1s ease-in-out;
+    /* transition:all .1s ease-in-out; */
     padding:.2rem .5rem;
     border-radius:.75rem;
 
@@ -165,10 +169,10 @@ export const ProductInfo = styled.div`
 export const ButtonSection = styled(ButtonContainer)`
 
     button{
-        transition:all .2s ease-in-out;
+        /* transition:all .2s ease-in-out; */
         font-weight: 600;
         padding:1.5rem;
-        transition:all .1s ease-in-out;
+        /* transition:all .1s ease-in-out; */
     }
 
     button:last-child:hover{

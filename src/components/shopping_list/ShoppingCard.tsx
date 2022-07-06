@@ -6,20 +6,32 @@ import { NewProductCard } from '../materials';
 import { ProductDescription } from '../items';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const variants = {
-    initial: { x: '100%' },
-    animate: { x: 0 },
-    exit: { x: '100%' },
-}
-
 export const ShoppingCard = () => {
 
     const [showNewProduct, setShowNewProduct] = useState(false)
-    const { showShoppingList } = useAppSelector().ui
-    const { activeProduct } = useAppSelector().categories
+    const { showShoppingList, showProductDetails } = useAppSelector().ui
 
     const toggleShowNewProduct = () => {
         setShowNewProduct(!showNewProduct)
+    }
+
+    const variants = {
+        initial: { x: '110%' },
+        animate: {
+            x: 0,
+            transition: {
+                duration: 0.3,
+                ease: 'linear',
+                delay: showProductDetails ? 0.3 : 0
+
+            }
+        },
+        exit: {
+            x: '110%',
+            transition: {
+                duration: 0.3,
+            }
+        },
     }
 
     return (
@@ -41,7 +53,6 @@ export const ShoppingCard = () => {
                 variants={variants}
                 animate={showShoppingList ? 'animate' : 'exit'}
                 initial='initial'
-                transition={{ duration: 0.3 }}
             >
 
                 <Content
@@ -70,7 +81,7 @@ export const Content = (props: Props) => {
                     ? <ProductsListContent toggleShowNewProduct={props.toggleShowNewProduct} />
                     : <NewProductCard toggleShowNewProduct={props.toggleShowNewProduct} />
             }
-            <ProductDescription setShowNewProduct={props.setShowNewProduct}/>
+            <ProductDescription setShowNewProduct={props.setShowNewProduct} />
         </>
     )
 }

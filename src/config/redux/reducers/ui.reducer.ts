@@ -48,7 +48,7 @@ const uiReducer = createSlice({
             state.showShoppingList = !state.showShoppingList;
         },
 
-        setToggleShopingList: (state, action: PayloadAction<boolean>) => {
+        setShowShopingList: (state, action: PayloadAction<boolean>) => {
             state.showShoppingList = action.payload;
         },
 
@@ -124,7 +124,7 @@ export const {
     toggleEditShoppingListMode,
     setCancelListModal,
     setCompleteListModal,
-    setToggleShopingList,
+    setShowShopingList,
     setShowProductDetails
 
 } = uiReducer.actions;

@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 
-export const CartWrapper = styled.div`
+export const CartWrapper = styled(motion.div)`
 
     border-radius: 50%;
     padding: 0.6rem;
