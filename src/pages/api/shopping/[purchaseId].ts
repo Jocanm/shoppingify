@@ -115,7 +115,11 @@ const getPurchasDetails = async (req: NextApiRequest, res: NextApiResponse<Data>
             include: {
                 products: {
                     include: {
-                        product: true
+                        product: {
+                            include: {
+                                category: true
+                            }
+                        }
                     }
                 }
             }

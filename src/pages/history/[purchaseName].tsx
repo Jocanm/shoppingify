@@ -4,7 +4,7 @@ import { ReactElement } from 'react';
 import { PrivateLayout } from '../../layout';
 import * as S from '../../shared/styles/pages/ShoppingDetailsPage.styles';
 import { ArrowRightAlt } from '@mui/icons-material';
-import { ShoppingDetailsBox } from '../../components/pages/shoppingDetails';
+import { ShoppingDetailsBox, ShoppingDetailsList } from '../../components/pages/shoppingDetails';
 import { useGetShoppingDetailsQuery } from '../../config/redux';
 import { VanillaLoader } from '../../components/ui/loders';
 
@@ -32,6 +32,10 @@ const PurchaseDetails = () => {
             </S.ShoppingDetailsBackButton>
 
             <ShoppingDetailsBox
+                {...data}
+            />
+
+            <ShoppingDetailsList
                 {...data}
             />
 
