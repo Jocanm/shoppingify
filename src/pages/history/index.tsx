@@ -2,31 +2,38 @@ import { Box, PurchasesList } from '../../components';
 import { useAppSelector } from '../../config/redux';
 import { PrivateLayout } from '../../layout';
 import { ViewTitle, ViewWrapper } from '../../shared';
+import { ReactElement } from 'react';
 
 const HistoryPage = () => {
 
     const { purchases } = useAppSelector().shopping
 
     return (
+        <ViewWrapper>
+
+            <ViewTitle>Shopping history</ViewTitle>
+
+            {
+                (purchases.length > 0)
+                    ? <PurchasesList purchases={purchases} />
+                    : (
+                        <Box fontSize='1.2rem'>
+                            {"You don't have any shopping history yet."}
+                        </Box>
+                    )
+            }
+
+        </ViewWrapper>
+    )
+}
+
+HistoryPage.getLayout = function getLayout(page: ReactElement) {
+    return (
         <PrivateLayout
             title="Shoppingify | History"
             description="Record page"
         >
-            <ViewWrapper>
-
-                <ViewTitle>Shopping history</ViewTitle>
-
-                {
-                    (purchases.length > 0)
-                        ? <PurchasesList purchases={purchases} />
-                        : (
-                            <Box fontSize='1.2rem'>
-                                {"You don't have any shopping history yet."}
-                            </Box>
-                        )
-                }
-
-            </ViewWrapper>
+            {page}
         </PrivateLayout>
     )
 }

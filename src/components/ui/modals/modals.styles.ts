@@ -31,6 +31,10 @@ export const ButtonContainer = styled(ButtonSection)`
     button:last-child{
         width:5.8rem;
         height:3.5rem;
+
+        :hover{
+            background-color:${props => props.theme.colors.red};
+        }
     }
 
 `

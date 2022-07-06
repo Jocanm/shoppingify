@@ -3,6 +3,7 @@ import * as S from './ProductsList.styles'
 import { IProduct } from '../../../shared/models';
 import { Add } from '@mui/icons-material';
 import { addToCart, setActiveProduct, setToggleShopingList, toggleShowShoppingList, useAppDispatch, useAppSelector } from '../../../config/redux';
+import { openProductDetails } from '../../../config/redux/actions';
 
 export const ProductItem = (product: IProduct) => {
 
@@ -14,8 +15,8 @@ export const ProductItem = (product: IProduct) => {
     }
 
     const onSelectProduct = () => {
-        dispatch(setActiveProduct(product))
         dispatch(setToggleShopingList(true))
+        openProductDetails(product)
     }
 
     const isInCart = useMemo(() => {

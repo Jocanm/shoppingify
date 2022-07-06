@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { setDeleteProductModal, startDeleteProduct, useAppDispatch, useAppSelector } from '../../../config/redux'
 import { Button } from '../buttons'
 import * as S from './modals.styles'
+import { motion } from 'framer-motion';
 
 export const DeleteProductModal = () => {
 
@@ -43,6 +44,10 @@ export const DeleteProductModal = () => {
                         bgColor="#EB5757" 
                         onClick={handleDelete}
                         isLoading={isLoading}
+                        as={motion.button}
+                        whileTap={{ scale: 0.9 }}
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ duration: 0.1 }}
                     >
                         Yes
                     </Button>

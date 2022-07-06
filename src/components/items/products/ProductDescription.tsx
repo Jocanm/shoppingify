@@ -6,6 +6,7 @@ import { Button } from '../../ui/buttons'
 import { DeleteProductModal } from '../../ui/modals'
 import * as S from './ProductsList.styles'
 import { motion, AnimatePresence } from 'framer-motion';
+import { closeProductDetails } from '../../../config/redux/actions'
 
 interface Props {
     setShowNewProduct: (show: boolean) => void
@@ -19,11 +20,25 @@ const variants = {
 
 export const ProductDescription = ({ setShowNewProduct }: Props) => {
 
+    const { showProductDetails } = useAppSelector().ui
+
+    return (
+        <AnimatePresence>
+            {
+                showProductDetails &&
+                <Content setShowNewProduct={setShowNewProduct} />
+            }
+        </AnimatePresence>
+    )
+}
+
+const Content = ({ setShowNewProduct }: Props) => {
+
     const dispatch = useAppDispatch()
     const { activeProduct } = useAppSelector().categories
 
     const cleanActiveProduct = () => {
-        dispatch(setActiveProduct(undefined))
+        closeProductDetails()
     }
 
     const onAddToCart = () => {
@@ -36,58 +51,54 @@ export const ProductDescription = ({ setShowNewProduct }: Props) => {
         dispatch(setDeleteProductModal(true))
     }
 
-
     return (
-        <AnimatePresence>
-            {activeProduct && <S.ProductDescriptionBox
-                as={motion.div}
-                // variants={variants}
-                // animate='animate'
-                // initial='initial'
-                // exit='exit'
-                // transition={{ duration: 0.3 }}
-                // key='product-description'
-            >
+        <S.ProductDescriptionBox
+            variants={variants}
+            animate='animate'
+            initial='initial'
+            exit='exit'
+            transition={{ duration: 0.3 }}
+            key='product-description'
+        >
 
-                <S.BackButton onClick={cleanActiveProduct}>
-                    <ArrowRightAlt />
-                    back
-                </S.BackButton>
+            <S.BackButton onClick={cleanActiveProduct}>
+                <ArrowRightAlt />
+                back
+            </S.BackButton>
 
-                {
-                    activeProduct?.image &&
-                    <S.ProductImage
-                        src={activeProduct.image}
-                        alt={activeProduct.name}
-                    />
-                }
+            {
+                activeProduct?.image &&
+                <S.ProductImage
+                    src={activeProduct.image}
+                    alt={activeProduct.name}
+                />
+            }
 
+            <S.ProductInfo>
+                <span>name</span>
+                <h3>{activeProduct?.name.toLowerCase()}</h3>
+            </S.ProductInfo>
+
+            <S.ProductInfo>
+                <span>category</span>
+                <h3>{activeProduct?.category?.name.toLowerCase()}</h3>
+            </S.ProductInfo>
+
+            {
+                activeProduct?.note &&
                 <S.ProductInfo>
-                    <span>name</span>
-                    <h3>{activeProduct.name.toLowerCase()}</h3>
+                    <span>note</span>
+                    <h3>{activeProduct?.note}</h3>
                 </S.ProductInfo>
+            }
 
-                <S.ProductInfo>
-                    <span>category</span>
-                    <h3>{activeProduct.category?.name.toLowerCase()}</h3>
-                </S.ProductInfo>
+            <S.ButtonSection>
+                <Button onClick={onDeleteProduct}>Delete</Button>
+                <Button onClick={onAddToCart}>Add To List</Button>
+            </S.ButtonSection>
 
-                {
-                    activeProduct.note &&
-                    <S.ProductInfo>
-                        <span>note</span>
-                        <h3>{activeProduct.note}</h3>
-                    </S.ProductInfo>
-                }
+            <DeleteProductModal />
 
-                <S.ButtonSection>
-                    <Button onClick={onDeleteProduct}>Delete</Button>
-                    <Button onClick={onAddToCart}>Add To List</Button>
-                </S.ButtonSection>
-
-                <DeleteProductModal />
-
-            </S.ProductDescriptionBox>}
-        </AnimatePresence>
+        </S.ProductDescriptionBox>
     )
 }

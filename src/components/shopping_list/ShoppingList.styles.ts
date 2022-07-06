@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { AppearAnimation, NoVisivleScrollBar } from '../../shared';
+import { AppearAnimation, GlobalCard, GlobalMdCard, NoVisivleScrollBar } from '../../shared';
 
 interface Props {
     showShoppingList: boolean;
@@ -7,16 +7,29 @@ interface Props {
 
 export const ShoppingListContainer = styled.section<Props>`
 
-    ${NoVisivleScrollBar}
+    ${GlobalCard}
 
-    width: 100%;
-    overflow-y: auto;
+`
 
-    ${props => props.theme.breakpoints.lg} {
-        display:none;
+export const SmallViewShoppingListContainer = styled(ShoppingListContainer)`
+
+    ${GlobalMdCard}
+
+    ${props => props.theme.breakpoints.xs} {
+
+        .img-container{
+            padding-top:1.5rem;
+        }
+
+        img:last-child{
+            width: 17rem;
+            height: 17rem;
+            position:relative;
+        }
     }
 
 `
+
 
 export const ProductsInCart = styled.div`
 
@@ -40,36 +53,6 @@ export const ProductsInCart = styled.div`
         width: 20rem;
         height: 20rem;
         position:relative;
-    }
-
-`
-
-export const SmallViewShoppingListContainer = styled(ShoppingListContainer)`
-
-    display:none;
-
-    ${props => props.theme.breakpoints.lg} {
-        display:flex;
-        position:fixed;
-        max-width: 29rem;
-        right: 0;
-        top: 0;
-        bottom: 0;
-    }
-
-    ${props => props.theme.breakpoints.xs} {
-        width: auto;
-        left: 5rem;
-
-        .img-container{
-            padding-top:1.5rem;
-        }
-
-        img:last-child{
-            width: 17rem;
-            height: 17rem;
-            position:relative;
-        }
     }
 
 `

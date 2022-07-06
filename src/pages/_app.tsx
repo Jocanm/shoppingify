@@ -1,6 +1,8 @@
+import { NextPage } from "next"
 import { SessionProvider } from "next-auth/react"
 import type { AppProps } from 'next/app'
 import NextNProgress from 'nextjs-progressbar'
+import { ReactElement, ReactNode } from "react"
 import { DefaultToastOptions, Toaster } from 'react-hot-toast'
 import { Provider } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
@@ -18,7 +20,18 @@ const toastOptions: DefaultToastOptions = {
    duration: 3000,
 }
 
-function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
+export type NextPageWithLayout = NextPage  & {
+   getLayout?: (page: ReactElement) => ReactNode;
+   auth?: boolean;
+}
+
+type AppPropsWithLayout = AppProps & {
+   Component: NextPageWithLayout
+}
+
+function MyApp({ Component, pageProps: { session, ...pageProps } }: AppPropsWithLayout) {
+
+   const getLayout = Component.getLayout ?? ((page) => page)
 
    return (
       <Provider store={store}>
@@ -26,10 +39,11 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
             <ThemeProvider theme={themes}>
                <AuthComponent>
 
-                  {(Component as any).auth
+                  {Component.auth
                      ? (
                         <ProtectedRoute>
-                           <Component {...pageProps} />
+                           {/* <Component {...pageProps} /> */}
+                           {getLayout(<Component {...pageProps} />)}
                         </ProtectedRoute>
                      )
                      : <Component {...pageProps} />}

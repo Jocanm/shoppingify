@@ -66,3 +66,40 @@ export const GlobalTitle = css`
     }
 
 `
+
+export const GlobalCard = css`
+
+    ${NoVisivleScrollBar}
+
+    width: 100%;
+    overflow-y: auto;
+
+    ${props => props.theme.breakpoints.lg} {
+        display:none;
+    }
+
+`
+
+export const GlobalMdCard = css`
+
+    ${NoVisivleScrollBar}
+
+    width: 100%;
+    overflow-y: auto;
+    display:none;
+
+    ${props => props.theme.breakpoints.lg} {
+        display:flex;
+        position:fixed;
+        max-width: 29rem;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+
+    ${props => props.theme.breakpoints.xs} {
+        width: auto;
+        left: 5rem;
+    }
+
+`

@@ -6,6 +6,7 @@ interface InitialState {
     showMenu: boolean;
     showShoppingList: boolean;
     showOpaqueLoader: boolean;
+    showProductDetails: boolean;
     
     deleteProductModal: boolean;
     cancelListModal: boolean;
@@ -18,6 +19,7 @@ const initialState: InitialState = {
     showMenu: false,
     showShoppingList: false,
     showOpaqueLoader: false,
+    showProductDetails: false,
 
     deleteProductModal: false,
     cancelListModal: false,
@@ -48,6 +50,10 @@ const uiReducer = createSlice({
 
         setToggleShopingList: (state, action: PayloadAction<boolean>) => {
             state.showShoppingList = action.payload;
+        },
+
+        setShowProductDetails: (state, action: PayloadAction<boolean>) => {
+            state.showProductDetails = action.payload;
         },
 
         setDeleteProductModal: (state, { payload }: PayloadAction<boolean>) => {
@@ -118,6 +124,7 @@ export const {
     toggleEditShoppingListMode,
     setCancelListModal,
     setCompleteListModal,
-    setToggleShopingList
+    setToggleShopingList,
+    setShowProductDetails
 
 } = uiReducer.actions;

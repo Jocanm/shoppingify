@@ -6,6 +6,7 @@ export const NewMaterialCardBox = styled.div`
 
     ${NoVisivleScrollBar}
 
+    width: 100%;
     padding: 2rem 3rem;
     height: 100%;
 

@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import React from 'react'
-import { ProductDescription, ShoppingCard, Sidebar } from '../components'
+import { ShoppingCard, Sidebar } from '../components'
 import { FullScreenVanillaLoder } from '../components/ui/loders'
 import { closeMenu, useAppDispatch, useAppSelector } from '../config/redux'
 import * as S from './PrivateLayout.styles'

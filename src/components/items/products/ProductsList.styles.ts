@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { AppearAnimation, globalWhiteCard, NoVisivleScrollBar } from '../../../shared';
+import { AppearAnimation, GlobalCard, GlobalMdCard, globalWhiteCard, NoVisivleScrollBar } from '../../../shared';
 import { ButtonContainer } from '../../materials/newMaterial/NewProductCard.styles';
 import { motion } from 'framer-motion';
 
@@ -66,22 +66,28 @@ export const ProductItemBox = styled.li<{ isInCart: boolean }>`
 
 `
 
-export const ProductDescriptionBox = styled.div`
+export const ProductDescriptionBox = styled(motion.div)`
 
     ${NoVisivleScrollBar}
-
-    >*{
-        ${AppearAnimation}
-    }
+    overflow-y:auto;
+    display:flex;
 
     height:100%;
     padding: 2rem 3rem;
 
-    display:flex;
     flex-direction:column;
     gap:2rem;
 
-    overflow:auto;
+    position:fixed;
+    top:0;
+    right:0;
+    bottom:0;
+    height:100%;
+    width:32rem;
+
+    ${props => props.theme.breakpoints.xl2}{
+        width:30rem;
+    }
 
     ${props => props.theme.breakpoints.xs} {
         padding: 2rem;

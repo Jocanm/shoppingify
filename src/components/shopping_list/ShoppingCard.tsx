@@ -4,7 +4,7 @@ import { ProductsListContent } from './';
 import * as S from './ShoppingList.styles';
 import { NewProductCard } from '../materials';
 import { ProductDescription } from '../items';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const variants = {
     initial: { x: '100%' },
@@ -16,6 +16,7 @@ export const ShoppingCard = () => {
 
     const [showNewProduct, setShowNewProduct] = useState(false)
     const { showShoppingList } = useAppSelector().ui
+    const { activeProduct } = useAppSelector().categories
 
     const toggleShowNewProduct = () => {
         setShowNewProduct(!showNewProduct)
@@ -62,29 +63,14 @@ interface Props {
 
 export const Content = (props: Props) => {
 
-    const { activeProduct } = useAppSelector().categories
-
     return (
         <>
             {
-                activeProduct
-                    ? (
-                        <ProductDescription
-                            setShowNewProduct={props.setShowNewProduct}
-                        />
-                    )
-                    : !props.showNewProduct
-                        ? <ProductsListContent toggleShowNewProduct={props.toggleShowNewProduct} />
-                        : <NewProductCard toggleShowNewProduct={props.toggleShowNewProduct} />
-            }
-            {/* {
                 !props.showNewProduct
                     ? <ProductsListContent toggleShowNewProduct={props.toggleShowNewProduct} />
                     : <NewProductCard toggleShowNewProduct={props.toggleShowNewProduct} />
             }
-            <ProductDescription
-                setShowNewProduct={props.setShowNewProduct}
-            /> */}
+            <ProductDescription setShowNewProduct={props.setShowNewProduct}/>
         </>
     )
 }
