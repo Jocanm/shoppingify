@@ -9,10 +9,10 @@ export const PrivateLayoutContainer = styled.div`
     overflow: hidden;
 
     display:grid;
-    grid-template-columns: 3fr 32rem;
+    grid-template-columns: 3fr 28rem;
 
     ${props => props.theme.breakpoints.xl2} {
-        grid-template-columns: 3fr 30rem;
+        grid-template-columns: 3fr 26rem;
     }
 
     ${props => props.theme.breakpoints.lg} {

@@ -83,10 +83,10 @@ export const ProductDescriptionBox = styled(motion.div)`
     right:0;
     bottom:0;
     height:100%;
-    width:32rem;
+    width:28rem;
 
     ${props => props.theme.breakpoints.xl2}{
-        width:30rem;
+        width:26rem;
     }
 
     ${props => props.theme.breakpoints.lg}{
