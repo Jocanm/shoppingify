@@ -12,7 +12,9 @@ const StatisticsPage = () => {
 
     const actualYear = getActualDate('YYYY');
 
-    const { data, isLoading } = useGetTopStatisticsQuery(true)
+    const { data, isLoading } = useGetTopStatisticsQuery(true,{
+        refetchOnMountOrArgChange:true,
+    })
 
     if (isLoading) {
         return (

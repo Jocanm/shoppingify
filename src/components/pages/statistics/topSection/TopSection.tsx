@@ -7,7 +7,9 @@ import * as S from './TopSection.styles'
 
 export const TopSection = () => {
 
-    const { data } = useGetTopStatisticsQuery(true)
+    const { data } = useGetTopStatisticsQuery(true,{
+        refetchOnMountOrArgChange:true,
+    })
 
     return (
         <S.TopSectionContainer>
