@@ -10,12 +10,12 @@ type Data =
 
 export default async function hanlder(req: NextApiRequest, res: NextApiResponse<Data>) {
 
-    // const session = await getSession({ req });
+    const session = await getSession({ req });
 
-    // if (!session) {
-    //     res.status(401).json({ message: 'Not logged in' });
-    //     return;
-    // }
+    if (!session) {
+        res.status(401).json({ message: 'Not logged in' });
+        return;
+    }
 
     switch (req.method) {
         case 'GET':
@@ -28,9 +28,9 @@ export default async function hanlder(req: NextApiRequest, res: NextApiResponse<
 
 const getStatistics = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
-    // const session: any = await getSession({ req });
+    const session: any = await getSession({ req });
 
-    // const { id: userId = '' } = session.user || {};
+    const { id: userId = '' } = session.user || {};
 
     //Obtenemos todos los productos que cumplan con el filtro
     const products = await prisma.purchasedProduct.findMany({
@@ -39,7 +39,7 @@ const getStatistics = async (req: NextApiRequest, res: NextApiResponse<Data>) =>
                 {
                     purchase: {
                         AND: [
-                            { userId: '62c6fcbbe19e467b74728cb2' },
+                            { userId },
                             { state: { equals: 'completed' } },
                         ]
                     }
@@ -108,24 +108,24 @@ const getStatistics = async (req: NextApiRequest, res: NextApiResponse<Data>) =>
             const percentage = (product.count * 100) / totalForProductsPercentage;
             return {
                 ...product,
-                percentage
+                percentage: percentage.toFixed(1)
             }
         })
 
-    const topCategorysList = Object.values(topCategorys)
+    const topCategoriesList = Object.values(topCategorys)
         .sort((a, b) => b.count - a.count)
         .slice(0, 3)
         .map(category => {
             const percentage = (category.count * 100) / totalForCategoriesPercentage;
             return {
                 ...category,
-                percentage
+                percentage: percentage.toFixed(1)
             }
         })
 
     res.status(200).json({
         topProductsList,
-        topCategorysList,
+        topCategoriesList,
     })
 
 }

@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { toast } from '../../../shared/helpers'
-import { IPurchase } from '../../../shared/models'
+import { IPurchase, IStatistic } from '../../../shared/models'
 import { deleteProduct, removeFromCart, setActiveProduct, setDeleteProductModal, setShowProductDetails, toggleShowShoppingList } from '../reducers'
 
 
@@ -11,7 +11,7 @@ export const globalApi = createApi({
         baseUrl: '/api',
     }),
 
-    tagTypes: ['shopping', 'none'],
+    tagTypes: ['shopping', 'statistics', 'none'],
 
     endpoints: (builder) => ({
 
@@ -62,9 +62,25 @@ export const globalApi = createApi({
 
         }),
 
+        getTopStatistics: builder.query<IStatistic, any>({
+
+            query: () => `/statistics`,
+            providesTags: ['statistics'],
+            onQueryStarted: async (query, { queryFulfilled }) => {
+                try {
+                    await queryFulfilled
+                } catch (error) {
+                    console.error(error)
+                    toast('Error fetching statistics, plase try again later', 'error')
+                }
+            },
+
+        })
+
     }),
 
-    keepUnusedDataFor: 180
+    keepUnusedDataFor: 10800,
+    refetchOnMountOrArgChange: true,
 
 })
 
@@ -72,5 +88,6 @@ export const {
 
     useGetShoppingDetailsQuery,
     useDeleteProductMutation,
+    useGetTopStatisticsQuery,
 
 } = globalApi

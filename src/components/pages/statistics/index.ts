@@ -1,2 +1,1 @@
-export * from './topCategories'
-export * from './topProducts'
+export * from './topSection'

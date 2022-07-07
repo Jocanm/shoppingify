@@ -67,6 +67,22 @@ export const GlobalTitle = css`
 
 `
 
+export const GlobalSecondTitle = css`
+
+    font-size:1.5rem;
+    font-weight: 600;
+    
+    ${props => props.theme.breakpoints.lg} {
+        font-size: 1rem;
+    }
+    
+    ${props => props.theme.breakpoints.md} {
+        font-size: 1.2rem;
+    }
+
+
+`
+
 export const GlobalCard = css`
 
     ${NoVisivleScrollBar}

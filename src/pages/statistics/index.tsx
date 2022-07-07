@@ -1,9 +1,8 @@
-import { Progress } from '@nextui-org/react';
-import dayjs from 'dayjs';
 import { ReactElement } from 'react';
+import { TopSection } from '../../components/pages';
 import { PrivateLayout } from '../../layout';
 import { ViewTitle, ViewWrapper } from '../../shared';
-import { getActualDate,getFirstDay } from '../../shared/helpers';
+import { getActualDate } from '../../shared/helpers';
 
 const StatisticsPage = () => {
 
@@ -14,10 +13,7 @@ const StatisticsPage = () => {
 
             <ViewTitle>Statistics for {actualYear}</ViewTitle>
 
-            <Progress
-                value={50}
-                size='sm'
-            />
+            <TopSection/>
 
         </ViewWrapper>
     )
