@@ -109,7 +109,7 @@ export const startGetInitialData = createAsyncThunk(
 
         await dispatch(startGetCategories())
         await dispatch(startGetActivePurchase())
-        await dispatch(startGetAllPurchases())
+        dispatch(startGetAllPurchases())
 
     }
 )

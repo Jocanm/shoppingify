@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from '../../../shared/helpers';
 import { IActivePurchase, IPurchase, IPurchasedProduct } from '../../../shared/models';
 import { shopApi } from '../../services';
-import { addNewPurchase, CartItem, setActivePurchase, setCancelListModal, setCart, setDoneStatus, setPurchases } from '../reducers';
+import { addNewPurchase, CartItem, setActivePurchase, setCancelListModal, setCart, setCompleteListModal, setDoneStatus, setPurchases } from '../reducers';
 import { RootState } from '../store';
 
 
@@ -164,6 +164,7 @@ export const startUpdateShoppingListState = createAsyncThunk(
             const { data: purchase } = await shopApi.put<IPurchase>(`/shopping/purchaseState/${purchaseId}`, { state })
 
             dispatch(setCancelListModal(false))
+            dispatch(setCompleteListModal(false))
             dispatch(setActivePurchase(undefined as any))
             dispatch(setCart({}))
             dispatch(addNewPurchase(purchase))

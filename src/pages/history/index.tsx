@@ -3,10 +3,16 @@ import { useAppSelector } from '../../config/redux';
 import { PrivateLayout } from '../../layout';
 import { ViewTitle, ViewWrapper } from '../../shared';
 import { ReactElement } from 'react';
+import { VanillaLoader } from '../../components/ui/loders';
 
 const HistoryPage = () => {
 
     const { purchases } = useAppSelector().shopping
+    const { isGettingPurchases } = useAppSelector().ui
+
+    if(isGettingPurchases){
+        return <VanillaLoader/>
+    }
 
     return (
         <ViewWrapper>

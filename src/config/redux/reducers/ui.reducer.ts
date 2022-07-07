@@ -1,18 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { logout } from '../actions';
-import { startCreateNewProduct, startCreateShoppingList, startUpdateShoppingListData } from '../thunks';
+import { startCreateNewProduct, startCreateShoppingList, startGetAllPurchases, startUpdateShoppingListData } from '../thunks';
 
 interface InitialState {
     showMenu: boolean;
     showShoppingList: boolean;
     showOpaqueLoader: boolean;
     showProductDetails: boolean;
-    
+
     deleteProductModal: boolean;
     cancelListModal: boolean;
     completeListModal: boolean;
 
     editShoppingListMode: boolean;
+    isGettingPurchases: boolean;
 }
 
 const initialState: InitialState = {
@@ -26,6 +27,7 @@ const initialState: InitialState = {
     completeListModal: false,
 
     editShoppingListMode: false,
+    isGettingPurchases: false,
 }
 
 const uiReducer = createSlice({
@@ -107,6 +109,14 @@ const uiReducer = createSlice({
             })
             .addCase(startUpdateShoppingListData.fulfilled, (state) => {
                 state.showOpaqueLoader = false;
+            })
+
+            /* -------------------------------------------------- */
+            .addCase(startGetAllPurchases.pending, (state) => {
+                state.isGettingPurchases = true;
+            })
+            .addCase(startGetAllPurchases.fulfilled, (state) => {
+                state.isGettingPurchases = false;
             })
 
     }
