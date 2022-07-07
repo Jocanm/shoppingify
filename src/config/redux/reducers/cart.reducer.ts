@@ -65,9 +65,8 @@ const cartReducer = createSlice({
 
         },
 
-        removeFromCart: (state, { payload }: PayloadAction<IProduct>) => {
+        removeFromCart: (state, { payload:id }: PayloadAction<string>) => {
 
-            const { id } = payload;
             const { [id]: toRemove, ...rest } = state.cart;
             state.cart = rest;
             state.cartTotal = Object.keys(rest).length;

@@ -20,7 +20,7 @@ export const ShoppingDetailsProductItemStyles = styled.li<{ done: boolean }>`
     padding:0;
 
     display:grid;
-    grid-template-columns: 5fr .5fr;
+    grid-template-columns: 5fr .7fr;
 
     >*{
         padding:.8rem;
@@ -35,20 +35,20 @@ export const ShoppingDetailsProductItemStyles = styled.li<{ done: boolean }>`
         border-radius: 12px 0 0 12px;
         cursor: pointer;
         text-transform:capitalize;
-        flex:1;
+        display:flex;
+        align-items:center;
         :hover{
             background-color:#ededed;
         }
-        display:flex;
-        align-items:center;
     }
 
     span.quantity{
-        color:${props => props.theme.colors.orange};
         cursor: default;
         height:100%;
         border-radius: 0 12px 12px 0;
         text-align:center;
+        font-size:1rem;
+        color:${props => props.theme.colors.orange};
     }
 
     ${props => props.theme.breakpoints.md}{

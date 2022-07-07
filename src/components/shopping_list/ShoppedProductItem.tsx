@@ -28,7 +28,7 @@ export const ShoppedProductItem = (props: Props) => {
     }
 
     const onRemove = () => {
-        dispatch(removeFromCart(product))
+        dispatch(removeFromCart(product.id))
     }
 
     const onAddQuantity = () => {

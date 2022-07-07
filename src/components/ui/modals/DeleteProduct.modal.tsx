@@ -1,25 +1,23 @@
 import { Dialog } from '@mui/material'
-import React, { useState } from 'react'
-import { setDeleteProductModal, startDeleteProduct, useAppDispatch, useAppSelector } from '../../../config/redux'
+import { motion } from 'framer-motion'
+import { setDeleteProductModal, useAppDispatch, useAppSelector, useDeleteProductMutation } from '../../../config/redux'
 import { Button } from '../buttons'
 import * as S from './modals.styles'
-import { motion } from 'framer-motion';
 
 export const DeleteProductModal = () => {
 
-    const [isLoading, setIsLoading] = useState(false)
-
     const { deleteProductModal } = useAppSelector().ui
+    const { activeProduct } = useAppSelector().categories
+
     const dispatch = useAppDispatch()
+    const [deleteProduct, { isLoading }] = useDeleteProductMutation()
 
     const handleClose = () => {
         dispatch(setDeleteProductModal(false))
     }
 
-    const handleDelete = async () => {
-        setIsLoading(true)
-        await dispatch(startDeleteProduct())
-        setIsLoading(false)
+    const handleDelete = () => {
+        deleteProduct(activeProduct!.id)
     }
 
     return (
@@ -41,7 +39,7 @@ export const DeleteProductModal = () => {
                     </Button>
 
                     <Button
-                        bgColor="#EB5757" 
+                        bgColor="#EB5757"
                         onClick={handleDelete}
                         isLoading={isLoading}
                         as={motion.button}

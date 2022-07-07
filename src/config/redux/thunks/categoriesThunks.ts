@@ -47,30 +47,3 @@ export const startCreateNewProduct = createAsyncThunk(
 
     }
 )
-
-export const startDeleteProduct = createAsyncThunk(
-    'categories/startDeleteProduct',
-    async (any, { dispatch, getState }) => {
-
-        const { activeProduct } = (getState() as RootState).categories
-
-        try {
-
-            await shopApi.delete(`/product/${activeProduct?.id}`)
-
-            dispatch(setActiveProduct(undefined))
-            dispatch(setShowProductDetails(false))
-            dispatch(setDeleteProductModal(false))
-            dispatch(deleteProduct(activeProduct?.id as string))
-            dispatch(removeFromCart(activeProduct!))
-            dispatch(toggleShowShoppingList())
-
-            toast('Product deleted successfully', 'success')
-
-        } catch (error) {
-            console.error(error)
-            toast('Something went wrong, please try again', 'error')
-        }
-
-    }
-)
