@@ -2,6 +2,7 @@ import React from 'react'
 import * as S from './TopSection.styles'
 import { Progress } from '@nextui-org/react';
 import { IProductStatistic } from '../../../../shared/models';
+import CountUp from 'react-countup';
 
 interface Props {
     data: IProductStatistic[]
@@ -18,7 +19,15 @@ export const TopProducts = ({ data }: Props) => {
                     <S.TopSectionListItem key={product.id}>
                         <div className="details">
                             <span>{product.name}</span>
-                            <span>{percentage}</span>
+                            <span>
+                                <CountUp
+                                    start={0}
+                                    end={Number(percentage)}
+                                    duration={0.5}
+                                    decimal='.'
+                                    decimals={1}
+                                />%
+                            </span>
                         </div>
                         <Progress
                             value={Number(percentage)}
