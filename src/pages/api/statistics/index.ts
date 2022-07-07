@@ -33,11 +33,11 @@ const getStatistics = async (req: NextApiRequest, res: NextApiResponse<Data>) =>
 
     const { id: userId = '' } = session.user || {};
 
-    const { topCategoriesList, topProductsList } = await getTopUserStats('62c6fcbbe19e467b74728cb2')
+    const { topCategoriesList, topProductsList } = await getTopUserStats(userId)
 
-    const { monthlySummary } = await getUserMonthlySummaryStats('62c6fcbbe19e467b74728cb2')
+    const { monthlySummary } = await getUserMonthlySummaryStats(userId)
 
-    const { dailySummary } = await getUserDailySummaryStats('62c6fcbbe19e467b74728cb2')
+    const { dailySummary } = await getUserDailySummaryStats(userId)
 
     res.status(200).json({
         topProductsList,
