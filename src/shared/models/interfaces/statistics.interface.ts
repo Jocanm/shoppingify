@@ -1,6 +1,12 @@
 import { ICategory } from "./category.interface";
 import { IProduct } from "./product.interface";
 
+export interface IStatistic {
+    topProductsList: IProductStatistic[];
+    topCategoriesList: ICategoryStatistic[];
+    monthlySummary: IMonthlySummary[];
+    dailySummary: IDailySummary[];
+}
 export interface IProductStatistic {
     count: number;
     percentage: string;
@@ -13,7 +19,12 @@ export interface ICategoryStatistic {
     category: ICategory;
 }
 
-export interface IStatistic {
-    topProductsList: IProductStatistic[];
-    topCategoriesList: ICategoryStatistic[];
+export interface IMonthlySummary {
+    month: string;
+    quantity: number;
+}
+
+export interface IDailySummary {
+    day: string;
+    quantity: number;
 }

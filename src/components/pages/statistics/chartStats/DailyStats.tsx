@@ -1,34 +1,35 @@
+import React from 'react'
 import {
     CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis,
     YAxis
 } from "recharts";
 import { colors } from '../../../../shared';
-import { IMonthlySummary } from '../../../../shared/models';
-import { ChartContainer } from './ChartStats.styles';
+import { getActualDate } from '../../../../shared/helpers';
+import { IDailySummary } from '../../../../shared/models';
+import { ChartContainer } from './ChartStats.styles'
 
-interface Props {
-    monthlySummary: IMonthlySummary[]
+interface Props{
+    dailySummary: IDailySummary[]
 }
 
-export const MonthlyStats = ({ monthlySummary }: Props) => {
+export const DailyStats = ({dailySummary}:Props) => {
 
-    console.log(monthlySummary);
-
+    const actualMonth = getActualDate('MMMM');
+    
     return (
         <ChartContainer>
 
-            <h2>Monthly Summary</h2>
+            <h2>Daily Summary - {actualMonth}</h2>
 
             <ResponsiveContainer
                 height={300}
             >
                 <LineChart
-                    data={monthlySummary}
+                    data={dailySummary}
                     margin={{ top: 5, right: 5, bottom: 5, left: 5 }}
                 >
-                    {/* <CartesianGrid stroke="#ccc" /> */}
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="month" />
+                    <XAxis dataKey="day" />
                     <YAxis />
                     <Tooltip />
                     <Legend />
@@ -41,6 +42,7 @@ export const MonthlyStats = ({ monthlySummary }: Props) => {
                     />
                 </LineChart>
             </ResponsiveContainer>
+
         </ChartContainer>
     )
 }

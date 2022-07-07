@@ -5,13 +5,16 @@ interface Props {
     size?: string
     color?: string
     isOpaque?: boolean
+    message?: string
 }
 
-export const VanillaLoader: FC<Props> = ({ color, size }) => {
+export const VanillaLoader: FC<Props> = ({ color, size, message }) => {
     return (
         <div
             style={{
                 display: 'flex',
+                flexDirection: 'column',
+                gap: '1rem',
                 justifyContent: 'center',
                 alignItems: 'center',
                 height: '100%',
@@ -23,6 +26,7 @@ export const VanillaLoader: FC<Props> = ({ color, size }) => {
                 height={size}
                 color={color}
             />
+            {message && <p>{message}</p>}
         </div>
     )
 }

@@ -80,7 +80,6 @@ export const globalApi = createApi({
     }),
 
     keepUnusedDataFor: 10800,
-    refetchOnMountOrArgChange: true,
 
 })
 

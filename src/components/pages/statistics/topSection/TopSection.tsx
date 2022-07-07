@@ -7,23 +7,15 @@ import * as S from './TopSection.styles'
 
 export const TopSection = () => {
 
-    const { data, isLoading } = useGetTopStatisticsQuery(true)
-
-    if (isLoading) {
-        return <VanillaLoader />
-    }
-
-    if (!data) {
-        return <VanillaLoader />
-    }
+    const { data } = useGetTopStatisticsQuery(true)
 
     return (
         <S.TopSectionContainer>
             <TopProducts
-                data={data.topProductsList}
+                data={data?.topProductsList || []}
             />
-            <TopCategories 
-                data={data.topCategoriesList}
+            <TopCategories
+                data={data?.topCategoriesList || []}
             />
         </S.TopSectionContainer>
     )
