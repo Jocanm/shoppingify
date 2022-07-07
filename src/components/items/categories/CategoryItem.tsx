@@ -5,9 +5,16 @@ import * as S from './CategoriesList.styles'
 
 
 export const CategoryItem = ({ name, products }: ICategory) => {
+
+    const numberOfItems = products.length
+
+    if (numberOfItems === 0) {
+        return null
+    }
+
     return (
         <S.CategoryItemBox>
-            <h2>{name.toLowerCase()}</h2>
+            <h2>{name.toLowerCase()} ({numberOfItems})</h2>
             <ProductsList
                 products={products}
             />

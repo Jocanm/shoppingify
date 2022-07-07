@@ -1,13 +1,25 @@
-import React from 'react'
-import { Box } from '../../components';
-import { PrivateLayout } from '../../layout'
+import { Progress } from '@nextui-org/react';
+import dayjs from 'dayjs';
 import { ReactElement } from 'react';
+import { PrivateLayout } from '../../layout';
+import { ViewTitle, ViewWrapper } from '../../shared';
+import { getActualDate,getFirstDay } from '../../shared/helpers';
 
 const StatisticsPage = () => {
+
+    const actualYear = getActualDate('YYYY');
+
     return (
-        <Box fontSize='2rem' centerAll width='100%' height='100vh'>
-            Coming Soon :)
-        </Box>
+        <ViewWrapper>
+
+            <ViewTitle>Statistics for {actualYear}</ViewTitle>
+
+            <Progress
+                value={50}
+                size='sm'
+            />
+
+        </ViewWrapper>
     )
 }
 
