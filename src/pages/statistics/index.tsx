@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { TopSection } from '../../components/pages';
+import { MonthlyStats, TopSection } from '../../components/pages';
 import { PrivateLayout } from '../../layout';
 import { ViewTitle, ViewWrapper } from '../../shared';
 import { getActualDate } from '../../shared/helpers';
@@ -14,6 +14,8 @@ const StatisticsPage = () => {
             <ViewTitle>Statistics for {actualYear}</ViewTitle>
 
             <TopSection/>
+
+            <MonthlyStats/>
 
         </ViewWrapper>
     )
