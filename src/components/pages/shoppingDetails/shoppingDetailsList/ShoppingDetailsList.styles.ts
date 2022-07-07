@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { globalWhiteCard } from '../../../../shared';
 import * as S from '../../../items/categories/CategoriesList.styles';
 import { ProductItemBox, ProductListBox } from '../../../items/products/ProductsList.styles';
+import { motion } from 'framer-motion';
 
 
 export const ShoppingDetailsListWrapper = styled(S.CategoryListContainer)``
@@ -11,7 +12,7 @@ export const ShoppingDetailsCategorieList = styled(S.CategoryItemBox)`
 
 export const ShoppingDetailsProducListStyles = styled(ProductListBox)``
 
-export const ShoppingDetailsProductItemStyles = styled.li<{ done: boolean }>`
+export const ShoppingDetailsProductItemStyles = styled(motion.li) <{ done: boolean }>`
 
     ${globalWhiteCard}
 

@@ -19,12 +19,12 @@ export const Menu = () => {
         dispatch(closeMenu())
     }
 
-    const onLogout = () => {
-        dispatch(logout())
-        signOut({
+    const onLogout = async() => {
+        await signOut({
             redirect: false,
             callbackUrl: '/auth/login'
         })
+        dispatch(logout())
     }
 
     return (

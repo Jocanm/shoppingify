@@ -12,10 +12,11 @@ export const ShoppingDetailsProductsList = ({ purchasedProducts }: Props) => {
     return (
         <S.ShoppingDetailsProducListStyles>
             {
-                purchasedProducts.map(purchasedProduct => (
+                purchasedProducts.map((purchasedProduct,index) => (
                     <ShoppingDetailsProductItem
                         key={purchasedProduct.id}
-                        {...purchasedProduct}
+                        purchasedProduct={purchasedProduct}
+                        position={index}
                     />
                 ))
             }
