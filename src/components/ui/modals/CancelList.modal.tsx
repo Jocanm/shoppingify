@@ -7,6 +7,7 @@ export const CancelListModal = () => {
 
     const dispatch = useAppDispatch()
     const { cancelListModal } = useAppSelector().ui
+    const { activePurchase } = useAppSelector().shopping
 
     const [updateState, { isLoading }] = useUpdatePurchaseStateMutation()
 
@@ -15,7 +16,13 @@ export const CancelListModal = () => {
     }
 
     const onCancelList = () => {
-        updateState('cancelled')
+
+        const { purchase } = activePurchase || {}
+
+        updateState({
+            state: 'cancelled',
+            id: purchase!.id,
+        })
     }
 
     return (

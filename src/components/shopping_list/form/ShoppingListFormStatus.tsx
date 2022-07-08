@@ -6,6 +6,7 @@ export const ShoppingListFormStatus = () => {
 
     const dispatch = useAppDispatch()
     const { cart } = useAppSelector().cart
+    const { activePurchase } = useAppSelector().shopping
 
     const [updateState, { isLoading }] = useUpdatePurchaseStateMutation()
 
@@ -18,7 +19,12 @@ export const ShoppingListFormStatus = () => {
         const isAllChecked = Object.values(cart).every(item => item.done)
 
         if (isAllChecked) {
-            updateState('completed')
+            const { purchase } = activePurchase || {}
+
+            updateState({
+                state: 'cancelled',
+                id: purchase!.id,
+            })
         } else {
             dispatch(setCompleteListModal(true))
         }

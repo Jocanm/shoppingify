@@ -2,7 +2,7 @@
 import { ArrowRightAlt } from '@mui/icons-material'
 import { AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
-import { addToCart, setDeleteProductModal, setShowShopingList, useAppDispatch, useAppSelector } from '../../../config/redux'
+import { addToCart, setDeleteProductModal, setShowProductForm, setShowShopingList, useAppDispatch, useAppSelector } from '../../../config/redux'
 import { closeProductDetails } from '../../../config/redux/actions'
 import { useIsLarge } from '../../../shared/hooks'
 import { IProduct } from '../../../shared/models'

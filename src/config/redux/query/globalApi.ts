@@ -77,13 +77,9 @@ export const globalApi = createApi({
 
         }),
 
-        updatePurchaseState: builder.mutation<IPurchase, 'cancelled' | 'completed'>({
+        updatePurchaseState: builder.mutation<IPurchase, { state: 'cancelled' | 'completed', id: string }>({
 
-            query: (state) => {
-
-                const { activePurchase } = getReduxState().shopping
-
-                const { id } = activePurchase!.purchase
+            query: ({ id, state }) => {
 
                 return {
                     url: `/shopping/purchaseState/${id}`,

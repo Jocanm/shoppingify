@@ -6,6 +6,8 @@ import * as S from './modals.styles';
 export const CompleteListModal = () => {
 
     const { completeListModal } = useAppSelector().ui
+    const { activePurchase } = useAppSelector().shopping
+
     const dispatch = useAppDispatch()
 
     const [updateState, { isLoading }] = useUpdatePurchaseStateMutation()
@@ -15,7 +17,12 @@ export const CompleteListModal = () => {
     }
 
     const onComplete = () => {
-        updateState('completed')
+        const { purchase } = activePurchase || {}
+
+        updateState({
+            state: 'cancelled',
+            id: purchase!.id,
+        })
     }
 
     return (
