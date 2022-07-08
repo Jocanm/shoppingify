@@ -8,7 +8,7 @@ import * as S from './modals.styles'
 export const DeleteProductModal = () => {
 
     const { deleteProductModal } = useAppSelector().ui
-    const { email } = useAppSelector().auth.user
+    const { email } = useAppSelector().auth.user || {}
     const { activeProduct } = useAppSelector().categories
 
     const dispatch = useAppDispatch()
