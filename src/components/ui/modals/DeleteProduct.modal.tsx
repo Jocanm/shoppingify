@@ -1,12 +1,14 @@
 import { Dialog } from '@mui/material'
 import { motion } from 'framer-motion'
 import { setDeleteProductModal, useAppDispatch, useAppSelector, useDeleteProductMutation } from '../../../config/redux'
+import { toast } from '../../../shared/helpers'
 import { Button } from '../buttons'
 import * as S from './modals.styles'
 
 export const DeleteProductModal = () => {
 
     const { deleteProductModal } = useAppSelector().ui
+    const { email } = useAppSelector().auth.user
     const { activeProduct } = useAppSelector().categories
 
     const dispatch = useAppDispatch()
@@ -17,6 +19,11 @@ export const DeleteProductModal = () => {
     }
 
     const handleDelete = () => {
+        if(email === 'demo@demo.demo'){
+            handleClose()
+            toast('Demo user is not allowed to delete products.','error')
+            return;
+        }
         deleteProduct(activeProduct!.id)
     }
 

@@ -32,7 +32,15 @@ export const CategoriesList = () => {
         dispatch(setShowProductForm(true))
     }
 
-    if (categories.length) {
+    const numberOfProducts = useMemo(() => {
+        return categories.reduce((acc, { products }) => {
+            return acc + products.length
+        }, 0)
+    },[categories])
+
+    console.log(numberOfProducts)
+
+    if (numberOfProducts === 0) {
         return (
             <S.NoProductsBox>
                 <span>

@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { ArrowRightAlt } from '@mui/icons-material'
 import { AnimatePresence } from 'framer-motion'
+import { useState } from 'react'
 import { addToCart, setDeleteProductModal, setShowShopingList, useAppDispatch, useAppSelector } from '../../../config/redux'
 import { closeProductDetails } from '../../../config/redux/actions'
 import { useIsLarge } from '../../../shared/hooks'
