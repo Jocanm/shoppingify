@@ -1,4 +1,4 @@
-import { FormatListBulleted, InsertChartOutlined, PersonOutline, Replay } from "@mui/icons-material";
+import { FormatListBulleted, InsertChartOutlined, Replay } from "@mui/icons-material";
 
 export interface RouteItem {
     path: string;
@@ -22,11 +22,6 @@ export const routesList: RouteItem[] = [
         path: '/statistics',
         name: 'statistics',
         icon: <InsertChartOutlined />
-    },
-    {
-        path: '/profile',
-        name: 'profile',
-        icon: <PersonOutline />
     }
 
 ]

@@ -1,18 +1,18 @@
-import { useState } from 'react';
-import { useAppSelector } from '../../config/redux';
+import { motion } from 'framer-motion';
+import { setShowProductForm, useAppDispatch, useAppSelector } from '../../config/redux';
+import { ProductDescription } from '../items';
+import { NewProductCard } from '../materials';
 import { ProductsListContent } from './';
 import * as S from './ShoppingList.styles';
-import { NewProductCard } from '../materials';
-import { ProductDescription } from '../items';
-import { motion, AnimatePresence } from 'framer-motion';
 
 export const ShoppingCard = () => {
 
-    const [showNewProduct, setShowNewProduct] = useState(false)
-    const { showShoppingList, showProductDetails } = useAppSelector().ui
+    const { showShoppingList, showProductDetails, showProductForm } = useAppSelector().ui
+
+    const dispatch = useAppDispatch()
 
     const toggleShowNewProduct = () => {
-        setShowNewProduct(!showNewProduct)
+        dispatch(setShowProductForm(!showProductForm))
     }
 
     const variants = {
@@ -40,9 +40,8 @@ export const ShoppingCard = () => {
                 showShoppingList={showShoppingList}
             >
                 <Content
-                    showNewProduct={showNewProduct}
+                    showProductForm={showProductForm}
                     toggleShowNewProduct={toggleShowNewProduct}
-                    setShowNewProduct={setShowNewProduct}
                 />
 
             </S.ShoppingListContainer>
@@ -56,9 +55,8 @@ export const ShoppingCard = () => {
             >
 
                 <Content
-                    showNewProduct={showNewProduct}
+                    showProductForm={showProductForm}
                     toggleShowNewProduct={toggleShowNewProduct}
-                    setShowNewProduct={setShowNewProduct}
                 />
 
             </S.SmallViewShoppingListContainer>
@@ -68,8 +66,7 @@ export const ShoppingCard = () => {
 
 interface Props {
     toggleShowNewProduct: () => void
-    setShowNewProduct: (showNewProduct: boolean) => void;
-    showNewProduct: boolean;
+    showProductForm: boolean;
 }
 
 export const Content = (props: Props) => {
@@ -77,11 +74,11 @@ export const Content = (props: Props) => {
     return (
         <>
             {
-                !props.showNewProduct
+                !props.showProductForm
                     ? <ProductsListContent toggleShowNewProduct={props.toggleShowNewProduct} />
                     : <NewProductCard toggleShowNewProduct={props.toggleShowNewProduct} />
             }
-            <ProductDescription setShowNewProduct={props.setShowNewProduct} />
+            <ProductDescription />
         </>
     )
 }

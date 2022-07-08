@@ -1,29 +1,21 @@
 import { Dialog } from '@mui/material';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
-import { setCancelListModal, startUpdateShoppingListState, useAppDispatch, useAppSelector } from '../../../config/redux';
+import { setCancelListModal, useAppDispatch, useAppSelector, useUpdatePurchaseStateMutation } from '../../../config/redux';
 import { Button } from '../buttons';
 import * as S from './modals.styles';
 
 export const CancelListModal = () => {
 
-    const [isLoading, setIsLoading] = useState(false)
     const dispatch = useAppDispatch()
     const { cancelListModal } = useAppSelector().ui
 
-    const router = useRouter()
+    const [updateState, { isLoading }] = useUpdatePurchaseStateMutation()
 
     const closeModal = () => {
         dispatch(setCancelListModal(false))
     }
 
-    const onCancelList = async () => {
-        setIsLoading(true)
-        await dispatch(startUpdateShoppingListState('cancelled'))
-        setIsLoading(false)
-        // if (!(['/', '/profile'].includes(router.asPath))) {
-        //     router.push('/')
-        // }
+    const onCancelList = () => {
+        updateState('cancelled')
     }
 
     return (

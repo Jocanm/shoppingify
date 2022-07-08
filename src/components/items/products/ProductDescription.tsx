@@ -9,11 +9,7 @@ import { Button } from '../../ui/buttons'
 import { DeleteProductModal } from '../../ui/modals'
 import * as S from './ProductsList.styles'
 
-interface Props {
-    setShowNewProduct: (show: boolean) => void
-}
-
-export const ProductDescription = ({ setShowNewProduct }: Props) => {
+export const ProductDescription = () => {
 
     const { showProductDetails } = useAppSelector().ui
 
@@ -21,13 +17,13 @@ export const ProductDescription = ({ setShowNewProduct }: Props) => {
         <AnimatePresence>
             {
                 showProductDetails &&
-                <Content setShowNewProduct={setShowNewProduct} />
+                <Content />
             }
         </AnimatePresence>
     )
 }
 
-const Content = ({ setShowNewProduct }: Props) => {
+const Content = () => {
 
     const dispatch = useAppDispatch()
     const { activeProduct } = useAppSelector().categories
@@ -41,7 +37,7 @@ const Content = ({ setShowNewProduct }: Props) => {
     const onAddToCart = () => {
         dispatch(addToCart(activeProduct as IProduct))
         closeProductDetails()
-        setShowNewProduct(false)
+        dispatch(setShowProductForm(false))
     }
 
     const onDeleteProduct = () => {

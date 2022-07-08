@@ -1,12 +1,15 @@
 import { useMemo } from 'react'
-import { useAppSelector } from '../../../config/redux'
+import { setShowProductForm, useAppDispatch, useAppSelector } from '../../../config/redux'
 import { useFilterContext } from '../../../shared/context'
+import { Button } from '../../ui/buttons'
 import * as S from './CategoriesList.styles'
 import { CategoryItem } from './CategoryItem'
+import { motion } from 'framer-motion';
 
 export const CategoriesList = () => {
 
     const { categories } = useAppSelector().categories
+    const dispatch = useAppDispatch()
 
     const { productName } = useFilterContext()
 
@@ -24,6 +27,30 @@ export const CategoriesList = () => {
         return newCategories
 
     }, [productName, categories])
+
+    const onOpen = () => {
+        dispatch(setShowProductForm(true))
+    }
+
+    if (categories.length) {
+        return (
+            <S.NoProductsBox>
+                <span>
+                    {"It's seems you don't have any products."}
+                </span>
+                <Button
+                    as={motion.button}
+                    // whileTap={{ scale: 0.9 }}
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.2 }}
+                    type="button"
+                    onClick={onOpen}
+                >
+                    Add a new product
+                </Button>
+            </S.NoProductsBox>
+        )
+    }
 
     return (
         <S.CategoryListContainer>

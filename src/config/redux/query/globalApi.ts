@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { toast } from '../../../shared/helpers'
+import { getReduxState, toast } from '../../../shared/helpers'
 import { IPurchase, IStatistic } from '../../../shared/models'
-import { deleteProduct, removeFromCart, setActiveProduct, setDeleteProductModal, setShowProductDetails, toggleShowShoppingList } from '../reducers'
+import { addNewPurchase, deleteProduct, removeFromCart, setActiveProduct, setActivePurchase, setCancelListModal, setCart, setCompleteListModal, setDeleteProductModal, setShowProductDetails, toggleShowShoppingList } from '../reducers'
 
 
 export const globalApi = createApi({
@@ -75,6 +75,48 @@ export const globalApi = createApi({
                 }
             },
 
+        }),
+
+        updatePurchaseState: builder.mutation<IPurchase, 'cancelled' | 'completed'>({
+
+            query: (state) => {
+
+                const { activePurchase } = getReduxState().shopping
+
+                const { id } = activePurchase!.purchase
+
+                return {
+                    url: `/shopping/purchaseState/${id}`,
+                    method: 'PUT',
+                    body: { state }
+                }
+            },
+
+            invalidatesTags: ['statistics'],
+
+            onQueryStarted: async (state, { dispatch, queryFulfilled }) => {
+
+
+                try {
+
+                    const { data: purchase } = await queryFulfilled;
+
+                    dispatch(setCancelListModal(false))
+                    dispatch(setCompleteListModal(false))
+                    dispatch(setActivePurchase(undefined as any))
+                    dispatch(setCart({}))
+                    dispatch(addNewPurchase(purchase))
+
+                    toast(`Shopping list ${state}`)
+
+                } catch (error) {
+                    console.error(error)
+                    toast('Something went wrong, please try again', 'error')
+                }
+
+
+            }
+
         })
 
     }),
@@ -88,5 +130,6 @@ export const {
     useGetShoppingDetailsQuery,
     useDeleteProductMutation,
     useGetTopStatisticsQuery,
+    useUpdatePurchaseStateMutation,
 
 } = globalApi

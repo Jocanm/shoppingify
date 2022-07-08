@@ -1,32 +1,24 @@
-import { useRouter } from 'next/router'
-import { useState } from 'react'
-import { setCancelListModal, setCompleteListModal, startUpdateShoppingListState, useAppDispatch, useAppSelector } from '../../../config/redux'
+import { setCancelListModal, setCompleteListModal, useAppDispatch, useAppSelector, useUpdatePurchaseStateMutation } from '../../../config/redux'
 import { Button } from '../../ui/buttons'
 import { CancelListModal, CompleteListModal } from '../../ui/modals'
 import * as S from '../ShoppingList.styles'
-
 export const ShoppingListFormStatus = () => {
 
-    const [isLoading, setIsLoading] = useState(false)
     const dispatch = useAppDispatch()
     const { cart } = useAppSelector().cart
 
-    const router = useRouter()
+    const [updateState, { isLoading }] = useUpdatePurchaseStateMutation()
 
     const openModal = () => {
         dispatch(setCancelListModal(true))
     }
 
     const onComplete = async () => {
+
         const isAllChecked = Object.values(cart).every(item => item.done)
 
         if (isAllChecked) {
-            setIsLoading(true)
-            await dispatch(startUpdateShoppingListState('completed'))
-            setIsLoading(false)
-            // if (!(['/', '/profile'].includes(router.asPath))) {
-            //     router.push('/')
-            // }
+            updateState('completed')
         } else {
             dispatch(setCompleteListModal(true))
         }

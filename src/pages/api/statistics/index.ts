@@ -1,9 +1,6 @@
-import { Category, Product } from '@prisma/client';
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/react';
-import { prisma } from '../../../lib/prisma';
 import { getTopUserStats, getUserDailySummaryStats, getUserMonthlySummaryStats } from '../../../shared/database';
-import { getFirstDay } from '../../../shared/helpers';
 
 type Data =
     | { message: string }

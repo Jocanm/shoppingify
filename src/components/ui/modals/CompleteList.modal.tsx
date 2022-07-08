@@ -1,29 +1,21 @@
 import { Dialog } from '@mui/material';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
-import { setCompleteListModal, startUpdateShoppingListState, useAppDispatch, useAppSelector } from '../../../config/redux';
+import { setCompleteListModal, useAppDispatch, useAppSelector, useUpdatePurchaseStateMutation } from '../../../config/redux';
 import { Button } from '../buttons';
 import * as S from './modals.styles';
 
 export const CompleteListModal = () => {
 
-    const [isLoading, setisLoading] = useState(false)
     const { completeListModal } = useAppSelector().ui
     const dispatch = useAppDispatch()
 
-    const { push, asPath } = useRouter()
+    const [updateState, { isLoading }] = useUpdatePurchaseStateMutation()
 
     const handleClose = () => {
         dispatch(setCompleteListModal(false))
     }
 
-    const onComplete = async () => {
-        setisLoading(true)
-        await dispatch(startUpdateShoppingListState('completed'))
-        setisLoading(false)
-        // if (!(['/', '/profile'].includes(asPath))) {
-        //     push('/')
-        // }
+    const onComplete = () => {
+        updateState('completed')
     }
 
     return (
