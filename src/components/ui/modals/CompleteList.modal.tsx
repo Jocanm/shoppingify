@@ -20,7 +20,7 @@ export const CompleteListModal = () => {
         const { purchase } = activePurchase || {}
 
         updateState({
-            state: 'cancelled',
+            state: 'completed',
             id: purchase!.id,
         })
     }

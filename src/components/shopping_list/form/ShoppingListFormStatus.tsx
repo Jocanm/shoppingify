@@ -22,7 +22,7 @@ export const ShoppingListFormStatus = () => {
             const { purchase } = activePurchase || {}
 
             updateState({
-                state: 'cancelled',
+                state: 'completed',
                 id: purchase!.id,
             })
         } else {
