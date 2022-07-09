@@ -131,19 +131,6 @@ export const DemoAccountMessage = styled.article<{ isLoginPage: boolean }>`
 
     ${props => props.theme.breakpoints.sm} {
         display: none;
-        position: absolute;
-        top: 2rem;
-        width: auto;
-        padding: 1.5rem 3rem;
-    }
-
-    ${props => props.theme.breakpoints.xs} {
-        padding: 1.5rem;
-    }
-
-    ${props => props.theme.breakpoints.xxs} {
-        padding: 1.5rem;
-        top: 5rem;
     }
 
 `
