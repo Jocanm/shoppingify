@@ -1,5 +1,6 @@
 import { createAction } from "@reduxjs/toolkit";
 import { IProduct } from "../../../shared/models";
+import { globalApi } from "../query";
 import { setActiveProduct, setShowProductDetails, setShowShopingList } from "../reducers";
 import { store } from "../store";
 

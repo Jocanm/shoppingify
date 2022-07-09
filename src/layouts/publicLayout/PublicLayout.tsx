@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { FC, useEffect, useMemo } from 'react';
 import { Box } from '../../components';
-import { useAppDispatch } from '../../config/redux';
+import { globalApi, useAppDispatch } from '../../config/redux';
 import { CredentialsTypes, startOatuhSignIn } from '../../config/redux/thunks';
 import * as S from './PublicLayout.styles';
 import { useSession } from 'next-auth/react';
@@ -36,6 +36,10 @@ export const PublicLayout: FC<Props> = ({ children, description, title, viewTitl
             push('/')
         }
     }, [status, push])
+
+    useEffect(() => {
+        dispatch(globalApi.util.resetApiState())
+    },[])
 
     if (status === 'authenticated') {
         return null

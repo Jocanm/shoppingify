@@ -1,11 +1,10 @@
 import { Home, Logout } from '@mui/icons-material'
+import { AnimatePresence, motion } from 'framer-motion'
 import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/router'
-import { closeMenu, useAppDispatch, useAppSelector } from '../../config/redux'
+import { closeMenu, globalApi, useAppDispatch, useAppSelector } from '../../config/redux'
 import { logout } from '../../config/redux/actions'
 import * as S from './Menu.styles'
-import { AnimatePresence, motion } from 'framer-motion';
-import { nanoid } from '@reduxjs/toolkit';
 
 export const Menu = () => {
 

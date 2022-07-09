@@ -8,8 +8,12 @@ import * as S from './TopSection.styles'
 export const TopSection = () => {
 
     const { data } = useGetTopStatisticsQuery(true,{
-        refetchOnMountOrArgChange:true,
+        // refetchOnMountOrArgChange:true,
     })
+
+    if(!data?.topCategoriesList?.length || !data?.topProductsList?.length){
+        return null
+    }
 
     return (
         <S.TopSectionContainer>
