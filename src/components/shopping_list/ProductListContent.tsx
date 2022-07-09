@@ -12,6 +12,7 @@ import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ShoppingListForm } from "./form/ShoppingListForm";
 import { useDispatch } from 'react-redux';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface Props {
     toggleShowNewProduct: () => void
@@ -20,6 +21,7 @@ interface Props {
 export const ProductsListContent = ({ toggleShowNewProduct }: Props) => {
 
     const { cartTotal } = useAppSelector().cart
+    const { showProductForm } = useAppSelector().ui
     const dispatch = useDispatch()
 
     const toggleEditMode = () => {
@@ -27,40 +29,56 @@ export const ProductsListContent = ({ toggleShowNewProduct }: Props) => {
     }
 
     return (
-        <S.ProductsInCart>
-            <Box
-                className="products-list-box"
-                flex flexColumn gap="1.2rem"
-                style={{ overflow: 'auto' }}
-            >
-                <div className='img-container'>
-                    <S.ShoppingImageCard>
-                        <img
-                            className='shopping-image'
-                            src="/assets/bottle.svg"
-                            alt="bottle"
-                        />
-                        <div className="box-content">
-                            <span>Didn’t find what you need?</span>
-                            <Button onClick={toggleShowNewProduct}>
-                                Add Item
-                            </Button>
+        <AnimatePresence>
+            {
+                showProductForm ||
+                <S.ProductsInCart
+                    as={motion.div}
+                    animate={{ x: 0 }}
+                    initial={{ x: 0 }}
+                    exit={{ x: '110%' }}
+                    transition={{
+                        duration: 0,
+                        delay: 0.3,
+                    }}
+                    key="productsListContent"
+                >
+                    <Box
+                        className="products-list-box"
+                        flex flexColumn gap="1.2rem"
+                        style={{ overflow: 'auto' }}
+                    >
+                        <div className='img-container'>
+                            <S.ShoppingImageCard>
+                                <img
+                                    className='shopping-image'
+                                    src="/assets/bottle.svg"
+                                    alt="bottle"
+                                />
+                                <div className="box-content">
+                                    <span>Didn’t find what you need?</span>
+                                    <Button onClick={toggleShowNewProduct}>
+                                        Add Item
+                                    </Button>
+                                </div>
+                            </S.ShoppingImageCard>
                         </div>
-                    </S.ShoppingImageCard>
-                </div>
 
-                {
-                    cartTotal
-                        ? <ShoppingProductsList
-                            toggleEditMode={toggleEditMode}
-                        />
-                        : <EmptyCart />
-                }
-            </Box>
+                        {
+                            cartTotal
+                                ? <ShoppingProductsList
+                                    toggleEditMode={toggleEditMode}
+                                />
+                                : <EmptyCart />
+                        }
+                    </Box>
 
-            <ShoppingListForm />
+                    <ShoppingListForm />
 
-        </S.ProductsInCart>
+                </S.ProductsInCart>
+            }
+
+        </AnimatePresence>
     )
 }
 

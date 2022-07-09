@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { CustomScrollBar, NoVisivleScrollBar } from '../../../shared';
+import { CustomScrollBar, GlobalFixedCard, NoVisivleScrollBar } from '../../../shared';
 
 
 export const NewMaterialCardBox = styled.div`
@@ -39,6 +39,9 @@ export const NewMaterialCardBox = styled.div`
             font-weight: 700;
         }
     }
+
+    ${GlobalFixedCard}
+    z-index:10;
 
 `
 

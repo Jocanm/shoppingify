@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useAppSelector, useAppDispatch, startCreateNewProduct } from '../../../config/redux';
 import { patterns } from '../../../shared';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface Props {
     toggleShowNewProduct: () => void
@@ -34,7 +34,7 @@ export const NewProductCard = ({ toggleShowNewProduct }: Props) => {
     const dispatch = useAppDispatch()
 
     const { categories } = useAppSelector().categories;
-    const { showOpaqueLoader } = useAppSelector().ui;
+    const { showOpaqueLoader, showProductForm } = useAppSelector().ui;
 
     const selectedCategory = methods.watch('category')
 
@@ -49,66 +49,78 @@ export const NewProductCard = ({ toggleShowNewProduct }: Props) => {
     }
 
     return (
-        <S.NewMaterialCardBox>
-
-            <Form methods={methods} className="form-container">
-
-                <p>Add new product</p>
-
-                <MyInput
-                    name='name'
-                    label='Name'
-                    placeholder="Enter a name"
-                />
-                <MyInput
-                    name='note'
-                    label='Note (optional)'
-                    textarea
-                    placeholder="Enter a note"
-                />
-                <MyInput
-                    name='image'
-                    label='Image (optional)'
-                    placeholder="Enter a url"
-                />
-
-                <Box flex flexColumn gap="1.5rem">
-                    <MyInput
-                        name='category'
-                        label='Category'
-                        placeholder="Enter a category or choose one below"
-                    />
-
-                    <S.CategoriesList>
-                        {
-                            categories.map(cat => (
-                                <S.CategoryItem
-                                    onClick={() => onSelectCategory(cat.name)}
-                                    isSelected={selectedCategory?.toLowerCase() === cat.name.toLowerCase()}
-                                    key={cat.id}
-                                >
-                                    {cat.name.toLowerCase()}
-                                </S.CategoryItem>
-                            ))
-                        }
-                    </S.CategoriesList>
-                </Box>
-
-            </Form>
-
-            <S.ButtonContainer>
-                <Button onClick={toggleShowNewProduct}>
-                    Cancel
-                </Button>
-                <Button
-                    onClick={methods.handleSubmit(onSubmit)} disabled={showOpaqueLoader} as={motion.button}
-                    whileTap={{ scale: 0.9 }}
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.2 }}
+        <AnimatePresence>
+            {
+                showProductForm &&
+                <S.NewMaterialCardBox
+                    as={motion.div}
+                    animate={{ x: 0 }}
+                    initial={{ x: '110%' }}
+                    exit={{ x: '110%' }}
+                    transition={{ duration: 0.3 }}
+                    key="newProductCard"
                 >
-                    Save
-                </Button>
-            </S.ButtonContainer>
-        </S.NewMaterialCardBox>
+
+                    <Form methods={methods} className="form-container">
+
+                        <p>Add new product</p>
+
+                        <MyInput
+                            name='name'
+                            label='Name'
+                            placeholder="Enter a name"
+                        />
+                        <MyInput
+                            name='note'
+                            label='Note (optional)'
+                            textarea
+                            placeholder="Enter a note"
+                        />
+                        <MyInput
+                            name='image'
+                            label='Image (optional)'
+                            placeholder="Enter a url"
+                        />
+
+                        <Box flex flexColumn gap="1.5rem">
+                            <MyInput
+                                name='category'
+                                label='Category'
+                                placeholder="Enter a category or choose one below"
+                            />
+
+                            <S.CategoriesList>
+                                {
+                                    categories.map(cat => (
+                                        <S.CategoryItem
+                                            onClick={() => onSelectCategory(cat.name)}
+                                            isSelected={selectedCategory?.toLowerCase() === cat.name.toLowerCase()}
+                                            key={cat.id}
+                                        >
+                                            {cat.name.toLowerCase()}
+                                        </S.CategoryItem>
+                                    ))
+                                }
+                            </S.CategoriesList>
+                        </Box>
+
+                    </Form>
+
+                    <S.ButtonContainer>
+                        <Button onClick={toggleShowNewProduct}>
+                            Cancel
+                        </Button>
+                        <Button
+                            onClick={methods.handleSubmit(onSubmit)} disabled={showOpaqueLoader} as={motion.button}
+                            whileTap={{ scale: 0.9 }}
+                            whileHover={{ scale: 1.1 }}
+                            transition={{ duration: 0.2 }}
+                        >
+                            Save
+                        </Button>
+                    </S.ButtonContainer>
+                </S.NewMaterialCardBox>
+            }
+        </AnimatePresence>
     )
 }

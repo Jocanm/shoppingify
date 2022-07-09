@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { AppearAnimation, GlobalBackButton, GlobalCard, GlobalMdCard, globalWhiteCard, NoVisivleScrollBar } from '../../../shared';
+import { AppearAnimation, GlobalBackButton, GlobalCard, GlobalFixedCard, GlobalMdCard, globalWhiteCard, NoVisivleScrollBar } from '../../../shared';
 import { ButtonContainer } from '../../materials/newMaterial/NewProductCard.styles';
 import { motion } from 'framer-motion';
 
@@ -78,20 +78,8 @@ export const ProductDescriptionBox = styled(motion.div)`
     flex-direction:column;
     gap:2rem;
 
-    position:fixed;
-    top:0;
-    right:0;
-    bottom:0;
-    height:100%;
-    width:28rem;
-
-    ${props => props.theme.breakpoints.xl2}{
-        width:26rem;
-    }
-
-    ${props => props.theme.breakpoints.lg}{
-        width:100%;
-    }
+    ${GlobalFixedCard}
+    z-index:11;
 
     ${props => props.theme.breakpoints.xs} {
         padding: 2rem;

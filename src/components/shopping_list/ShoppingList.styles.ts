@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { AppearAnimation, GlobalCard, GlobalMdCard, NoVisivleScrollBar } from '../../shared';
+import { AppearAnimation, GlobalCard, GlobalFixedCard, GlobalMdCard, NoVisivleScrollBar } from '../../shared';
 
 interface Props {
     showShoppingList: boolean;
@@ -54,6 +54,9 @@ export const ProductsInCart = styled.div`
         height: 20rem;
         position:relative;
     }
+
+    ${GlobalFixedCard}
+    z-index:9;
 
 `
 

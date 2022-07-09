@@ -40,7 +40,6 @@ export const ShoppingCard = () => {
                 showShoppingList={showShoppingList}
             >
                 <Content
-                    showProductForm={showProductForm}
                     toggleShowNewProduct={toggleShowNewProduct}
                 />
 
@@ -55,7 +54,6 @@ export const ShoppingCard = () => {
             >
 
                 <Content
-                    showProductForm={showProductForm}
                     toggleShowNewProduct={toggleShowNewProduct}
                 />
 
@@ -66,18 +64,14 @@ export const ShoppingCard = () => {
 
 interface Props {
     toggleShowNewProduct: () => void
-    showProductForm: boolean;
 }
 
 export const Content = (props: Props) => {
 
     return (
         <>
-            {
-                !props.showProductForm
-                    ? <ProductsListContent toggleShowNewProduct={props.toggleShowNewProduct} />
-                    : <NewProductCard toggleShowNewProduct={props.toggleShowNewProduct} />
-            }
+            <NewProductCard toggleShowNewProduct={props.toggleShowNewProduct} />
+            <ProductsListContent toggleShowNewProduct={props.toggleShowNewProduct} />
             <ProductDescription />
         </>
     )

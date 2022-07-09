@@ -156,3 +156,22 @@ export const GlobalStatusBox = css<{ color: string }>`
     color: ${props => props.color};
 
 `
+
+export const GlobalFixedCard = css`
+
+    position:fixed;
+    top:0;
+    right:0;
+    bottom:0;
+    height:100%;
+    width:28rem;
+
+    ${props => props.theme.breakpoints.xl2}{
+        width:26rem;
+    }
+
+    ${props => props.theme.breakpoints.lg}{
+        width:100%;
+    }
+
+`
