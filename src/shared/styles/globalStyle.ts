@@ -49,9 +49,9 @@ export const GlobalStyle = createGlobalStyle`
 
     html{
         font-size: 16px;
-        /* ${props => props.theme.breakpoints.xl4} {
+        ${props => props.theme.breakpoints.xl4} {
             font-size: 15px;
-        } */
+        }
         ${props => props.theme.breakpoints.xl3} {
             font-size: 14px;
         }

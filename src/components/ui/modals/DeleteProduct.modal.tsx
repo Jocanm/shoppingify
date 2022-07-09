@@ -19,9 +19,9 @@ export const DeleteProductModal = () => {
     }
 
     const handleDelete = () => {
-        if(email === 'demo@demo.demo'){
+        if(email === 'test@test.test'){
             handleClose()
-            toast('Demo user is not allowed to delete products.','error')
+            toast('Test user is not allowed to delete products.','error')
             return;
         }
         deleteProduct(activeProduct!.id)

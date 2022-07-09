@@ -40,7 +40,7 @@ const LoginPage = () => {
 
     return (
         <FormProvider {...methods}>
-            <PublicLayout description='Login Page' title="shoppingify | login" viewTitle='Login'>
+            <PublicLayout description='Login Page' title="shoppingify | Login" viewTitle='Login'>
                 <Box
                     flex flexColumn gap="1.2rem"
                     as="form"

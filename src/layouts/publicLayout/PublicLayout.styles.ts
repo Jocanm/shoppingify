@@ -30,19 +30,6 @@ export const PublicLayoutWrapper = styled.div`
         cursor: pointer;
     }
 
-    /* & label.Mui-focused {
-        color: rgba(0, 0, 0, 0.6);
-    }
-    & .MuiOutlinedInput-root {
-        &.Mui-focused fieldset {
-            border: 1px solid #c4c4c4;
-        }
-    }
-
-    .css-1eqv57h-MuiInputBase-root-MuiOutlinedInput-root:hover{
-        border-color: red;
-    } */
-
 `
 
 
@@ -111,6 +98,84 @@ export const SocialMediaIcon = styled.div`
     >*{
         font-size: 1.6rem;
         fill: #828282;
+    }
+
+`
+
+export const DemoAccountMessage = styled.article<{ isLoginPage: boolean }>`
+
+
+    background-color: ${props => props.theme.colors.orange};
+    color: ${props => props.theme.colors.white};
+
+    box-shadow: 3px 3px 8px #00000029;
+    border-radius: 1.5rem;
+    padding: 1.5rem 1rem;
+
+    display: ${props => props.isLoginPage ? 'flex' : 'none'};
+    flex-direction: column;
+    justify-content: center;
+    gap: .5rem;
+
+    width:450px;
+
+    p{
+        font-size: 1.1rem;
+        font-weight: 500;
+        text-align: center;
+    }
+
+    p:last-child{
+        font-weight: 600;
+    }
+
+    ${props => props.theme.breakpoints.sm} {
+        display: none;
+        position: absolute;
+        top: 2rem;
+        width: auto;
+        padding: 1.5rem 3rem;
+    }
+
+    ${props => props.theme.breakpoints.xs} {
+        padding: 1.5rem;
+    }
+
+    ${props => props.theme.breakpoints.xxs} {
+        padding: 1.5rem;
+        top: 5rem;
+    }
+
+`
+export const DemoAccountMessageSm = styled.article<{ isLoginPage: boolean }>`
+
+    background-color: ${props => props.theme.colors.orange};
+    color: ${props => props.theme.colors.white};
+
+    box-shadow: 3px 3px 8px #00000029;
+    border-radius: 1.5rem;
+    padding: 1.5rem 0rem;
+
+    display:none;
+
+    flex-direction: column;
+    justify-content: center;
+    gap: .5rem;
+
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
+
+    p:last-child{
+        font-weight: 600;
+    }
+
+    ${props => props.theme.breakpoints.sm} {
+        display: ${props => props.isLoginPage ? 'flex' : 'none'};
+    }
+
+    ${props => props.theme.breakpoints.xs} {
+        font-size: 1rem;
     }
 
 `

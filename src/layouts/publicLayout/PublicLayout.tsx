@@ -39,7 +39,7 @@ export const PublicLayout: FC<Props> = ({ children, description, title, viewTitl
 
     useEffect(() => {
         dispatch(globalApi.util.resetApiState())
-    },[])
+    }, [dispatch])
 
     if (status === 'authenticated') {
         return null
@@ -52,7 +52,19 @@ export const PublicLayout: FC<Props> = ({ children, description, title, viewTitl
                 <meta name="description" content={description} />
                 <meta property="og:title" content={title} />
             </Head>
+
+            <S.DemoAccountMessage isLoginPage={isLoginPage}>
+                <p className='message'>For testing purposes, you can use this account:</p>
+                <p className='data'>test@test.test / test1234</p>
+            </S.DemoAccountMessage>
+
             <S.FormWrapper>
+
+                <S.DemoAccountMessageSm isLoginPage={isLoginPage}>
+                    <p className='message'>For testing purposes, you can use this account:</p>
+                    <p className='data'>test@test.test / test1234</p>
+                </S.DemoAccountMessageSm>
+
                 <Box flex flexColumn gap="1rem">
                     <Box flex alignCenter gap=".45rem">
                         <Image src="/assets/logo.svg" alt="logo" width={30} height={30} />
@@ -72,9 +84,6 @@ export const PublicLayout: FC<Props> = ({ children, description, title, viewTitl
                         <S.SocialMediaIcon onClick={() => oAuthLogin('github')}>
                             <GitHub />
                         </S.SocialMediaIcon>
-                        {/* <S.SocialMediaIcon>
-                            <Facebook />
-                        </S.SocialMediaIcon> */}
                     </Box>
                     {
                         !isLoginPage
