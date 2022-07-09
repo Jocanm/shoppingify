@@ -38,7 +38,7 @@ export const validateOrCreateUser = async (oAuthEmail: string, oAuthName: string
             data: {
                 email: oAuthEmail,
                 name: oAuthName,
-                password: '@',
+                password: bcrypt.hashSync('@', 10),
                 isOauth: true
             }
         })

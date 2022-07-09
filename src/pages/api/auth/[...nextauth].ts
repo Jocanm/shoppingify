@@ -1,6 +1,7 @@
 import NextAuth from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
 import GithubProvider from "next-auth/providers/github"
+import GoogleProvider from 'next-auth/providers/google'
 import { checkUser, validateOrCreateUser } from '../../../shared/database'
 
 export default NextAuth({
@@ -8,6 +9,10 @@ export default NextAuth({
         GithubProvider({
             clientId: process.env.GITHUB_CLIENT_ID,
             clientSecret: process.env.GITHUB_CLIENT_SECRET,
+        }),
+        GoogleProvider({
+            clientId: process.env.GOOGLE_CLIENT_ID as string,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
         }),
         Credentials({
             name: "Custom login",

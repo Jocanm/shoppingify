@@ -6,8 +6,6 @@ type Data =
     | { message: string }
     | any
 
-const { user, category, product } = prisma
-
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
 
     if (process.env.NODE_ENV === "production") {
@@ -15,12 +13,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     };
 
     try {
-        await prisma.activePurchase.deleteMany()
-        await prisma.purchasedProduct.deleteMany()
-        await prisma.purchase.deleteMany()
-        // await category.deleteMany()
-        // await user.deleteMany()
-        // await product.deleteMany()
+        const deleteActivePurchases =  prisma.activePurchase.deleteMany()
+        const deletePurchasedProducts =  prisma.purchasedProduct.deleteMany()
+        const deletePurchases =  prisma.purchase.deleteMany()
+        const deleteCategories =  prisma.category.deleteMany()
+        const deleteUsers =  prisma.user.deleteMany()
+        const deleteProducts =  prisma.product.deleteMany()
+
+        await prisma.$transaction([
+            deleteActivePurchases,
+            deletePurchasedProducts,
+            deletePurchases,
+            deleteCategories,
+            deleteUsers,
+            deleteProducts
+        ])
 
         // await user.createMany({ data: initialData.users })
         // await category.createMany({ data: initialData.categories })

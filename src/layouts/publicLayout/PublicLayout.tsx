@@ -1,4 +1,4 @@
-import { GitHub } from '@mui/icons-material';
+import { GitHub, Google } from '@mui/icons-material';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -62,9 +62,9 @@ export const PublicLayout: FC<Props> = ({ children, description, title, viewTitl
                 <S.SocialMediaContainer>
                     <h4>or continue with these social profile</h4>
                     <Box flex justifyCenter gap="1rem">
-                        {/* <S.SocialMediaIcon>
+                        <S.SocialMediaIcon onClick={() => oAuthLogin('google')}>
                             <Google />
-                        </S.SocialMediaIcon> */}
+                        </S.SocialMediaIcon>
                         <S.SocialMediaIcon onClick={() => oAuthLogin('github')}>
                             <GitHub />
                         </S.SocialMediaIcon>
