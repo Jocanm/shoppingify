@@ -36,9 +36,7 @@ export const ShoppingCard = () => {
 
     return (
         <>
-            <S.ShoppingListContainer
-                showShoppingList={showShoppingList}
-            >
+            <S.ShoppingListContainer>
                 <Content
                     toggleShowNewProduct={toggleShowNewProduct}
                 />
@@ -46,7 +44,6 @@ export const ShoppingCard = () => {
             </S.ShoppingListContainer>
 
             <S.SmallViewShoppingListContainer
-                showShoppingList={showShoppingList}
                 as={motion.div}
                 variants={variants}
                 animate={showShoppingList ? 'animate' : 'exit'}

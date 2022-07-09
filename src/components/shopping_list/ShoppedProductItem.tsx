@@ -45,7 +45,7 @@ export const ShoppedProductItem = (props: Props) => {
             setIsEditMode(false)
         }
 
-    }, [editShoppingListMode])
+    }, [editShoppingListMode, activePurchase])
 
     return (
         <S.ShoppedItemStyles

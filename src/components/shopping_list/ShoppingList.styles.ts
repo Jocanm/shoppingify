@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 import { AppearAnimation, GlobalCard, GlobalFixedCard, GlobalMdCard, NoVisivleScrollBar } from '../../shared';
 
-interface Props {
-    showShoppingList: boolean;
-}
-
-export const ShoppingListContainer = styled.section<Props>`
+export const ShoppingListContainer = styled.section`
 
     ${GlobalCard}
 

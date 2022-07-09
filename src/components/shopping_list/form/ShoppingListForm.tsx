@@ -30,7 +30,7 @@ export const ShoppingListForm = () => {
 
         if (activePurchase) {
             methods.setValue('name', activePurchase.purchase.name)
-        }else{
+        } else {
             methods.setValue('name', '')
         }
 
@@ -50,15 +50,21 @@ export const ShoppingListForm = () => {
 
     }
 
-    return (
-        <Form methods={methods} onSubmit={methods.handleSubmit(onSubmit)}>
-            {
-                activePurchase
-                    ? editShoppingListMode
+    if (activePurchase) {
+        return (
+            <Form methods={methods} onSubmit={methods.handleSubmit(onSubmit)}>
+                {
+                    editShoppingListMode
                         ? <ShoppingListFormData />
                         : <ShoppingListFormStatus />
-                    : <ShoppingListFormData />
-            }
+                }
+            </Form>
+        )
+    }
+
+    return (
+        <Form methods={methods} onSubmit={methods.handleSubmit(onSubmit)}>
+            <ShoppingListFormData />
         </Form>
     )
 }

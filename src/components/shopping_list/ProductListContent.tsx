@@ -1,18 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-import { useRef, useState } from "react";
+import { AnimatePresence, motion } from 'framer-motion';
+import { useDispatch } from 'react-redux';
 import { toggleEditShoppingListMode, useAppSelector } from "../../config/redux";
 import { Box } from "../globalComponents";
 import { Button } from "../ui/buttons";
+import { ShoppingListForm } from "./form/ShoppingListForm";
 import * as S from './ShoppingList.styles';
 import { ShoppingProductsList } from "./ShoppingProductsList";
-import { useForm } from 'react-hook-form';
-import { Form } from "../ui/form";
-import { MyInput } from "../ui/inputs";
-import * as Yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { ShoppingListForm } from "./form/ShoppingListForm";
-import { useDispatch } from 'react-redux';
-import { motion, AnimatePresence } from 'framer-motion';
 
 interface Props {
     toggleShowNewProduct: () => void
