@@ -1,7 +1,6 @@
-import { prisma } from '../../../lib/prisma';
 import bcrypt from 'bcryptjs';
+import { prisma } from '../../../lib/prisma';
 import { createCategoriesForUser } from './userCategories';
-
 
 export const checkUser = async (email: string, password: string) => {
 
@@ -26,7 +25,7 @@ export const validateOrCreateUser = async (oAuthEmail: string, oAuthName: string
 
     try {
         const user = await prisma.user.findUnique({
-            where: { email: oAuthEmail }
+            where: { email: oAuthEmail },
         })
 
         if (user) {
@@ -40,7 +39,7 @@ export const validateOrCreateUser = async (oAuthEmail: string, oAuthName: string
                 name: oAuthName,
                 password: bcrypt.hashSync('@', 10),
                 isOauth: true
-            }
+            },
         })
 
         await createCategoriesForUser(newUser.id)

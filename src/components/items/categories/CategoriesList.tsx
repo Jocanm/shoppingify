@@ -38,8 +38,6 @@ export const CategoriesList = () => {
         }, 0)
     },[categories])
 
-    console.log(numberOfProducts)
-
     if (numberOfProducts === 0) {
         return (
             <S.NoProductsBox>

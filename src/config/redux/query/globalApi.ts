@@ -90,7 +90,7 @@ export const globalApi = createApi({
 
             invalidatesTags: ['statistics'],
 
-            onQueryStarted: async (state, { dispatch, queryFulfilled }) => {
+            onQueryStarted: async ({ state }, { dispatch, queryFulfilled }) => {
 
 
                 try {
