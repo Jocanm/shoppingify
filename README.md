@@ -4,18 +4,34 @@
    Solution for a challenge from  <a href="http://devchallenges.io" target="_blank">Devchallenges.io</a>.
 </div>
 
----
+<h2 align="center">
+   shopping list management with statistics and history module
+</h2>
 
-## shopping list management with statistics and history module
+<div align="center">
+  <h3>
+    <a target="_blank" href="https://shoppingify.shop">
+      Demo
+    </a>
+    <span> | </span>
+    <a target="_blank" href="https://devchallenges.io/solutions/ZibaHiBRLPnTQjoO4pQr">
+      Solution
+    </a>
+    <span> | </span>
+    <a target="_blank" href="https://devchallenges.io/challenges/mGd5VpbO4JnzU6I9l96x">
+      Challenge
+    </a>
+  </h3>
+</div>
 
-## Table of Contents
+### Table of Contents
 
 - [Overview](#overview)
 - [Tech Stack](#tech-stack)
 - [How to use](#how-to-use)
 - [Author](#author)
 
-## Overview
+### Overview
 
 ![Untitled](public/screenshots/Untitled.png)
 
@@ -27,7 +43,7 @@
 
 ![Untitled](public/screenshots/Untitled%204.png)
 
-## Tech Stack
+### Tech Stack
 
 - React
 - Next.js
@@ -40,7 +56,7 @@
 - Prisma ORM
 - Mongodb
 
-## How to use
+### How to use
 
 #### To clone and run this application, you'll need [Git](https://git-scm.com/) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com/)) installed on your computer. From your command line:
 
@@ -73,7 +89,7 @@ GOOGLE_CLIENT_SECRET=
 NEXTAUTH_SECRET=
 ```
 
-## Author
+### Author
 ---
 
 - Frontend Mentor - [@Jocanm](https://devchallenges.io/portfolio/Jocanm)
