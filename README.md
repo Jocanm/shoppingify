@@ -1,8 +1,19 @@
-# Shoppingify
+<h1 align="center">Shoppingify</h1>
 
-## shopping list management with statistics and history module
+<div align="center">
+   Solution for a challenge from  <a href="http://devchallenges.io" target="_blank">Devchallenges.io</a>.
+</div>
+
+##shopping list management with statistics and history module
 
 ---
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Tech Stack](#tech-stack)
+- [How to use](#how-to-use)
+- [Author](#author)
 
 ## Overview
 
@@ -29,9 +40,9 @@
 - Prisma ORM
 - Mongodb
 
-## How to use (Scripts)
+## How to use
 
-### To clone and run this application, you'll need [Git](https://git-scm.com/) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com/)) installed on your computer. From your command line:
+#### To clone and run this application, you'll need [Git](https://git-scm.com/) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com/)) installed on your computer. From your command line:
 
 ```powershell
 # Clone This repository
@@ -44,7 +55,7 @@ npm install
 npm run dev
 ```
 
-### You will also need to fill in the environment variables, the ones needed to run the application correctly.
+#### You will also need to fill in the environment variables, the ones needed to run the application correctly.
 
 ```powershell
 #mongo connection url string
@@ -63,7 +74,6 @@ NEXTAUTH_SECRET=
 ```
 
 ## Author
-
 ---
 
 - Frontend Mentor - [@Jocanm](https://devchallenges.io/portfolio/Jocanm)
