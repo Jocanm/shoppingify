@@ -4,9 +4,9 @@
    Solution for a challenge from  <a href="http://devchallenges.io" target="_blank">Devchallenges.io</a>.
 </div>
 
-##shopping list management with statistics and history module
-
 ---
+
+## shopping list management with statistics and history module
 
 ## Table of Contents
 
