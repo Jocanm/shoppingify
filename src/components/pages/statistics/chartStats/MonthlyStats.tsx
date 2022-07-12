@@ -12,8 +12,6 @@ interface Props {
 
 export const MonthlyStats = ({ monthlySummary }: Props) => {
 
-    console.log(monthlySummary);
-
     return (
         <ChartContainer>
 

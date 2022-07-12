@@ -9,8 +9,6 @@ type Data =
 
 export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
 
-    console.log(req.method)
-
     switch (req.method) {
         case 'GET':
             return getPurchasDetails(req, res)

@@ -60,8 +60,6 @@ export const startSignInUser = createAsyncThunk(
                 redirect: false
             })
 
-            console.log({ res: JSON.stringify(res) })
-
             if (!(res as any)?.ok) {
                 return toast("Invalid email or password", "error")
             }
