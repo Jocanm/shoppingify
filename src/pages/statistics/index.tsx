@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { DailyStats, MonthlyStats, TopSection } from '../../components/pages';
 import { PrivateLayout } from '../../layout';
-import { colors, LoadersWrapper, ViewTitle, ViewWrapper } from '../../shared';
+import { colors, LoadersWrapper, StatisticsPageWrapper, ViewTitle, ViewWrapper } from '../../shared';
 import { getActualDate } from '../../shared/helpers';
 import dayjs from 'dayjs';
 import { useGetTopStatisticsQuery } from '../../config/redux';
@@ -25,7 +25,7 @@ const StatisticsPage = () => {
     }
 
     return (
-        <ViewWrapper>
+        <StatisticsPageWrapper>
 
             <ViewTitle>Statistics for {actualYear}</ViewTitle>
 
@@ -39,7 +39,7 @@ const StatisticsPage = () => {
                 dailySummary={data?.dailySummary || []}
             />
 
-        </ViewWrapper>
+        </StatisticsPageWrapper>
     )
 }
 

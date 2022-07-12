@@ -11,7 +11,7 @@ export const TopSectionContainer = styled.div`
 
     ${props => props.theme.breakpoints.md} {
         flex-direction: column;
-        gap:3rem;
+        gap:2rem;
     }
 
     .products .nextui-c-dwnaVv{

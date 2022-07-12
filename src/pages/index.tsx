@@ -8,10 +8,6 @@ import { ReactElement } from 'react';
 const HomePage: NextPageWithLayout = () => {
 
     return (
-        // <PrivateLayout
-        //     title="Shoppingify | Home"
-        //     description="Home page"
-        // >
         <FilterProvider>
             <S.HomePageContainer>
 
@@ -21,7 +17,6 @@ const HomePage: NextPageWithLayout = () => {
 
             </S.HomePageContainer>
         </FilterProvider>
-        // </PrivateLayout>
     )
 }
 

@@ -42,8 +42,6 @@ export const ShoppingProductsList = ({ toggleEditMode }: Props) => {
                 }
             </Box>
 
-            {/* TODO: separar lista visualmente por categorias tambien */}
-
             {
                 Object.values(cart).map((item) => (
                     <ShoppedProductItem

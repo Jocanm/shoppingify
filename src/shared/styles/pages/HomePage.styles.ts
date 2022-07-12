@@ -11,8 +11,4 @@ export const HomePageContainer = styled.div`
         gap:1rem;
     }
 
-    ${props => props.theme.breakpoints.xs} {
-        gap:0rem;
-    }
-
 `
