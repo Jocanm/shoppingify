@@ -3,9 +3,10 @@ import { Button, MyInput, Form, Box } from '../../';
 import * as S from './NewProductCard.styles';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useAppSelector, useAppDispatch, startCreateNewProduct } from '../../../config/redux';
+import { useAppSelector, useAppDispatch, startCreateNewProduct, RootState } from '../../../config/redux';
 import { patterns } from '../../../shared';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useSelector } from 'react-redux';
 
 interface Props {
     toggleShowNewProduct: () => void
@@ -33,8 +34,12 @@ export const NewProductCard = ({ toggleShowNewProduct }: Props) => {
     const methods = useForm<ProductFormProps>({ resolver: yupResolver(ProductFormShape) })
     const dispatch = useAppDispatch()
 
-    const { categories } = useAppSelector().categories;
-    const { showOpaqueLoader, showProductForm } = useAppSelector().ui;
+    // const { categories } = useAppSelector().categories;
+    // const { showOpaqueLoader, showProductForm } = useAppSelector().ui;
+
+    const categories = useSelector((state: RootState) => state.categories.categories);
+    const showOpaqueLoader = useSelector((state: RootState) => state.ui.showOpaqueLoader);
+    const showProductForm = useSelector((state: RootState) => state.ui.showProductForm);
 
     const selectedCategory = methods.watch('category')
 

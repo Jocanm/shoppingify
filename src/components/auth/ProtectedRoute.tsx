@@ -2,8 +2,9 @@ import React, { useEffect } from 'react'
 import { FC } from 'react';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
-import { startGetInitialData, useAppDispatch, useAppSelector } from '../../config/redux';
+import { RootState, startGetInitialData, useAppDispatch, useAppSelector } from '../../config/redux';
 import { FullScreenVanillaLoder } from '../ui/loders';
+import { useSelector } from 'react-redux';
 
 interface Props {
     children: React.ReactNode
@@ -12,7 +13,9 @@ interface Props {
 export const ProtectedRoute: FC<Props> = ({ children }) => {
 
     const dispatch = useAppDispatch()
-    const { isGettingInitialData, isAuthenticated } = useAppSelector().auth
+    // const { isAuthenticated,isGettingInitialData } = useAppSelector().auth
+    const isGettingInitialData = useSelector((state: RootState) => state.auth.isGettingInitialData)
+    const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated)
 
     const { status } = useSession()
     const router = useRouter()
@@ -24,7 +27,7 @@ export const ProtectedRoute: FC<Props> = ({ children }) => {
     }, [status, router])
 
     useEffect(() => {
-        if(!isAuthenticated) return;
+        if (!isAuthenticated) return;
         dispatch(startGetInitialData())
     }, [dispatch, isAuthenticated])
 

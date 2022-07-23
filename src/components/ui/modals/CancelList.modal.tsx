@@ -1,13 +1,17 @@
 import { Dialog } from '@mui/material';
-import { setCancelListModal, useAppDispatch, useAppSelector, useUpdatePurchaseStateMutation } from '../../../config/redux';
+import { RootState, setCancelListModal, useAppDispatch, useAppSelector, useUpdatePurchaseStateMutation } from '../../../config/redux';
 import { Button } from '../buttons';
 import * as S from './modals.styles';
+import { useSelector } from 'react-redux';
 
 export const CancelListModal = () => {
 
     const dispatch = useAppDispatch()
-    const { cancelListModal } = useAppSelector().ui
-    const { activePurchase } = useAppSelector().shopping
+    // const { cancelListModal } = useAppSelector().ui
+    // const { activePurchase } = useAppSelector().shopping
+
+    const cancelListModal = useSelector((state: RootState) => state.ui.cancelListModal);
+    const activePurchase = useSelector((state: RootState) => state.shopping.activePurchase);
 
     const [updateState, { isLoading }] = useUpdatePurchaseStateMutation()
 

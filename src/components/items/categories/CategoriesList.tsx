@@ -1,14 +1,16 @@
 import { useMemo } from 'react'
-import { setShowProductForm, useAppDispatch, useAppSelector } from '../../../config/redux'
+import { RootState, setShowProductForm, useAppDispatch, useAppSelector } from '../../../config/redux'
 import { useFilterContext } from '../../../shared/context'
 import { Button } from '../../ui/buttons'
 import * as S from './CategoriesList.styles'
 import { CategoryItem } from './CategoryItem'
 import { motion } from 'framer-motion';
+import { useSelector } from 'react-redux';
 
 export const CategoriesList = () => {
 
-    const { categories } = useAppSelector().categories
+    // const { categories } = useAppSelector().categories
+    const categories = useSelector((state: RootState) => state.categories.categories)
     const dispatch = useAppDispatch()
 
     const { productName } = useFilterContext()

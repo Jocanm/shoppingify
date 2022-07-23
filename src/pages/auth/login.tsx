@@ -5,9 +5,10 @@ import { useRouter } from 'next/router'
 import { FormProvider, useForm } from 'react-hook-form'
 import * as Yup from 'yup'
 import { Box, Button, MyTextField } from '../../components'
-import { startSignInUser, useAppDispatch, useAppSelector } from '../../config/redux'
+import { RootState, startSignInUser, useAppDispatch, useAppSelector } from '../../config/redux'
 import { PublicLayout } from '../../layouts'
 import { patterns } from '../../shared'
+import { useSelector } from 'react-redux';
 
 const FormShape = Yup.object({
     email: Yup
@@ -26,7 +27,8 @@ export interface FormProps extends Yup.InferType<typeof FormShape> { }
 const LoginPage = () => {
 
     const dispatch = useAppDispatch()
-    const { isValidating } = useAppSelector().auth
+    // const { isValidating } = useAppSelector().auth
+    const isValidating = useSelector((state: RootState) => state.auth.isValidating);
     const router = useRouter()
 
     const methods = useForm<FormProps>({ resolver: yupResolver(FormShape) })

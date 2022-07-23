@@ -1,14 +1,18 @@
 import { Box, PurchasesList } from '../../components';
-import { useAppSelector } from '../../config/redux';
+import { RootState, useAppSelector } from '../../config/redux';
 import { PrivateLayout } from '../../layout';
 import { ViewTitle, ViewWrapper } from '../../shared';
 import { ReactElement } from 'react';
 import { VanillaLoader } from '../../components/ui/loders';
+import { useSelector } from 'react-redux';
 
 const HistoryPage = () => {
 
-    const { purchases } = useAppSelector().shopping
-    const { isGettingPurchases } = useAppSelector().ui
+    // const { purchases } = useAppSelector().shopping
+    // const { isGettingPurchases } = useAppSelector().ui
+
+    const purchases = useSelector((state: RootState) => state.shopping.purchases)
+    const isGettingPurchases = useSelector((state: RootState) => state.ui.isGettingPurchases);
 
     if(isGettingPurchases){
         return <VanillaLoader/>

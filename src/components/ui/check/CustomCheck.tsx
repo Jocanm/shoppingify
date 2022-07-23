@@ -1,8 +1,9 @@
 import { Check } from '@mui/icons-material'
 import React from 'react'
-import { startSetDoneStatus, useAppDispatch, useAppSelector } from '../../../config/redux'
+import { RootState, startSetDoneStatus, useAppDispatch, useAppSelector } from '../../../config/redux'
 import * as S from './CustomCheck.styles'
 import { IProduct } from '../../../shared/models';
+import { useSelector } from 'react-redux';
 
 interface Props {
     done: boolean
@@ -12,8 +13,11 @@ interface Props {
 
 export const CustomCheck = ({ done, quantity, product: { id } }: Props) => {
 
-    const { editShoppingListMode } = useAppSelector().ui
-    const { activePurchase } = useAppSelector().shopping
+    // const { editShoppingListMode } = useAppSelector().ui
+    // const { activePurchase } = useAppSelector().shopping
+
+    const editShoppingListMode = useSelector((state: RootState) => state.ui.editShoppingListMode)
+    const activePurchase = useSelector((state: RootState) => state.shopping.activePurchase)
 
     const dispatch = useAppDispatch()
 

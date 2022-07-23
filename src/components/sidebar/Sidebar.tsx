@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import Image from 'next/image';
-import { toggleMenu, useAppDispatch, useAppSelector } from '../../config/redux';
+import { toggleMenu, useAppDispatch } from '../../config/redux';
 import { routesList } from '../../config/routes';
 import { Box } from '../globalComponents';
 import { Menu } from '../menu';

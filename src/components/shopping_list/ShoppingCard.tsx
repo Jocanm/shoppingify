@@ -1,13 +1,17 @@
 import { motion } from 'framer-motion';
-import { setShowProductForm, useAppDispatch, useAppSelector } from '../../config/redux';
+import { RootState, setShowProductForm, useAppDispatch, useAppSelector } from '../../config/redux';
 import { ProductDescription } from '../items';
 import { NewProductCard } from '../materials';
 import { ProductsListContent } from './';
 import * as S from './ShoppingList.styles';
+import { useSelector } from 'react-redux';
 
 export const ShoppingCard = () => {
 
-    const { showShoppingList, showProductDetails, showProductForm } = useAppSelector().ui
+    // const { showShoppingList, showProductDetails, showProductForm } = useAppSelector().ui
+    const showShoppingList = useSelector((state: RootState) => state.ui.showShoppingList)
+    const showProductDetails = useSelector((state: RootState) => state.ui.showProductDetails)
+    const showProductForm = useSelector((state: RootState) => state.ui.showProductForm)
 
     const dispatch = useAppDispatch()
 

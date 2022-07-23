@@ -1,13 +1,17 @@
 import { ShoppingCartOutlined } from '@mui/icons-material'
-import { setActiveProduct, toggleShowShoppingList, useAppDispatch, useAppSelector } from '../../../config/redux'
+import { RootState, setActiveProduct, toggleShowShoppingList, useAppDispatch, useAppSelector } from '../../../config/redux'
 import * as S from './Cart.styles'
 import React from 'react';
 import { closeProductDetails } from '../../../config/redux/actions';
+import { useSelector } from 'react-redux';
 
 export const Cart = () => {
 
-    const { cartTotal } = useAppSelector().cart
-    const { activeProduct } = useAppSelector().categories
+    // const { cartTotal } = useAppSelector().cart
+    // const { activeProduct } = useAppSelector().categories
+
+    const cartTotal = useSelector((state: RootState) => state.cart.cartTotal)
+    const activeProduct = useSelector((state: RootState) => state.categories.activeProduct)
     const dispatch = useAppDispatch()
 
     const onToggleList = () => {

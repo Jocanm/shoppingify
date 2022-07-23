@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { AnimatePresence, motion } from 'framer-motion';
-import { useDispatch } from 'react-redux';
-import { toggleEditShoppingListMode, useAppSelector } from "../../config/redux";
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState, toggleEditShoppingListMode, useAppSelector } from "../../config/redux";
 import { Box } from "../globalComponents";
 import { Button } from "../ui/buttons";
 import { ShoppingListForm } from "./form/ShoppingListForm";
@@ -14,8 +14,11 @@ interface Props {
 
 export const ProductsListContent = ({ toggleShowNewProduct }: Props) => {
 
-    const { cartTotal } = useAppSelector().cart
-    const { showProductForm } = useAppSelector().ui
+    // const { cartTotal } = useAppSelector().cart
+    // const { showProductForm } = useAppSelector().ui
+    
+    const cartTotal = useSelector((state: RootState) => state.cart.cartTotal)
+    const showProductForm = useSelector((state: RootState) => state.ui.showProductForm)
     const dispatch = useDispatch()
 
     const toggleEditMode = () => {

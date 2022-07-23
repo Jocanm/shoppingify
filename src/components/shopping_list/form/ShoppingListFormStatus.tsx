@@ -1,12 +1,16 @@
-import { setCancelListModal, setCompleteListModal, useAppDispatch, useAppSelector, useUpdatePurchaseStateMutation } from '../../../config/redux'
+import { RootState, setCancelListModal, setCompleteListModal, useAppDispatch, useAppSelector, useUpdatePurchaseStateMutation } from '../../../config/redux'
 import { Button } from '../../ui/buttons'
 import { CancelListModal, CompleteListModal } from '../../ui/modals'
 import * as S from '../ShoppingList.styles'
+import { useSelector } from 'react-redux';
 export const ShoppingListFormStatus = () => {
 
     const dispatch = useAppDispatch()
-    const { cart } = useAppSelector().cart
-    const { activePurchase } = useAppSelector().shopping
+    // const { cart } = useAppSelector().cart
+    // const { activePurchase } = useAppSelector().shopping
+
+    const cart = useSelector((state: RootState) => state.cart.cart)
+    const activePurchase = useSelector((state: RootState) => state.shopping.activePurchase)
 
     const [updateState, { isLoading }] = useUpdatePurchaseStateMutation()
 

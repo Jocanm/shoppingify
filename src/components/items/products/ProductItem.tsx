@@ -1,14 +1,16 @@
 import { Add } from '@mui/icons-material';
 import { useMemo } from 'react';
-import { addToCart, useAppDispatch, useAppSelector } from '../../../config/redux';
+import { addToCart, RootState, useAppDispatch, useAppSelector } from '../../../config/redux';
 import { openProductDetails } from '../../../config/redux/actions';
 import { IProduct } from '../../../shared/models';
 import * as S from './ProductsList.styles';
+import { useSelector } from 'react-redux';
 
 export const ProductItem = (product: IProduct) => {
 
     const dispatch = useAppDispatch()
-    const { cart } = useAppSelector().cart
+    // const { cart } = useAppSelector().cart
+    const cart = useSelector((state: RootState) => state.cart.cart)
 
     const onAddToCart = () => {
         dispatch(addToCart(product))

@@ -9,7 +9,8 @@ import { Box, Button, MyTextField } from '../../components';
 import { PublicLayout } from '../../layouts';
 import { patterns } from '../../shared';
 import { useRouter } from 'next/router';
-import { startCreateUser, useAppDispatch, useAppSelector } from '../../config/redux';
+import { RootState, startCreateUser, useAppDispatch, useAppSelector } from '../../config/redux';
+import { useSelector } from 'react-redux';
 
 const FormShape = Yup.object({
     name: Yup
@@ -38,7 +39,9 @@ const RegisterPage = () => {
 
     const router = useRouter()
     const dispatch = useAppDispatch()
-    const { isValidating } = useAppSelector().auth
+    // const { isValidating } = useAppSelector().auth
+    const isValidating = useSelector((state: RootState) => state.auth.isValidating);
+
     const methods = useForm<FormProps>({ resolver: yupResolver(FormShape) })
 
     const onSubmit = async ({ confirmPassword, ...data }: FormProps) => {

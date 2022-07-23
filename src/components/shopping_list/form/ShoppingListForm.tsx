@@ -6,10 +6,11 @@ import * as S from '../ShoppingList.styles';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useAppDispatch, useAppSelector } from '../../../config/redux';
+import { RootState, useAppDispatch, useAppSelector } from '../../../config/redux';
 import { startCreateShoppingList, startUpdateShoppingListData } from '../../../config/redux/thunks/shoppingThunks';
 import { ShoppingListFormData } from './ShoppingListFormData';
 import { ShoppingListFormStatus } from './ShoppingListFormStatus';
+import { useSelector } from 'react-redux';
 
 const FormShape = Yup.object({
     name: Yup.string().required('Name is required').min(3, 'Name must be at least 3 characters long'),
@@ -20,9 +21,13 @@ interface FormProps extends Yup.InferType<typeof FormShape> { }
 export const ShoppingListForm = () => {
 
     const dispatch = useAppDispatch()
-    const { cartTotal } = useAppSelector().cart
-    const { activePurchase } = useAppSelector().shopping
-    const { editShoppingListMode } = useAppSelector().ui
+    // const { cartTotal } = useAppSelector().cart
+    // const { activePurchase } = useAppSelector().shopping
+    // const { editShoppingListMode } = useAppSelector().ui
+
+    const cartTotal = useSelector((state: RootState) => state.cart.cartTotal)
+    const activePurchase = useSelector((state: RootState) => state.shopping.activePurchase)
+    const editShoppingListMode = useSelector((state: RootState) => state.ui.editShoppingListMode)
 
     const methods = useForm<FormProps>({ resolver: yupResolver(FormShape) })
 

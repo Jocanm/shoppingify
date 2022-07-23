@@ -2,14 +2,16 @@ import { Home, Logout } from '@mui/icons-material'
 import { AnimatePresence, motion } from 'framer-motion'
 import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/router'
-import { closeMenu, globalApi, useAppDispatch, useAppSelector } from '../../config/redux'
+import { closeMenu, globalApi, RootState, useAppDispatch, useAppSelector } from '../../config/redux'
 import { logout } from '../../config/redux/actions'
 import * as S from './Menu.styles'
+import { useSelector } from 'react-redux';
 
 export const Menu = () => {
 
     const dispatch = useAppDispatch()
-    const { showMenu } = useAppSelector().ui
+    // const { showMenu } = useAppSelector().ui
+    const showMenu = useSelector((state: RootState) => state.ui.showMenu)
 
     const router = useRouter()
 

@@ -2,17 +2,19 @@
 import { ArrowRightAlt } from '@mui/icons-material'
 import { AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
-import { addToCart, setDeleteProductModal, setShowProductForm, setShowShopingList, useAppDispatch, useAppSelector } from '../../../config/redux'
+import { addToCart, RootState, setDeleteProductModal, setShowProductForm, setShowShopingList, useAppDispatch, useAppSelector } from '../../../config/redux'
 import { closeProductDetails } from '../../../config/redux/actions'
 import { useIsLarge } from '../../../shared/hooks'
 import { IProduct } from '../../../shared/models'
 import { Button } from '../../ui/buttons'
 import { DeleteProductModal } from '../../ui/modals'
 import * as S from './ProductsList.styles'
+import { useSelector } from 'react-redux';
 
 export const ProductDescription = () => {
 
-    const { showProductDetails } = useAppSelector().ui
+    // const { showProductDetails } = useAppSelector().ui
+    const showProductDetails = useSelector((state: RootState) => state.ui.showProductDetails)
 
     return (
         <AnimatePresence>
@@ -27,7 +29,8 @@ export const ProductDescription = () => {
 const Content = () => {
 
     const dispatch = useAppDispatch()
-    const { activeProduct } = useAppSelector().categories
+    // const { activeProduct } = useAppSelector().categories
+    const activeProduct = useSelector((state:RootState) => state.categories.activeProduct)
     const isLarge = useIsLarge()
 
     const cleanActiveProduct = () => {

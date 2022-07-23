@@ -1,15 +1,20 @@
 import { Dialog } from '@mui/material'
 import { motion } from 'framer-motion'
-import { setDeleteProductModal, useAppDispatch, useAppSelector, useDeleteProductMutation } from '../../../config/redux'
+import { RootState, setDeleteProductModal, useAppDispatch, useAppSelector, useDeleteProductMutation } from '../../../config/redux'
 import { toast } from '../../../shared/helpers'
 import { Button } from '../buttons'
 import * as S from './modals.styles'
+import { useSelector } from 'react-redux';
 
 export const DeleteProductModal = () => {
 
-    const { deleteProductModal } = useAppSelector().ui
-    const { email } = useAppSelector().auth.user || {}
-    const { activeProduct } = useAppSelector().categories
+    // const { deleteProductModal } = useAppSelector().ui
+    // const { email } = useAppSelector().auth.user || {}
+    // const { activeProduct } = useAppSelector().categories
+
+    const deleteProductModal = useSelector((state: RootState) => state.ui.deleteProductModal);
+    const activeProduct = useSelector((state: RootState) => state.categories.activeProduct);
+    const email = useSelector((state: RootState) => state.auth.user?.email);
 
     const dispatch = useAppDispatch()
     const [deleteProduct, { isLoading }] = useDeleteProductMutation()
